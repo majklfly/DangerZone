@@ -28,14 +28,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+    'knox',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'rest_auth.registration',
+    'nested_admin',
 
     'src',
     'corsheaders',
+    'quiz',
+    'article',
 ]
 
 AUTH_USER_MODEL = 'src.CustomUser'
@@ -110,11 +114,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        'knox.auth.TokenAuthentication',
     ),
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
 }
 
+REST_KNOX = {
+    'TOKEN_TTL': None,
+    'TOKEN_LIMIT_PER_USER': None,
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
