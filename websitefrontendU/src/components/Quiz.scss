@@ -1,0 +1,39 @@
+.container-quiz {
+  width: 70%;
+  margin: 10% 0% 15% 15%;
+  position: absolute;
+  height: 600px;
+}
+
+.ant-carousel .slick-slide {
+  text-align: center;
+  line-height: 40px;
+  background: #364d79;
+  overflow: hidden;
+}
+
+.ant-carousel .slick-slide h5 {
+  color: #fff;
+}
+
+.container-carousel {
+  height: 500px;
+  background-color: #364d79;
+  text-decoration-color: white;
+}
+.question {
+
+}
+
+.answer-buttons {
+  background-color: #FF7110;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.correct-answer {
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+}
