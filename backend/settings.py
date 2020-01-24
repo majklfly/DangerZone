@@ -76,9 +76,9 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "rzfzuijt",
-        'USER': 'rzfzuijt',
-        'PASSWORD': 'vzL1Y6q3Q4XKJzyrkFsykBFO6tqzYhwz',
+        'NAME': "mlpfnaip",
+        'USER': 'mlpfnaip',
+        'PASSWORD': 'Uqus_xNP0D89OxsGgGMRb366Bv4hPbr-',
         'HOST': 'packy.db.elephantsql.com',
         'PORT':'5432'
     }
