@@ -13,7 +13,7 @@ SECRET_KEY = '_v(69*o+*d0y2gq5)7@*-yy#67bbogwl!$^ukm6za&3q8*u@7w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1']
+ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1', 'dangerzone-react.herokuapp.com']
 
 
 # Application definition
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,5 +141,6 @@ USE_TZ = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static'),]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE  = 'whitenoise.django.GzipManifestStaticFilesStorage'
