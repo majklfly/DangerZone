@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'article',
 ]
 
-AUTH_USER_MODEL = 'src.CustomUser'
+AUTH_USER_MODEL = 'user.CustomUser'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -72,12 +72,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'backend.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {

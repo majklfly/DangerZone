@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from src.models import CustomUser
+from user.models import CustomUser
 
 class Quiz(models.Model):
     name = models.CharField(max_length=1000)
