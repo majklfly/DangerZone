@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'nested_admin',
 
-    'src',
+    'user',
     'corsheaders',
     'quiz',
     'article',
@@ -141,3 +141,5 @@ USE_TZ = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE  = 'whitenoise.django.GzipManifestStaticFilesStorage'
