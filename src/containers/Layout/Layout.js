@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Layout.scss";
 import { Link } from "react-router-dom";
 import menuLogo from "../../assets/menuLogo.png";
+import UserBoard from "../../components/UserBoard";
 
 function ResponsiveNavigation({
   navLinks,
@@ -47,6 +48,7 @@ function ResponsiveNavigation({
             </Link>
           </li>
         ))}
+        <UserBoard />
       </ul>
     </nav>
   );
