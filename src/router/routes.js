@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import * as actions from "../store/actions/auth";
+import { QuizProvider } from "../context/QuizContext";
 
 import AccountScreen from "../containers/AccountScreen";
 import HomepageScreen from "../containers/HomepageScreen";
@@ -44,14 +45,16 @@ const BaseRouter = () => {
 
   return (
     <>
-      <ResponsiveNavigation navLinks={navLinks} />
-      <div>
-        <Route exact path="/homepage/" component={HomepageScreen} />
-        <Route exact path="/account/" component={AccountScreen} />
-        <Route exact path="/lecture/" component={LectureScreen} />
-        <Route exact path="/chapterone/" component={ChapterOneScreen} />
-        <Route exact path="/chapterone/quiz/" component={QuizScreen} />
-      </div>
+      <QuizProvider>
+        <ResponsiveNavigation navLinks={navLinks} />
+        <div>
+          <Route exact path="/homepage/" component={HomepageScreen} />
+          <Route exact path="/account/" component={AccountScreen} />
+          <Route exact path="/lecture/" component={LectureScreen} />
+          <Route exact path="/chapterone/" component={ChapterOneScreen} />
+          <Route exact path="/chapterone/quiz/" component={QuizScreen} />
+        </div>
+      </QuizProvider>
     </>
   );
 };

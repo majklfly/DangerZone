@@ -23,6 +23,7 @@ const reducer = (state = initialState, action) => {
 };
 
 const authStart = (state, action) => {
+  console.log(state);
   return updatedObject(state, {
     error: null,
     loading: true
@@ -33,7 +34,8 @@ const AuthSuccess = (state, action) => {
   return updatedObject(state, {
     token: action.token,
     error: null,
-    loading: false
+    loading: false,
+    userData: action.userData
   });
 };
 

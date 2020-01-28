@@ -1,19 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { Carousel, Button } from "antd";
 import server from "../api/server";
 import "./Quiz.scss";
 
-function Quiz(props) {
+import QuizContext from "../context/QuizContext";
+
+const Quiz = props => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [isCorrect, setIsCorrect] = useState(null);
-  const [validation, setValidation] = useState("");
   const [questionIndex, setQuestionIndex] = useState(0);
+
+  const { validatedCount, addValidatedCount } = useContext(QuizContext);
 
   const getQuestions = () => {
     server.get("/question/").then(res => {
-      setQuestions(res.data);
+      let questions = [];
+      res.data.map(item => {
+        return item.quiz === props.quizNumber ? questions.push(item) : null;
+      });
+      setQuestions(questions);
     });
   };
 
@@ -23,13 +30,15 @@ function Quiz(props) {
     });
   };
 
-  const valuateAnswer = (state, answerIsCorrect, questionIndex) => {
-    setIsCorrect(answerIsCorrect);
-    answerIsCorrect === true
-      ? setValidation("Correct")
-      : setValidation("Keep Trying");
-    setQuestionIndex(questionIndex + 1);
+  const valuateAnswer = (answerIsCorrect, questionIndex, addValidatedCount) => {
+    if (answerIsCorrect === true) {
+      console.log("is correct");
+      addValidatedCount()
+    }
+    setQuestionIndex(questionIndex);
   };
+
+  console.log("Question Index: " + questionIndex);
 
   useEffect(() => {
     getQuestions();
@@ -51,13 +60,11 @@ function Quiz(props) {
                       <div key={answer.id}>
                         <Button
                           key={answer.id}
-                          onClick={() => {
-                            valuateAnswer(
-                              isCorrect,
-                              answer.is_correct,
-                              questionIndex
-                            );
-                          }}
+                          onClick={() => {valuateAnswer(
+                            answer.is_correct,
+                            question.id,
+                            addValidatedCount
+                          )}}
                         >
                           {answer.text}
                         </Button>
@@ -69,10 +76,10 @@ function Quiz(props) {
             );
           })}
       </Carousel>
-      <div style={validationText}>{validation}</div>
+      <div style={validationText}></div>
     </>
   );
-}
+};
 
 const validationText = {
   fontSize: 30,

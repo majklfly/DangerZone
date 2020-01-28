@@ -5,7 +5,7 @@ import Quiz from "../components/Quiz";
 const QuizScreen = () => {
   return (
     <div className="carousel">
-      <Quiz />
+      <Quiz quizNumber={1} />
     </div>
   );
 };
