@@ -11,8 +11,15 @@ const Quiz = props => {
   const [answers, setAnswers] = useState([]);
   const [isCorrect, setIsCorrect] = useState(null);
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [quizId, setQuizId] = useState(0);
 
   const { validatedCount, addValidatedCount } = useContext(QuizContext);
+
+  const getQuiz = () => {
+    server.get("/quiz/").then(res => {
+      setQuizId(res.id)
+    });
+  };
 
   const getQuestions = () => {
     server.get("/question/").then(res => {
@@ -33,7 +40,7 @@ const Quiz = props => {
   const valuateAnswer = (answerIsCorrect, questionIndex, addValidatedCount) => {
     if (answerIsCorrect === true) {
       console.log("is correct");
-      addValidatedCount()
+      addValidatedCount();
     }
     setQuestionIndex(questionIndex);
   };
@@ -60,11 +67,13 @@ const Quiz = props => {
                       <div key={answer.id}>
                         <Button
                           key={answer.id}
-                          onClick={() => {valuateAnswer(
-                            answer.is_correct,
-                            question.id,
-                            addValidatedCount
-                          )}}
+                          onClick={() => {
+                            valuateAnswer(
+                              answer.is_correct,
+                              question.id,
+                              addValidatedCount
+                            );
+                          }}
                         >
                           {answer.text}
                         </Button>
