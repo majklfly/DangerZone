@@ -4,20 +4,40 @@ import { Carousel, Button } from "antd";
 import server from "../api/server";
 import "./Quiz.scss";
 
-import QuizContext from "../context/QuizContext";
+import { Context } from "../context/QuizContext";
 
 const Quiz = props => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [isCorrect, setIsCorrect] = useState(null);
   const [questionIndex, setQuestionIndex] = useState(0);
+
+  const [userId, setUserId] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [validatedCount, setValidatedCount] = useState(0);
   const [quizId, setQuizId] = useState(0);
 
-  const { validatedCount, addValidatedCount } = useContext(QuizContext);
+  const { postTestResults } = useContext(Context);
+
+  const getUserId = () => {
+    const username = localStorage.getItem("username");
+    server.get("/users/").then(res => {
+      let userId = 0;
+      res.data.map(item => {
+        return item.username === username ? (userId = item.id) : null;
+      });
+      setUserId(userId);
+    });
+  };
+  getUserId();
 
   const getQuiz = () => {
     server.get("/quiz/").then(res => {
-      setQuizId(res.id)
+      let quizId = 0;
+      res.data.map(item => {
+        return item.id === props.quizNumber ? (quizId = item.id) : null;
+      });
+      setQuizId(quizId);
     });
   };
 
@@ -37,17 +57,27 @@ const Quiz = props => {
     });
   };
 
-  const valuateAnswer = (answerIsCorrect, questionIndex, addValidatedCount) => {
-    if (answerIsCorrect === true) {
-      console.log("is correct");
-      addValidatedCount();
-    }
+  const valuateAnswer = (answerIsCorrect, questionIndex, setValidatedCount) => {
     setQuestionIndex(questionIndex);
+    if (answerIsCorrect === true) {
+      setValidatedCount(validatedCount + 1);
+    }
+    valuateQuiz()
   };
 
-  console.log("Question Index: " + questionIndex);
+  const valuateQuiz = () => {
+    if (questionIndex === (questions.length - 1)) {
+      setIsCompleted(true);
+      postTestResults(validatedCount,isCompleted,userId,quizId)
+    } else {
+      setIsCompleted(false);
+    }
+  };
 
+  // console.log('postTestResults: '+ validatedCount + " " + isCompleted + " " + userId + ' ' + quizId)
+  // prettier-ignore
   useEffect(() => {
+    getQuiz();
     getQuestions();
     getAnswers();
   }, []);
@@ -71,7 +101,7 @@ const Quiz = props => {
                             valuateAnswer(
                               answer.is_correct,
                               question.id,
-                              addValidatedCount
+                              setValidatedCount
                             );
                           }}
                         >

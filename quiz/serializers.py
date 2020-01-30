@@ -22,7 +22,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 class QuizTakersSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuizTakers
-        fields = '__all__'
+        fields = ['correct_answers', 'completed', 'user', 'quiz']
 
 
 class ResponseSerializer(serializers.ModelSerializer):

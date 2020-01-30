@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useState, useReducer } from "react";
+import server from "../api/server";
 
-const QuizContext = React.createContext(1);
+import createDataContext from "./createDataContext";
 
-export const QuizProvider = ({ children }) => {
-  const [validatedCount, setValidatedCount] = React.useState(0);
-
-  const addValidatedCount = () => {
-    setValidatedCount(validatedCount + 1);
-  };
-
-  console.log('validatedCount: ' + validatedCount)
-  return (
-    <QuizContext.Provider
-      value={{
-        validatedCount: validatedCount,
-        addValidatedCount: addValidatedCount
-      }}
-    >
-      {children}
-    </QuizContext.Provider>
-  );
+const quizReducer = (state, action) => {
+  switch (action.type) {
+    case "post_test_results":
+      return [
+        ...state,
+        {
+          correct_answers: action.payload.correct_answers,
+          completed: action.payload.isCompleted,
+          user: action.payload.userId,
+          quiz: action.payload.quizId
+        }
+      ];
+    default:
+      return state;
+  }
 };
-
-
-export default QuizContext;
+const postTestResults = dispatch => {
+  return async (correct_answers, isCompleted, userId, quizId) => {
+    try {
+      await server.post("/quiztaker/", {
+        correct_answers: correct_answers,
+        completed: isCompleted,
+        user: userId,
+        quiz: quizId
+      });
+      dispatch({
+        type: "post_test_results",
+        payload: { correct_answers, isCompleted, userId, quizId }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const { Context, Provider } = createDataContext(
+  quizReducer,
+  {
+    postTestResults
+  },
+  []
+);

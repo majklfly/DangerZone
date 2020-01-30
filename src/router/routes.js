@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import * as actions from "../store/actions/auth";
-import { QuizProvider } from "../context/QuizContext";
+import { Provider as QuizProvider } from "../context/QuizContext";
 
 import AccountScreen from "../containers/AccountScreen";
 import HomepageScreen from "../containers/HomepageScreen";

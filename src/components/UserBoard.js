@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { connect } from "react-redux";
 
 import "./UserBoard.scss";
-import QuizContext from "../context/QuizContext";
+import { Context } from "../context/QuizContext";
 
 const UserBoard = props => {
-  const { validatedCount } = useContext(QuizContext);
+  const { validatedCount } = useContext(Context);
 
   return (
     <>

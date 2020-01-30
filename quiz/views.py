@@ -1,4 +1,5 @@
 from rest_framework import generics
+from braces.views import CsrfExemptMixin
 
 from .serializers import QuizSerializer, QuestionSerializer, AnswerSerializer, QuizTakersSerializer, ResponseSerializer
 from .models import Quiz, Question, Answer, QuizTakers, Response
@@ -18,7 +19,7 @@ class AnswerView(generics.ListCreateAPIView):
     serializer_class = AnswerSerializer
 
 
-class QuizTakersView(generics.ListCreateAPIView):
+class QuizTakersView(CsrfExemptMixin, generics.ListCreateAPIView):
     queryset = QuizTakers.objects.all()
     serializer_class = QuizTakersSerializer
 
