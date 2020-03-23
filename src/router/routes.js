@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 
 import * as actions from "../store/actions/auth";
 import { Provider as QuizProvider } from "../context/QuizContext";
 
+import { ChaptersContext } from "../context/ChaptersContext";
+
 import AccountScreen from "../containers/AccountScreen";
 import HomepageScreen from "../containers/HomepageScreen";
-import LectureScreen from "../containers/LectureScreen";
+import ChaptersScreen from "../containers/ChaptersScreen";
 import QuizScreen from "../containers/QuizScreen";
 
-import ChapterOneScreen from "../containers/Lectures/ChapterOneScreen";
+import ArticlesScreen from "../containers/ArticlesScreen";
 
 import ResponsiveNavigation from "../containers/Layout/Layout";
 
 const BaseRouter = () => {
+  const [currentChapter, setCurrentChapter] = useState(1)
+
   const logout = () => {
     actions.logout();
     window.location.reload();
@@ -31,8 +35,8 @@ const BaseRouter = () => {
       icon: "icon ion-md-home"
     },
     {
-      text: "Lecture",
-      path: "/lecture/",
+      text: "Chapters",
+      path: "/chapters/",
       icon: "icon ion-md-school"
     },
     {
@@ -45,16 +49,18 @@ const BaseRouter = () => {
 
   return (
     <>
-      <QuizProvider>
-        <ResponsiveNavigation navLinks={navLinks} />
-        <div>
-          <Route exact path="/homepage/" component={HomepageScreen} />
-          <Route exact path="/account/" component={AccountScreen} />
-          <Route exact path="/lecture/" component={LectureScreen} />
-          <Route exact path="/chapterone/" component={ChapterOneScreen} />
-          <Route exact path="/chapterone/quiz/" component={QuizScreen} />
-        </div>
-      </QuizProvider>
+      <ChaptersContext.Provider value={{ currentChapter, setCurrentChapter }}>
+        <QuizProvider>
+          <ResponsiveNavigation navLinks={navLinks} />
+          <div>
+            <Route exact path="/homepage/" component={HomepageScreen} />
+            <Route exact path="/account/" component={AccountScreen} />
+            <Route exact path="/chapters/" component={ChaptersScreen} />
+            <Route exact path="/chapter/" component={ArticlesScreen} />
+            <Route exact path="/chapter/quiz/" component={QuizScreen} />
+          </div>
+        </QuizProvider>
+      </ChaptersContext.Provider>
     </>
   );
 };

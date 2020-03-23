@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Permanent+Marker&display=swap');
+
+.container-article {
+  position: relative;
+  background-color: green;
+  height: 83%;
+  z-index: 1;
+}
+
+.article_name {
+  color: white;
+  padding-top: 1em;
+  font-size: 25px;
+  font-family: 'Permanent Marker';
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.article_content {
+  color: white;
+  margin: 1em;
+  font-family: 'PT Sans';
+  font-size: 1.1em
+}
+
+.rightoutlined {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  background-color: grey;
+  z-index: 5;
+  width: 3em;
+  color: white;
+  height: 100%;
+  right: 0;
+  opacity: 0;
+}
+
+.rightoutlined:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.leftoutlined {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  background-color: grey;
+  z-index: 0;
+  width: 3em;
+  color: white;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+
+.leftoutlined:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+}

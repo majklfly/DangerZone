@@ -1,23 +1,36 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 
 import { Carousel, Button } from "antd";
 import server from "../api/server";
 import "./Quiz.scss";
+import car from "../assets/car_animation/car2.png";
+import wheel from "../assets/car_animation/wheel.png";
 
 import { Context } from "../context/QuizContext";
+import { ChaptersContext } from "../context/ChaptersContext";
 
 const Quiz = props => {
   const [questions, setQuestions] = useState([]);
-  const [answers, setAnswers] = useState([]);
-  const [isCorrect, setIsCorrect] = useState(null);
-  const [questionIndex, setQuestionIndex] = useState(0);
-
   const [userId, setUserId] = useState(0);
-  const [isCompleted, setIsCompleted] = useState(false);
-  const [validatedCount, setValidatedCount] = useState(0);
   const [quizId, setQuizId] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [IsCorrectAnswer, setIsCorrectAnswer] = useState(false);
+  const [AddActiveClass, setAddActiveClass] = useState(false);
+
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [validatedCount, setValidatedCount] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const { postTestResults } = useContext(Context);
+  const { currentChapter } = useContext(ChaptersContext);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    getQuiz();
+    getQuestions();
+    getAnswers();
+  }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   const getUserId = () => {
     const username = localStorage.getItem("username");
@@ -33,19 +46,21 @@ const Quiz = props => {
 
   const getQuiz = () => {
     server.get("/quiz/").then(res => {
-      let quizId = 0;
       res.data.map(item => {
-        return item.id === props.quizNumber ? (quizId = item.id) : null;
+        return (item.id = currentChapter ? setQuizId(currentChapter) : null);
       });
-      setQuizId(quizId);
     });
   };
+  //
+
+  console.log("Quiz id is: " + quizId);
+  console.log("currentchapter is: " + currentChapter);
 
   const getQuestions = () => {
     server.get("/question/").then(res => {
       let questions = [];
       res.data.map(item => {
-        return item.quiz === props.quizNumber ? questions.push(item) : null;
+        return item.quiz === currentChapter ? questions.push(item) : null;
       });
       setQuestions(questions);
     });
@@ -62,72 +77,88 @@ const Quiz = props => {
     if (answerIsCorrect === true) {
       setValidatedCount(validatedCount + 1);
     }
-    valuateQuiz()
+    valuateQuiz();
   };
 
   const valuateQuiz = () => {
-    if (questionIndex === (questions.length - 1)) {
+    if (questionIndex === 2) {
       setIsCompleted(true);
-      postTestResults(validatedCount,isCompleted,userId,quizId)
+      postTestResults(validatedCount, isCompleted, userId, quizId);
     } else {
       setIsCompleted(false);
     }
   };
 
-  // console.log('postTestResults: '+ validatedCount + " " + isCompleted + " " + userId + ' ' + quizId)
-  // prettier-ignore
-  useEffect(() => {
-    getQuiz();
-    getQuestions();
-    getAnswers();
-  }, []);
+  // console.log(
+  //   "postTestResults: " +
+  //     validatedCount +
+  //     " " +
+  //     isCompleted +
+  //     " " +
+  //     userId +
+  //     " " +
+  //     quizId
+  // );
 
   return (
-    <>
-      <Carousel className="container-carousel">
-        {questions
-          .filter(question => question.id > questionIndex)
-          .map((question, index) => {
-            return (
-              <div className="question" key={index}>
-                <h1 style={questionLabel}>{question.label}</h1>
-                {answers.map(answer => (
-                  <div className="answer-buttons" key={answer.id}>
-                    {question.id === answer.question ? (
-                      <div key={answer.id}>
-                        <Button
-                          key={answer.id}
-                          onClick={() => {
-                            valuateAnswer(
-                              answer.is_correct,
-                              question.id,
-                              setValidatedCount
-                            );
-                          }}
-                        >
-                          {answer.text}
-                        </Button>
-                      </div>
-                    ) : null}
+    <Carousel ref={ref}>
+      {questions.map((question, index) => {
+        return question.quiz === currentChapter ? (
+          <div key={index}>
+            <h1 className="question-label">{question.label}</h1>
+            {answers.map((answer, index) => {
+              return answer.question === question.id ? (
+                <Button
+                  className="answer-buttons"
+                  key={answer.id}
+                  onClick={() => {
+                    valuateAnswer(
+                      answer.is_correct,
+                      answer.question,
+                      setValidatedCount
+                    );
+                    setIsCorrectAnswer(answer.is_correct);
+                    setAddActiveClass(true);
+                    setTimeout(() => setAddActiveClass(false), 2600);
+                    setTimeout(() => ref.current.next(), 2600);
+                  }}
+                >
+                  {answer.text}
+                </Button>
+              ) : null;
+            })}
+            <div>
+              {AddActiveClass ? (
+                <div className="container-indicator">
+                  <div className="loader">
+                    <div
+                      className={
+                        IsCorrectAnswer ? "box-correct" : "box-incorrect"
+                      }
+                    ></div>
+                    <div className="hill"></div>
                   </div>
-                ))}
-              </div>
-            );
-          })}
-      </Carousel>
-      <div style={validationText}></div>
-    </>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        ) : null;
+      })}
+
+      <div className="hero">
+        <h2 className="results">Corrects answers: {validatedCount}</h2>
+        <div className="highway"></div>
+        <div className="city"></div>
+        <div className="car">
+          <img alt="car" src={car} />
+        </div>
+        <div className="wheel">
+          <img alt="rightwheel" src={wheel} className="back-wheel" />
+          <img alt="leftwheel" src={wheel} className="front-wheel" />
+        </div>
+      </div>
+    </Carousel>
   );
-};
-
-const validationText = {
-  fontSize: 30,
-  textAlign: "center",
-  paddingTop: 10
-};
-
-const questionLabel = {
-  color: "white"
 };
 
 export default Quiz;

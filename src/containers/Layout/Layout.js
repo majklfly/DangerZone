@@ -38,7 +38,7 @@ function ResponsiveNavigation({
               onMouseLeave={() => setHoverIndex(-1)}
               style={{
                 background:
-                  hoverIndex === index ? hoverBackground || "#999" : ""
+                  hoverIndex === index ? hoverBackground || "" : ""
               }}
             >
               <i className={link.icon}></i>

@@ -1,48 +1,35 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { Card, Col, Row } from "antd";
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "antd";
+
+import server from "../api/server";
+
+import CustomCard from "./Card";
 
 const Cards = props => {
-  const history = useHistory();
+  const [chapters, setChapters] = useState([]);
 
-  const handleClick = () => {
-    history.push("/chapterone/");
+  const getChapters = () => {
+    server.get("/chapters/").then(res => {
+      setChapters(res.data);
+    });
   };
+
+  useEffect(getChapters, []);
 
   return (
     <div style={{ background: "#FF7110", padding: "30px" }}>
       <Row gutter={16}>
-        <Col span={8}>
-          <Card
-            style={{ width: 300 }}
-            title="Chapter 1"
-            bordered={true}
-            hoverable
-            onClick={handleClick}
-          >
-            Introduction
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card
-            style={{ width: 300 }}
-            title="Chapter 2"
-            bordered={true}
-            hoverable
-          >
-            HACCP
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card
-            style={{ width: 300 }}
-            title="Chapter 3"
-            bordered={true}
-            hoverable
-          >
-            Bacteria
-          </Card>
-        </Col>
+        {chapters.map((chapter, index) => {
+          return (
+            <Col key={index} span={12}>
+              <CustomCard
+                index={index + 1}
+                title={chapter.title}
+                description={chapter.description}
+              ></CustomCard>
+            </Col>
+          );
+        })}
       </Row>
     </div>
   );

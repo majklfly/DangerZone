@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import "./UserBoard.scss";
-import { Context } from "../context/QuizContext";
 
 const UserBoard = props => {
-  const { validatedCount } = useContext(Context);
 
   return (
     <>
       <div className="boarddetail">
-        <h4 className="validatedCount">Correct answers: {validatedCount}</h4>
         <p className="welcome">Welcome {props.userData} !</p>
       </div>
     </>
