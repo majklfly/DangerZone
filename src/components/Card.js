@@ -5,24 +5,29 @@ import { ChaptersContext } from "../context/ChaptersContext";
 
 import { Card } from "antd";
 
+import "./Cards.scss";
+
 const CustomCard = props => {
   const history = useHistory();
   const { setCurrentChapter } = useContext(ChaptersContext);
 
   const handleClick = () => {
-    setCurrentChapter(props.index)
-    history.push("/chapter/")
-  }
+    setCurrentChapter(props.id);
+    history.push("/chapter/");
+  };
   return (
-    <Card
-      style={{ width: 400 }}
-      title={props.title}
-      bordered={true}
-      hoverable
-      onClick={handleClick}
-    >
-      {props.description}
-    </Card>
+    <>
+      <Card
+        headStyle={{ color: "white" }}
+        title={props.title}
+        bordered={true}
+        hoverable
+        onClick={handleClick}
+        className="card"
+      >
+        {props.description}
+      </Card>
+    </>
   );
 };
 

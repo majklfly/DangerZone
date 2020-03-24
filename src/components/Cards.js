@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Col, Row } from "antd";
 
 import server from "../api/server";
-
 import CustomCard from "./Card";
+
+import "./Cards.scss";
 
 const Cards = props => {
   const [chapters, setChapters] = useState([]);
@@ -17,15 +18,16 @@ const Cards = props => {
   useEffect(getChapters, []);
 
   return (
-    <div style={{ background: "#FF7110", padding: "30px" }}>
-      <Row gutter={16}>
+    <div className="container">
+      <Row gutter={[24, 16]}>
         {chapters.map((chapter, index) => {
           return (
-            <Col key={index} span={12}>
+            <Col key={index} span={8}>
               <CustomCard
                 index={index + 1}
                 title={chapter.title}
                 description={chapter.description}
+                id={chapter.id}
               ></CustomCard>
             </Col>
           );

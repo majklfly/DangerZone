@@ -73,6 +73,32 @@
   font-size: 30px;
 }
 
+.result-button-positive {
+  position: absolute;
+  width: 100%;
+  background-color: green;
+  border: #FF7110;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+}
+
+.result-button-negative {
+  position: absolute;
+  width: 100%;
+  background-color: red;
+  border: #FF7110;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  opacity: 0.4;
+}
+
+.result-button-negative:hover {
+  opacity: 1;
+  background-color: red;
+}
+
 
 //INDICATOR
 .loader {

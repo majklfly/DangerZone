@@ -3,11 +3,13 @@ import Cards from "../components/Cards";
 import "./ChapterScreen.scss";
 
 const ChaptersScreen = () => {
-
   return (
-    <div className="container-cards">
-      <Cards className="cards"/>
-    </div>
+    <>
+      <img alt="background" className="background" />
+      <div className="container-cards">
+        <Cards className="cards" />
+      </div>
+    </>
   );
 };
 

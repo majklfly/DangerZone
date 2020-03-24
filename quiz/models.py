@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from article.models import Chapter
+
 from user.models import CustomUser
 
 class Quiz(models.Model):
@@ -10,6 +12,7 @@ class Quiz(models.Model):
     description = models.CharField(max_length=70)
     created = models.DateTimeField(auto_now_add=True)
     roll_out = models.BooleanField(default=False)
+    chapter = models.OneToOneField(Chapter, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         ordering = ['created',]
@@ -22,6 +25,8 @@ class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     label = models.CharField(max_length=1000)
     order = models.IntegerField(default=0)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, blank=True, null=True)
+
 
     def __str__(self):
         return self.label
@@ -31,6 +36,8 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     text = models.CharField(max_length=1000)
     is_correct = models.BooleanField(default=False)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, blank=True, null=True)
+
 
     def __str__(self):
         return self.text

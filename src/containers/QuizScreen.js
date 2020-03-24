@@ -4,9 +4,12 @@ import Quiz from "../components/Quiz";
 
 const QuizScreen = () => {
   return (
-    <div className="carousel">
-      <Quiz quizNumber={1} />
-    </div>
+    <>
+      <img alt="background" className="background" />
+      <div className="carousel">
+        <Quiz quizNumber={1} />
+      </div>
+    </>
   );
 };
 

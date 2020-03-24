@@ -32,17 +32,20 @@ const ArticlesScreen = () => {
   useEffect(getArticles, []);
 
   return (
-    <div className="carousel">
-      <Article articles={articles} />
-      <Button
-        type="primary"
-        size="large"
-        style={buttonStyle}
-        onClick={handleClick}
-      >
-        Test me!
-      </Button>
-    </div>
+    <>
+      <img alt="background" className="background" />
+      <div className="carousel">
+        <Article articles={articles} />
+        <Button
+          type="primary"
+          size="large"
+          style={buttonStyle}
+          onClick={handleClick}
+        >
+          Test me!
+        </Button>
+      </div>
+    </>
   );
 };
 

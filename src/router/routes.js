@@ -6,7 +6,7 @@ import { Provider as QuizProvider } from "../context/QuizContext";
 
 import { ChaptersContext } from "../context/ChaptersContext";
 
-import AccountScreen from "../containers/AccountScreen";
+import CloudsScreen from "../containers/CloudsScreen";
 import HomepageScreen from "../containers/HomepageScreen";
 import ChaptersScreen from "../containers/ChaptersScreen";
 import QuizScreen from "../containers/QuizScreen";
@@ -16,7 +16,7 @@ import ArticlesScreen from "../containers/ArticlesScreen";
 import ResponsiveNavigation from "../containers/Layout/Layout";
 
 const BaseRouter = () => {
-  const [currentChapter, setCurrentChapter] = useState(1)
+  const [currentChapter, setCurrentChapter] = useState(1);
 
   const logout = () => {
     actions.logout();
@@ -25,8 +25,8 @@ const BaseRouter = () => {
 
   const navLinks = [
     {
-      text: "Account",
-      path: "/account/",
+      text: "Technology clouds",
+      path: "/clouds/",
       icon: "icon ion-md-contact"
     },
     {
@@ -54,7 +54,7 @@ const BaseRouter = () => {
           <ResponsiveNavigation navLinks={navLinks} />
           <div>
             <Route exact path="/homepage/" component={HomepageScreen} />
-            <Route exact path="/account/" component={AccountScreen} />
+            <Route exact path="/clouds/" component={CloudsScreen} />
             <Route exact path="/chapters/" component={ChaptersScreen} />
             <Route exact path="/chapter/" component={ArticlesScreen} />
             <Route exact path="/chapter/quiz/" component={QuizScreen} />

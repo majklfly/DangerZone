@@ -10,6 +10,7 @@ class Chapter(models.Model):
 
 class Article(models.Model):
     name = models.CharField(max_length=1000)
+    description = models.CharField(max_length=1000, default=' ')
     content = models.TextField(max_length=10000)
     created = models.DateTimeField(auto_now_add=True)
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)

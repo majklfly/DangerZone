@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import { Carousel, Button } from "antd";
 import server from "../api/server";
@@ -10,9 +11,11 @@ import { Context } from "../context/QuizContext";
 import { ChaptersContext } from "../context/ChaptersContext";
 
 const Quiz = props => {
+  const history = useHistory();
   const [questions, setQuestions] = useState([]);
   const [userId, setUserId] = useState(0);
   const [quizId, setQuizId] = useState(0);
+  const [questionCount, setQuestionCount] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [IsCorrectAnswer, setIsCorrectAnswer] = useState(false);
   const [AddActiveClass, setAddActiveClass] = useState(false);
@@ -44,23 +47,26 @@ const Quiz = props => {
   };
   getUserId();
 
+  const updateQuizStates = questionCount => {
+    setQuizId(currentChapter);
+    setQuestionCount(questionCount);
+  };
+
   const getQuiz = () => {
     server.get("/quiz/").then(res => {
       res.data.map(item => {
-        return (item.id = currentChapter ? setQuizId(currentChapter) : null);
+        return item.chapter === currentChapter
+          ? updateQuizStates(item.questions_count)
+          : null;
       });
     });
   };
-  //
-
-  console.log("Quiz id is: " + quizId);
-  console.log("currentchapter is: " + currentChapter);
 
   const getQuestions = () => {
     server.get("/question/").then(res => {
       let questions = [];
       res.data.map(item => {
-        return item.quiz === currentChapter ? questions.push(item) : null;
+        return item.chapter === currentChapter ? questions.push(item) : null;
       });
       setQuestions(questions);
     });
@@ -89,75 +95,107 @@ const Quiz = props => {
     }
   };
 
-  // console.log(
-  //   "postTestResults: " +
-  //     validatedCount +
-  //     " " +
-  //     isCompleted +
-  //     " " +
-  //     userId +
-  //     " " +
-  //     quizId
-  // );
+  const handleClickPositive = () => {
+    history.push("/chapters/");
+  };
+
+  const handleClickNegative = () => {
+    history.push("/chapter/");
+  };
+
+  console.log(
+    "postTestResults: " +
+      validatedCount +
+      " " +
+      isCompleted +
+      " " +
+      userId +
+      " " +
+      quizId
+  );
 
   return (
-    <Carousel ref={ref}>
-      {questions.map((question, index) => {
-        return question.quiz === currentChapter ? (
-          <div key={index}>
-            <h1 className="question-label">{question.label}</h1>
-            {answers.map((answer, index) => {
-              return answer.question === question.id ? (
-                <Button
-                  className="answer-buttons"
-                  key={answer.id}
-                  onClick={() => {
-                    valuateAnswer(
-                      answer.is_correct,
-                      answer.question,
-                      setValidatedCount
-                    );
-                    setIsCorrectAnswer(answer.is_correct);
-                    setAddActiveClass(true);
-                    setTimeout(() => setAddActiveClass(false), 2600);
-                    setTimeout(() => ref.current.next(), 2600);
-                  }}
-                >
-                  {answer.text}
-                </Button>
-              ) : null;
-            })}
-            <div>
-              {AddActiveClass ? (
-                <div className="container-indicator">
-                  <div className="loader">
-                    <div
-                      className={
-                        IsCorrectAnswer ? "box-correct" : "box-incorrect"
-                      }
-                    ></div>
-                    <div className="hill"></div>
+    <>
+      <Carousel ref={ref}>
+        {questions.map((question, index) => {
+          return question.chapter === currentChapter ? (
+            <div key={index}>
+              <h1 className="question-label">{question.label}</h1>
+              {answers.map((answer, index) => {
+                return answer.question === question.id ? (
+                  <Button
+                    className="answer-buttons"
+                    key={answer.id}
+                    onClick={() => {
+                      valuateAnswer(
+                        answer.is_correct,
+                        answer.question,
+                        setValidatedCount
+                      );
+                      setIsCorrectAnswer(answer.is_correct);
+                      setAddActiveClass(true);
+                      setTimeout(() => setAddActiveClass(false), 2600);
+                      setTimeout(() => ref.current.next(), 2600);
+                    }}
+                  >
+                    {answer.text}
+                  </Button>
+                ) : null;
+              })}
+              <div>
+                {AddActiveClass ? (
+                  <div className="container-indicator">
+                    <div className="loader">
+                      <div
+                        className={
+                          IsCorrectAnswer ? "box-correct" : "box-incorrect"
+                        }
+                      ></div>
+                      <div className="hill"></div>
+                    </div>
                   </div>
-                </div>
-              ) : null}
+                ) : null}
+              </div>
             </div>
-          </div>
-        ) : null;
-      })}
+          ) : null;
+        })}
 
-      <div className="hero">
-        <h2 className="results">Corrects answers: {validatedCount}</h2>
-        <div className="highway"></div>
-        <div className="city"></div>
-        <div className="car">
-          <img alt="car" src={car} />
+        <div className="hero">
+          <h2 className="results">
+            You answered correctly {validatedCount} out of {questionCount}{" "}
+            questions
+          </h2>
+          <div className="highway"></div>
+          <div className="city"></div>
+          <div className="car">
+            <img alt="car" src={car} />
+          </div>
+          <div className="wheel">
+            <img alt="rightwheel" src={wheel} className="back-wheel" />
+            <img alt="leftwheel" src={wheel} className="front-wheel" />
+          </div>
+          {validatedCount >= 4 ? (
+            <Button
+              type="primary"
+              size="large"
+              className="result-button-positive"
+              onClick={handleClickPositive}
+            >
+              You passed, please continue to next lesson
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              size="large"
+              className="result-button-negative"
+              onClick={handleClickNegative}
+            >
+              You failed, please repeate the lesson
+            </Button>
+          )}
         </div>
-        <div className="wheel">
-          <img alt="rightwheel" src={wheel} className="back-wheel" />
-          <img alt="leftwheel" src={wheel} className="front-wheel" />
-        </div>
-      </div>
-    </Carousel>
+      </Carousel>
+    </>
   );
 };
 
