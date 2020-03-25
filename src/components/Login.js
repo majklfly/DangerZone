@@ -1,66 +1,128 @@
-import React from "react";
-import { Form, Icon, Input, Spin } from "antd";
+import React, { useEffect, useState } from "react";
+import { Form, Input, Spin, Button } from "antd";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import icon from "../assets/icon.jpeg";
 import * as actions from "../store/actions/auth";
 import "./Login.scss";
 
-class NormalLoginForm extends React.Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        this.props.onAuth(values.username, values.password);
-      }
-    });
+import server from "../api/server";
+
+const NormalLoginForm = props => {
+  const [form] = Form.useForm();
+  const [navigate, setNavigate] = useState(false);
+
+  useEffect(() => {
+    // form.validateFields(["username"]);
+    // form.validateFields(["password"]);
+  });
+
+  if (navigate) {
+    return <Redirect to="/homepage/" />;
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+      server
+        .post("rest-auth/login/", {
+          username: values.username,
+          password: values.password
+        })
+        .then(res => {
+          if (res.status === 200) {
+            localStorage.setItem('token', res.data.key)
+            setNavigate(true)
+            window.location.reload()
+          }
+        });
+    } catch (errorInfo) {
+      console.log("Failed:", errorInfo);
+    }
   };
 
-  render() {
-    const { getFieldDecorator } = this.props.form;
-    let errorMessage = null;
-    if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>;
-    }
-    return (
-      <div className="base-container" ref={this.props.containerRef}>
-        <div className="content">
-          <img src={icon} alt="icon" className="image" />
-          {this.props.loading ? (
-            <Spin indicator={antIcon} />
-          ) : (
-            <Form onSubmit={this.handleSubmit} className="login-form">
-              <Form.Item className="form-group">
-                {getFieldDecorator("username", {
-                  rules: [
-                    { required: true, message: "Please input your username!" }
-                  ]
-                })(<Input placeholder="Username" />)}
-              </Form.Item>
-              <Form.Item className="form-group">
-                {getFieldDecorator("password", {
-                  rules: [
-                    { required: true, message: "Please input your Password!" }
-                  ]
-                })(<Input type="password" placeholder="Password" />)}
-              </Form.Item>
-              <Form.Item className="form-group">
-                <button type="primary" htmltype="submit" className="btn">
-                  Log in
-                </button>
-              </Form.Item>
-              {errorMessage}
-            </Form>
-          )}
-        </div>
-      </div>
-    );
+  const handleGoogleLogin = () => {
+    server.get("accounts/google/login").then(res => {
+      if (res.status === 200) {
+        localStorage.setItem('token', res.data.key)
+        setNavigate(true)
+        window.location.reload()
+      }
+    });
   }
-}
 
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+  const handleFacebookLogin = () => {
+    server.get("accounts/facebook/login").then(res => {
+      if (res.status === 200) {
+        localStorage.setItem('token', res.data.key)
+        setNavigate(true)
+        window.location.reload()
+      }
+    });
+  }
 
-const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
+  return (
+    <div className="base-container" ref={props.containerRef}>
+      <div className="content">
+        <img src={icon} alt="icon" className="image" />
+        {props.loading ? (
+          // <Spin indicator={antIcon} />
+          console.log("loading")
+        ) : (
+          <>
+            <Form
+              form={form}
+              onSubmit={handleSubmit}
+              name="dynamic_rule"
+              className="login-form"
+            >
+              <Form.Item
+                className="form-group"
+                name="username"
+                label="Username"
+                rules={[
+                  {
+                    required: true,
+                    messsage: "Please input your Username"
+                  }
+                ]}
+              >
+                <Input placeholder="Username" />
+              </Form.Item>
+              <Form.Item
+                className="form-group"
+                name="password"
+                label="Username"
+                rules={[
+                  {
+                    required: true,
+                    messsage: "Please input your Password!"
+                  }
+                ]}
+              >
+                <Input type="password" placeholder="Password" />
+              </Form.Item>
+              <Form.Item className="form-group">
+                <Button
+                  type="primary"
+                  onClick={handleSubmit}
+                  className="btn"
+                >
+                  Log in
+                </Button>
+              </Form.Item>
+            </Form>
+            <Button onClick={handleGoogleLogin}>Login with Google</Button>
+            <Button onClick={handleFacebookLogin}>Login with Facebook</Button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
 const mapStateToProps = state => {
   return {
@@ -79,4 +141,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WrappedNormalLoginForm);
+)(NormalLoginForm);

@@ -8,5 +8,6 @@ urlpatterns = [
     path('', include('user.urls')),
     path('', include('quiz.urls')),
     path('', include('article.urls')),
+    path('accounts/', include('allauth.urls')),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Spin } from "antd";
+import { Form, Input, Spin } from "antd";
 import { connect } from "react-redux";
 
 import icon from "../assets/icon.jpeg";
@@ -29,7 +29,8 @@ class SignupForm extends React.Component {
         <div className="content">
           <img src={icon} alt="icon" className="image" />
           {this.props.loading ? (
-            <Spin indicator={antIcon} />
+            // <Spin indicator={antIcon} />
+            console.log("loading")
           ) : (
             <Form onSubmit={this.handleSubmit} className="login-form">
               <Form.Item className="form-group">
@@ -73,9 +74,7 @@ class SignupForm extends React.Component {
   }
 }
 
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-
-const WrappedNormalSignupForm = Form.create()(SignupForm);
+// const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
 const mapStateToProps = state => {
   return {
@@ -94,4 +93,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WrappedNormalSignupForm);
+)(SignupForm);

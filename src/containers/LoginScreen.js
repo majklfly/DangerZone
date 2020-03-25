@@ -1,7 +1,7 @@
 import React from "react";
 // import icon from "../assets/icon";
 import "./LoginScreen.scss";
-import WrappedNormalLoginForm from "../components/Login";
+import NormalLoginForm from "../components/Login";
 import WrappedNormalSignupForm from "../components/signup";
 
 class LoginScreen extends React.Component {
@@ -33,7 +33,7 @@ class LoginScreen extends React.Component {
         <div className="login">
           <div className="container">
             {isLoggingActive && (
-              <WrappedNormalLoginForm
+              <NormalLoginForm
                 containerRef={ref => (this.current = ref)}
               />
             )}

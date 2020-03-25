@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import * as actions from "../store/actions/auth";
 import { Provider as QuizProvider } from "../context/QuizContext";
@@ -49,6 +49,7 @@ const BaseRouter = () => {
 
   return (
     <>
+    <Router>
       <ChaptersContext.Provider value={{ currentChapter, setCurrentChapter }}>
         <QuizProvider>
           <ResponsiveNavigation navLinks={navLinks} />
@@ -61,6 +62,7 @@ const BaseRouter = () => {
           </div>
         </QuizProvider>
       </ChaptersContext.Provider>
+      </Router>
     </>
   );
 };
