@@ -25,17 +25,17 @@ const BaseRouter = () => {
 
   const navLinks = [
     {
-      text: "Technology clouds",
-      path: "/clouds/",
-      icon: "icon ion-md-contact"
-    },
-    {
       text: "Homepage",
       path: "/homepage/",
       icon: "icon ion-md-home"
     },
     {
-      text: "Chapters",
+      text: "Technology clouds",
+      path: "/clouds/",
+      icon: "icon ion-md-contact"
+    },
+    {
+      text: "MammaMia!",
       path: "/chapters/",
       icon: "icon ion-md-school"
     },
@@ -49,19 +49,19 @@ const BaseRouter = () => {
 
   return (
     <>
-    <Router>
-      <ChaptersContext.Provider value={{ currentChapter, setCurrentChapter }}>
-        <QuizProvider>
-          <ResponsiveNavigation navLinks={navLinks} />
-          <div>
-            <Route exact path="/homepage/" component={HomepageScreen} />
-            <Route exact path="/clouds/" component={CloudsScreen} />
-            <Route exact path="/chapters/" component={ChaptersScreen} />
-            <Route exact path="/chapter/" component={ArticlesScreen} />
-            <Route exact path="/chapter/quiz/" component={QuizScreen} />
-          </div>
-        </QuizProvider>
-      </ChaptersContext.Provider>
+      <Router>
+        <ChaptersContext.Provider value={{ currentChapter, setCurrentChapter }}>
+          <QuizProvider>
+            <ResponsiveNavigation navLinks={navLinks} />
+            <div>
+              <Route exact path="/homepage/" component={HomepageScreen} />
+              <Route exact path="/clouds/" component={CloudsScreen} />
+              <Route exact path="/chapters/" component={ChaptersScreen} />
+              <Route exact path="/chapter/" component={ArticlesScreen} />
+              <Route exact path="/chapter/quiz/" component={QuizScreen} />
+            </div>
+          </QuizProvider>
+        </ChaptersContext.Provider>
       </Router>
     </>
   );

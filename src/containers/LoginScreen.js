@@ -29,27 +29,28 @@ class LoginScreen extends React.Component {
     const { isLoggingActive } = this.state;
     const current = isLoggingActive ? "Signup" : "Login";
     return (
-      <div className="App">
-        <div className="login">
-          <div className="container">
-            {isLoggingActive && (
-              <NormalLoginForm
-                containerRef={ref => (this.current = ref)}
-              />
-            )}
-            {!isLoggingActive && (
-              <WrappedNormalSignupForm
-                containerRef={ref => (this.current = ref)}
-              />
-            )}
+      <>
+        <div className="background"></div>
+        <div className="App">
+          <div className="login">
+            <div className="container">
+              {isLoggingActive && (
+                <NormalLoginForm containerRef={ref => (this.current = ref)} />
+              )}
+              {!isLoggingActive && (
+                <WrappedNormalSignupForm
+                  containerRef={ref => (this.current = ref)}
+                />
+              )}
+            </div>
+            <RightSide
+              current={current}
+              containerRef={ref => (this.rightSide = ref)}
+              onClick={this.changeState.bind(this)}
+            />
           </div>
-          <RightSide
-            current={current}
-            containerRef={ref => (this.rightSide = ref)}
-            onClick={this.changeState.bind(this)}
-          />
         </div>
-      </div>
+      </>
     );
   }
 }

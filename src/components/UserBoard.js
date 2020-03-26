@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import "./UserBoard.scss";
 
 const UserBoard = props => {
-
   return (
     <>
       <div className="boarddetail">
-        <p className="welcome">Welcome {props.userData} !</p>
+        <div className="welcome-board">{props.userData}</div>
       </div>
     </>
   );
