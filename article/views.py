@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from .models import Article, Chapter
-from .serializers import ArticleSerializer, ChapterSerializer
+from .models import Article, Chapter, ChapterUser, UserData
+from .serializers import ArticleSerializer, ChapterSerializer, ChapterUserSerializer, UserDataSerializer
 
 class ArticleListView(generics.ListAPIView):
     queryset = Article.objects.all()
@@ -14,3 +14,11 @@ class ArticleDetailView(generics.RetrieveAPIView):
 class ChapterListView(generics.ListAPIView):
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
+
+class ChapterUserListCreateView(generics.ListCreateAPIView):
+    queryset = ChapterUser.objects.all()
+    serializer_class = ChapterUserSerializer
+
+class UserDataListCreateView(generics.ListCreateAPIView):
+    queryset = UserData.objects.all()
+    serializer_class = UserDataSerializer

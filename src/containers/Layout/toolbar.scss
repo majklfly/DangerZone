@@ -4,27 +4,6 @@
   width: 100%;
 }
 
-.userboard {
-  display: flex;
-  position: fixed;
-  right: 0;
-  top: -100px;
-  width: 20%;
-  height: 160px;
-  background-color: #FF7110;
-  box-shadow: 2px 2px 2px #ccc;
-  cursor: pointer;
-  transition: top 1s;
-  z-index: 5;
-}
-
-.userboard:hover {
-  top: 0;
-  transition: top 1s;
-  position: absolute;
-  z-index: 5;
-}
-
 nav {
   background: #FF7110;
   height: 60px;

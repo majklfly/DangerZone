@@ -1,8 +1,10 @@
 from django.db import models
+from user.models import CustomUser
 
 class Chapter(models.Model):
-    title = models.CharField(max_length=500)
+    title = models.CharField(max_length=500, unique=True)
     description = models.CharField(max_length=100, default=' ')
+    users = models.ManyToManyField('user.CustomUser', through='ChapterUser', null=True)
 
     def __str__(self):
         return self.title
@@ -13,10 +15,22 @@ class Article(models.Model):
     description = models.CharField(max_length=1000, default=' ')
     content = models.TextField(max_length=10000)
     created = models.DateTimeField(auto_now_add=True)
-    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ['created',]
 
     def __str__(self):
         return self.name
+
+class ChapterUser(models.Model):
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+
+class UserData(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.user.username

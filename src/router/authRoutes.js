@@ -3,12 +3,17 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import LoginScreen from "../containers/LoginScreen";
 
-const AuthRouter = () => (
-  <Router>
-    <div>
-      <Route exact path="" component={LoginScreen} />
-    </div>
-  </Router>
-);
+const AuthRouter = () => {
+  return (
+    <>
+      <Router>
+        <div>
+          <Route exact path="" component={LoginScreen} />
+        </div>
+      </Router>
+      ;
+    </>
+  );
+};
 
 export default AuthRouter;

@@ -1,11 +1,14 @@
 from rest_framework import serializers
 from .models import CustomUser
+from article.serializers import ChapterSerializer
 
 class UserSerializer(serializers.ModelSerializer):
+    chapters = ChapterSerializer(many=True, read_only=True)
 
     class Meta:
         model = CustomUser
         fields = '__all__'
+        extra_kwargs = {'chapters': {'required': False}}
 
 
 class RegisterSerializer(serializers.ModelSerializer):

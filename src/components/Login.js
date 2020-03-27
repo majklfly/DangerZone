@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -19,18 +19,12 @@ const NormalLoginForm = props => {
   const [navigate, setNavigate] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    // form.validateFields(["username"]);
-    // form.validateFields(["password"]);
-  });
-
   if (navigate) {
     return <Redirect to="/homepage/" />;
   }
 
   const handleSubmit = async () => {
     const values = await form.validateFields();
-    console.log(values);
     server
       .post("rest-auth/login/", {
         username: values.username,
@@ -39,6 +33,7 @@ const NormalLoginForm = props => {
       .then(res => {
         if (res.status === 200) {
           localStorage.setItem("token", res.data.key);
+          localStorage.setItem("username", values.username);
           setNavigate(true);
           window.location.reload();
         }

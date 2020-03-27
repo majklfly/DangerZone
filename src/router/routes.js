@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
+
+import server from "../api/server";
 
 import * as actions from "../store/actions/auth";
 import { Provider as QuizProvider } from "../context/QuizContext";
 
 import { ChaptersContext } from "../context/ChaptersContext";
+import { UserDataContext } from "../context/UserDataContext";
 
 import CloudsScreen from "../containers/CloudsScreen";
 import HomepageScreen from "../containers/HomepageScreen";
@@ -17,11 +20,23 @@ import ResponsiveNavigation from "../containers/Layout/Layout";
 
 const BaseRouter = () => {
   const [currentChapter, setCurrentChapter] = useState(1);
+  const [userData, setUserData] = useState({});
 
   const logout = () => {
     actions.logout();
     window.location.reload();
   };
+
+  const getUserData = () => {
+    const username = localStorage.getItem("username");
+    server.get("userdata/").then(res => {
+      res.data.map(item => {
+        return item.username === username ? setUserData(item) : null;
+      });
+    });
+  };
+
+  useEffect(getUserData, []);
 
   const navLinks = [
     {
@@ -50,18 +65,22 @@ const BaseRouter = () => {
   return (
     <>
       <Router>
-        <ChaptersContext.Provider value={{ currentChapter, setCurrentChapter }}>
-          <QuizProvider>
-            <ResponsiveNavigation navLinks={navLinks} />
-            <div>
-              <Route exact path="/homepage/" component={HomepageScreen} />
-              <Route exact path="/clouds/" component={CloudsScreen} />
-              <Route exact path="/chapters/" component={ChaptersScreen} />
-              <Route exact path="/chapter/" component={ArticlesScreen} />
-              <Route exact path="/chapter/quiz/" component={QuizScreen} />
-            </div>
-          </QuizProvider>
-        </ChaptersContext.Provider>
+        <UserDataContext.Provider value={{ userData, setUserData }}>
+          <ChaptersContext.Provider
+            value={{ currentChapter, setCurrentChapter }}
+          >
+            <QuizProvider>
+              <ResponsiveNavigation navLinks={navLinks} />
+              <div>
+                <Route exact path="/homepage/" component={HomepageScreen} />
+                <Route exact path="/clouds/" component={CloudsScreen} />
+                <Route exact path="/chapters/" component={ChaptersScreen} />
+                <Route exact path="/chapter/" component={ArticlesScreen} />
+                <Route exact path="/chapter/quiz/" component={QuizScreen} />
+              </div>
+            </QuizProvider>
+          </ChaptersContext.Provider>
+        </UserDataContext.Provider>
       </Router>
     </>
   );

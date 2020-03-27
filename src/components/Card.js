@@ -20,7 +20,7 @@ const CustomCard = props => {
       <Card
         headStyle={{ color: "white" }}
         title={props.title}
-        bordered={true}
+        bordered={props.bordered}
         hoverable
         onClick={handleClick}
         className="card"

@@ -8,3 +8,5 @@ class SnippetAdmin(admin.ModelAdmin):
 
 admin.site.register(Chapter)
 admin.site.register(Article, SnippetAdmin)
+admin.site.register(ChapterUser)
+admin.site.register(UserData)

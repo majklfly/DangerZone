@@ -37,8 +37,7 @@ function ResponsiveNavigation({
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(-1)}
               style={{
-                background:
-                  hoverIndex === index ? hoverBackground || "" : ""
+                background: hoverIndex === index ? hoverBackground || "" : ""
               }}
             >
               <i className={link.icon}></i>
@@ -53,9 +52,7 @@ function ResponsiveNavigation({
           ))}
         </ul>
       </nav>
-      <div className="userboard">
-        <UserBoard />
-      </div>
+      <UserBoard />
     </div>
   );
 }
