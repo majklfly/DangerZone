@@ -1,35 +1,51 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Col, Row } from "antd";
+import { Row } from "antd";
+import { useHistory } from "react-router-dom";
 
 import { LoadingOutlined } from "@ant-design/icons";
 
 import server from "../api/server";
 import CustomCard from "./Card";
 import { UserDataContext } from "../context/UserDataContext";
+import { ChaptersContext } from "../context/ChaptersContext";
 
 import "./Cards.scss";
 
 const Cards = props => {
-  const [chapters, setChapters] = useState([]);
+  const history = useHistory();
   const { userData } = useContext(UserDataContext);
+  const [chapterTitles, setChapterTitles] = useState([]);
+  const { setCurrentChapter } = useContext(ChaptersContext);
 
-  console.log(userData.chapterTitle);
+  const activeTitles = [];
 
   const getActiveChapters = () => {
-    const activeChapters = [];
-    console.log("active chapters", activeChapters);
+    userData.map(item => {
+      return activeTitles.push(item.chapterTitle);
+    });
   };
+  getActiveChapters();
 
   const getChapters = () => {
     server.get("/chapters/").then(res => {
-      setChapters(res.data);
+      const chapterTitles = [];
+      res.data.map(item => {
+        return chapterTitles.push(item.title);
+      });
+      setChapterTitles(chapterTitles);
     });
   };
 
+  const handleClick = (e, chapter) => {
+    console.log("clicked", chapter);
+    setCurrentChapter(chapter);
+    history.push("/chapter/");
+  };
+
   useEffect(() => {
-    getChapters();
     getActiveChapters();
-  }, []); //eslint-disable-line react-hooks/exhaustive-deps
+    getChapters();
+  }, [userData]); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -37,29 +53,37 @@ const Cards = props => {
         <LoadingOutlined />
       ) : (
         <div className="container">
-          <Row gutter={[24, 16]}>
-            {chapters.map((chapter, index) => {
-              return (
-                <Col key={index} span={8}>
-                  {chapter.title === userData.chapterTitle ? (
+          <Row gutter={16} className="cards">
+            {chapterTitles.map((chapter, index) => {
+              if (activeTitles.includes(chapter)) {
+                return (
+                  <CustomCard
+                    className="inactive"
+                    bordered={true}
+                    key={index}
+                    index={index + 1}
+                    title={chapter}
+                    id={chapter.id}
+                    hoverable={false}
+                  ></CustomCard>
+                );
+              } else {
+                return (
+                  <div
+                    className="active"
+                    onClick={e => handleClick(e, chapter)}
+                    key={index}
+                  >
                     <CustomCard
                       bordered={true}
                       index={index + 1}
-                      title={chapter.title}
-                      description={chapter.description}
+                      title={chapter}
                       id={chapter.id}
+                      hoverable={true}
                     ></CustomCard>
-                  ) : (
-                    <CustomCard
-                      bordered={false}
-                      index={index + 1}
-                      title={chapter.title}
-                      description={chapter.description}
-                      id={chapter.id}
-                    ></CustomCard>
-                  )}
-                </Col>
-              );
+                  </div>
+                );
+              }
             })}
           </Row>
         </div>

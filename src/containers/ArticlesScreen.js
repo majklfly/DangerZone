@@ -8,7 +8,7 @@ import { ChaptersContext } from "../context/ChaptersContext";
 
 import server from "../api/server";
 
-const ArticlesScreen = () => {
+const ArticlesScreen = props => {
   const [articles, setArticles] = useState({});
   const history = useHistory();
   const { currentChapter } = useContext(ChaptersContext);
@@ -17,7 +17,9 @@ const ArticlesScreen = () => {
     server.get("/articles/").then(res => {
       var articles = [];
       res.data.map(item => {
-        return item.chapter === currentChapter ? articles.push(item) : null;
+        return item.chapterTitle === currentChapter
+          ? articles.push(item)
+          : null;
       });
       setArticles(articles);
     });
@@ -29,7 +31,7 @@ const ArticlesScreen = () => {
 
   console.log("Articles Current chapter is: " + currentChapter);
 
-  useEffect(getArticles, []);
+  useEffect(getArticles, [props]);
 
   return (
     <>

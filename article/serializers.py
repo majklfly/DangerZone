@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import Article, Chapter, ChapterUser, UserData
 
 class ArticleSerializer(serializers.ModelSerializer):
+    chapterTitle = serializers.ReadOnlyField(source='chapter.title')
+
     class Meta:
         model = Article
         fields = '__all__'

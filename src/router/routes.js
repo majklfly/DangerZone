@@ -20,7 +20,7 @@ import ResponsiveNavigation from "../containers/Layout/Layout";
 
 const BaseRouter = () => {
   const [currentChapter, setCurrentChapter] = useState(1);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState([]);
 
   const logout = () => {
     actions.logout();
@@ -29,11 +29,13 @@ const BaseRouter = () => {
 
   const getUserData = () => {
     const username = localStorage.getItem("username");
+    const UserData = [];
     server.get("userdata/").then(res => {
       res.data.map(item => {
-        return item.username === username ? setUserData(item) : null;
+        return item.username === username ? UserData.push(item) : null;
       });
     });
+    setUserData(UserData);
   };
 
   useEffect(getUserData, []);
