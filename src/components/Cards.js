@@ -7,7 +7,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 import server from "../api/server";
 import CustomCard from "./Card";
 import { UserDataContext } from "../context/UserDataContext";
-import { ChaptersContext } from "../context/ChaptersContext";
 
 import "./Cards.scss";
 
@@ -15,7 +14,6 @@ const Cards = props => {
   const history = useHistory();
   const { userData } = useContext(UserDataContext);
   const [chapterTitles, setChapterTitles] = useState([]);
-  const { setCurrentChapter } = useContext(ChaptersContext);
 
   const activeTitles = [];
 
@@ -38,14 +36,14 @@ const Cards = props => {
 
   const handleClick = (e, chapter) => {
     console.log("clicked", chapter);
-    setCurrentChapter(chapter);
+    localStorage.setItem('currentChapter', chapter);
     history.push("/chapter/");
   };
 
   useEffect(() => {
     getActiveChapters();
     getChapters();
-  }, [userData]); //eslint-disable-line react-hooks/exhaustive-deps
+  }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -70,11 +68,12 @@ const Cards = props => {
               } else {
                 return (
                   <div
-                    className="active"
+                    className="active-container"
                     onClick={e => handleClick(e, chapter)}
                     key={index}
                   >
                     <CustomCard
+                      className="active"
                       bordered={true}
                       index={index + 1}
                       title={chapter}

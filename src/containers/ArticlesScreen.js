@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "antd";
 
 import Article from "../components/Article";
 import "./ArticlesScreen.scss";
-import { ChaptersContext } from "../context/ChaptersContext";
 
 import server from "../api/server";
 
 const ArticlesScreen = props => {
   const [articles, setArticles] = useState({});
   const history = useHistory();
-  const { currentChapter } = useContext(ChaptersContext);
+
+  const currentChapter = localStorage.getItem('currentChapter')
 
   const getArticles = () => {
     server.get("/articles/").then(res => {
@@ -28,8 +28,6 @@ const ArticlesScreen = props => {
   const handleClick = () => {
     history.push("quiz/");
   };
-
-  console.log("Articles Current chapter is: " + currentChapter);
 
   useEffect(getArticles, [props]);
 

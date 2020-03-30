@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Quiz, Question, Answer, QuizTakers, Response
+from .models import Quiz, Question, Answer, Response
 
 class QuizSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,21 +8,19 @@ class QuizSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
+    chapterTitle = serializers.ReadOnlyField(source='chapter.title')
+
     class Meta:
         model = Question
         fields = '__all__'
 
 
 class AnswerSerializer(serializers.ModelSerializer):
+    chapterTitle = serializers.ReadOnlyField(source='chapter.title')
+
     class Meta:
         model = Answer
         fields = '__all__'
-
-
-class QuizTakersSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = QuizTakers
-        fields = ['correct_answers', 'completed', 'user', 'quiz']
 
 
 class ResponseSerializer(serializers.ModelSerializer):

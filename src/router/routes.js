@@ -6,7 +6,6 @@ import server from "../api/server";
 import * as actions from "../store/actions/auth";
 import { Provider as QuizProvider } from "../context/QuizContext";
 
-import { ChaptersContext } from "../context/ChaptersContext";
 import { UserDataContext } from "../context/UserDataContext";
 
 import CloudsScreen from "../containers/CloudsScreen";
@@ -19,7 +18,6 @@ import ArticlesScreen from "../containers/ArticlesScreen";
 import ResponsiveNavigation from "../containers/Layout/Layout";
 
 const BaseRouter = () => {
-  const [currentChapter, setCurrentChapter] = useState(1);
   const [userData, setUserData] = useState([]);
 
   const logout = () => {
@@ -68,9 +66,6 @@ const BaseRouter = () => {
     <>
       <Router>
         <UserDataContext.Provider value={{ userData, setUserData }}>
-          <ChaptersContext.Provider
-            value={{ currentChapter, setCurrentChapter }}
-          >
             <QuizProvider>
               <ResponsiveNavigation navLinks={navLinks} />
               <div>
@@ -81,7 +76,6 @@ const BaseRouter = () => {
                 <Route exact path="/chapter/quiz/" component={QuizScreen} />
               </div>
             </QuizProvider>
-          </ChaptersContext.Provider>
         </UserDataContext.Provider>
       </Router>
     </>

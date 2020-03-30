@@ -11,7 +11,7 @@ const quizReducer = (state, action) => {
           correct_answers: action.payload.correct_answers,
           completed: action.payload.isCompleted,
           user: action.payload.userId,
-          quiz: action.payload.quizId
+          chapter: action.payload.chapterId
         }
       ];
     default:
@@ -19,17 +19,17 @@ const quizReducer = (state, action) => {
   }
 };
 const postTestResults = dispatch => {
-  return async (correct_answers, isCompleted, userId, quizId) => {
+  return async (correct_answers, isCompleted, userId, chapterId) => {
     try {
-      await server.post("/quiztaker/", {
+      await server.post("/chapterdata/", {
         correct_answers: correct_answers,
         completed: isCompleted,
         user: userId,
-        quiz: quizId
+        chapter: chapterId
       });
       dispatch({
         type: "post_test_results",
-        payload: { correct_answers, isCompleted, userId, quizId }
+        payload: { correct_answers, isCompleted, userId, chapterId }
       });
     } catch (e) {
       console.log(e);

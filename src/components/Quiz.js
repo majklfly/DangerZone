@@ -1,202 +1,180 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
 
 import { Carousel, Button } from "antd";
 import server from "../api/server";
 import "./Quiz.scss";
-import car from "../assets/car_animation/car2.png";
-import wheel from "../assets/car_animation/wheel.png";
+import { FinalQuizAnimation } from "./FinalQuizAnimation";
 
 import { Context } from "../context/QuizContext";
-import { ChaptersContext } from "../context/ChaptersContext";
 
 const Quiz = props => {
-  const history = useHistory();
   const [questions, setQuestions] = useState([]);
-  const [userId, setUserId] = useState(0);
-  const [quizId, setQuizId] = useState(0);
-  const [questionCount, setQuestionCount] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [questionCount, setQuestionCount] = useState(0);
   const [IsCorrectAnswer, setIsCorrectAnswer] = useState(false);
   const [AddActiveClass, setAddActiveClass] = useState(false);
+  const [userId, setUserId] = useState(0);
+  const [chapterId, setChapterId] = useState(0);
 
-  const [questionIndex, setQuestionIndex] = useState(0);
+  const [questionIndex, setQuestionIndex] = useState(1);
   const [validatedCount, setValidatedCount] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
 
   const { postTestResults } = useContext(Context);
-  const { currentChapter } = useContext(ChaptersContext);
 
-  const ref = useRef();
+  let ref = useRef();
+  let isCompletedRef = useRef(false);
+  let valCountRef = useRef(null);
 
-  useEffect(() => {
-    getQuiz();
-    getQuestions();
-    getAnswers();
-  }, []); //eslint-disable-line react-hooks/exhaustive-deps
-
-  const getUserId = () => {
-    const username = localStorage.getItem("username");
-    server.get("/users/").then(res => {
-      let userId = 0;
-      res.data.map(item => {
-        return item.username === username ? (userId = item.id) : null;
-      });
-      setUserId(userId);
-    });
-  };
-  getUserId();
-
-  const updateQuizStates = questionCount => {
-    setQuizId(currentChapter);
-    setQuestionCount(questionCount);
-  };
-
-  const getQuiz = () => {
-    server.get("/quiz/").then(res => {
-      res.data.map(item => {
-        return item.chapter === currentChapter
-          ? updateQuizStates(item.questions_count)
-          : null;
-      });
-    });
-  };
+  const currentChapter = localStorage.getItem("currentChapter");
+  const username = localStorage.getItem("username");
 
   const getQuestions = () => {
     server.get("/question/").then(res => {
-      let questions = [];
+      let questionsLocal = [];
       res.data.map(item => {
-        return item.chapter === currentChapter ? questions.push(item) : null;
+        return item.chapterTitle === currentChapter
+          ? questionsLocal.push(item)
+          : null;
       });
-      setQuestions(questions);
+      setQuestions(questionsLocal);
     });
   };
 
   const getAnswers = () => {
     server.get("/answer/").then(res => {
-      setAnswers(res.data);
+      let answersLocal = [];
+      res.data.map(item => {
+        return item.chapterTitle === currentChapter
+          ? answersLocal.push(item)
+          : null;
+      });
+      setAnswers(answersLocal);
     });
   };
 
-  const valuateAnswer = (answerIsCorrect, questionIndex, setValidatedCount) => {
-    setQuestionIndex(questionIndex);
+  const getUserId = () => {
+    server.get("/users/").then(res => {
+      res.data.map(item => {
+        if (item.username === username) {
+          setUserId(item.id);
+        }
+      });
+    });
+  };
+
+  const getChapterId = () => {
+    server.get("/chapters/").then(res => {
+      res.data.map(item => {
+        if (item.title === currentChapter) {
+          setChapterId(item.id);
+        }
+      });
+    });
+  };
+
+  useEffect(() => {
+    getQuestions();
+    getAnswers();
+    getUserId();
+    getChapterId();
+    // eslint-disable-next-line
+  }, []);
+
+  const valuateAnswer = (answerIsCorrect, ValidatedCount) => {
+    setQuestionIndex(questionIndex => questionIndex + 1);
     if (answerIsCorrect === true) {
-      setValidatedCount(validatedCount + 1);
+      valCountRef.current = valCountRef.current + 1;
+    }
+    if (valCountRef.current > 3) {
+      isCompletedRef.current = true;
     }
     valuateQuiz();
   };
 
+  console.log("valCountRef", valCountRef.current);
+  console.log("isCompletedRef", isCompletedRef.current);
+
   const valuateQuiz = () => {
-    if (questionIndex === 2) {
-      setIsCompleted(true);
-      postTestResults(validatedCount, isCompleted, userId, quizId);
-    } else {
-      setIsCompleted(false);
+    if (questionIndex === 5) {
+      postTestResults(
+        valCountRef.current,
+        isCompletedRef.current,
+        userId,
+        chapterId
+      );
     }
   };
 
-  const handleClickPositive = () => {
-    history.push("/chapters/");
-  };
-
-  const handleClickNegative = () => {
-    history.push("/chapter/");
-  };
-
-  console.log(
-    "postTestResults: " +
-      validatedCount +
-      " " +
-      isCompleted +
-      " " +
-      userId +
-      " " +
-      quizId
-  );
-
-  return (
-    <>
-      <Carousel ref={ref}>
-        {questions.map((question, index) => {
-          return question.chapter === currentChapter ? (
-            <div key={index}>
-              <h1 className="question-label">{question.label}</h1>
-              {answers.map((answer, index) => {
-                return answer.question === question.id ? (
-                  <Button
-                    className="answer-buttons"
-                    key={answer.id}
-                    onClick={() => {
-                      valuateAnswer(
-                        answer.is_correct,
-                        answer.question,
-                        setValidatedCount
-                      );
-                      setIsCorrectAnswer(answer.is_correct);
-                      setAddActiveClass(true);
-                      setTimeout(() => setAddActiveClass(false), 2600);
-                      setTimeout(() => ref.current.next(), 2600);
-                    }}
-                  >
-                    {answer.text}
-                  </Button>
-                ) : null;
-              })}
-              <div>
-                {AddActiveClass ? (
-                  <div className="container-indicator">
-                    <div className="loader">
-                      <div
-                        className={
-                          IsCorrectAnswer ? "box-correct" : "box-incorrect"
-                        }
-                      ></div>
-                      <div className="hill"></div>
+  if (questions === undefined || questions.length === 0) {
+    return (
+      <div className="readyContainer">
+        <h1 className="readyTitle">Are you ready?</h1>
+        <h3 className="readyText">
+          In text module, there will be 5 questions waiting for you. You need to
+          answer more than 3 of them correctly to pass the quiz and unlock next
+          module.
+        </h3>
+        <button
+          className="readyButton"
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          I'm ready
+        </button>
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <Carousel ref={ref}>
+          {questions.map((question, index) => {
+            return question.chapterTitle === currentChapter ? (
+              <div key={index}>
+                <h1 className="question-label">{question.label}</h1>
+                {answers.map((answer, index) => {
+                  return answer.question === question.id ? (
+                    <Button
+                      className="answer-buttons"
+                      key={answer.id}
+                      onClick={() => {
+                        valuateAnswer(answer.is_correct, setValidatedCount);
+                        setIsCorrectAnswer(answer.is_correct);
+                        setAddActiveClass(true);
+                        setTimeout(() => setAddActiveClass(false), 2600);
+                        setTimeout(() => ref.current.next(), 2600);
+                      }}
+                    >
+                      {answer.text}
+                    </Button>
+                  ) : null;
+                })}
+                <div>
+                  {AddActiveClass ? (
+                    <div className="container-indicator">
+                      <div className="loader">
+                        <div
+                          className={
+                            IsCorrectAnswer ? "box-correct" : "box-incorrect"
+                          }
+                        ></div>
+                        <div className="hill"></div>
+                      </div>
                     </div>
-                  </div>
-                ) : null}
+                  ) : null}
+                </div>
               </div>
-            </div>
-          ) : null;
-        })}
-
-        <div className="hero">
-          <h2 className="results">
-            You answered correctly {validatedCount} out of {questionCount}{" "}
-            questions
-          </h2>
-          <div className="highway"></div>
-          <div className="city"></div>
-          <div className="car">
-            <img alt="car" src={car} />
-          </div>
-          <div className="wheel">
-            <img alt="rightwheel" src={wheel} className="back-wheel" />
-            <img alt="leftwheel" src={wheel} className="front-wheel" />
-          </div>
-          {validatedCount >= 4 ? (
-            <Button
-              type="primary"
-              size="large"
-              className="result-button-positive"
-              onClick={handleClickPositive}
-            >
-              You passed, please continue to next lesson
-            </Button>
-          ) : (
-            <Button
-              type="primary"
-              size="large"
-              className="result-button-negative"
-              onClick={handleClickNegative}
-            >
-              You failed, please repeate the lesson
-            </Button>
-          )}
-        </div>
-      </Carousel>
-    </>
-  );
+            ) : null;
+          })}
+          <FinalQuizAnimation
+            validatedCount={valCountRef.current}
+            questionCount={questionIndex}
+          />
+        </Carousel>
+      </>
+    );
+  }
 };
 
 export default Quiz;

@@ -7,9 +7,15 @@
   width: 80em;
 }
 
-.active {
+.active-container {
   display: flex;
   flex-direction: row;
+  width: 33%;
+  background-color: green;
+}
+
+.active {
+  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.3em;
@@ -18,7 +24,7 @@
   opacity: 1;
   color: white;
   height: 12em;
-  width: 33%;
+  width: 100%;
 }
 .inactive {
   display: flex;
