@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { Row } from "antd";
 import { useHistory } from "react-router-dom";
 
@@ -14,15 +14,22 @@ const Cards = props => {
   const history = useHistory();
   const { userData } = useContext(UserDataContext);
   const [chapterTitles, setChapterTitles] = useState([]);
+  const [completedChapters, setCompletedChapters] = useState([]);
 
   const activeTitles = [];
 
-  const getActiveChapters = () => {
-    userData.map(item => {
-      return activeTitles.push(item.chapterTitle);
+  const getCompletedChapters = () => {
+    server.get("/chapterdata/").then(res => {
+      const completedChapters = [];
+      const username = localStorage.getItem("username");
+      res.data.map(item => {
+        if (item.username === username && item.completed === true) {
+          completedChapters.push(item.chapterTitle);
+        }
+      });
+      setCompletedChapters(completedChapters);
     });
   };
-  getActiveChapters();
 
   const getChapters = () => {
     server.get("/chapters/").then(res => {
@@ -36,14 +43,17 @@ const Cards = props => {
 
   const handleClick = (e, chapter) => {
     console.log("clicked", chapter);
-    localStorage.setItem('currentChapter', chapter);
+    localStorage.setItem("currentChapter", chapter);
     history.push("/chapter/");
   };
 
   useEffect(() => {
-    getActiveChapters();
     getChapters();
-  }, []); //eslint-disable-line react-hooks/exhaustive-deps
+    getCompletedChapters();
+  }, []); //eslint-disable-line
+
+  console.log("chapterTitles", chapterTitles);
+  console.log("completedChapters", completedChapters);
 
   return (
     <>
@@ -53,7 +63,7 @@ const Cards = props => {
         <div className="container">
           <Row gutter={16} className="cards">
             {chapterTitles.map((chapter, index) => {
-              if (activeTitles.includes(chapter)) {
+              if (completedChapters.includes(chapter)) {
                 return (
                   <CustomCard
                     className="inactive"
