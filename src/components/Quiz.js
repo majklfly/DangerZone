@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 
-import { Carousel, Button } from "antd";
+import { Carousel, Button, Spin } from "antd";
 import server from "../api/server";
 import "./Quiz.scss";
 import { FinalQuizAnimation } from "./FinalQuizAnimation";
@@ -92,9 +92,6 @@ const Quiz = props => {
     valuateQuiz();
   };
 
-  console.log("valCountRef", valCountRef.current);
-  console.log("isCompletedRef", isCompletedRef.current);
-
   const valuateQuiz = () => {
     if (questionIndex === 5) {
       postTestResults(
@@ -108,21 +105,8 @@ const Quiz = props => {
 
   if (questions === undefined || questions.length === 0) {
     return (
-      <div className="readyContainer">
-        <h1 className="readyTitle">Are you ready?</h1>
-        <h3 className="readyText">
-          In text module, there will be 5 questions waiting for you. You need to
-          answer more than 3 of them correctly to pass the quiz and unlock next
-          module.
-        </h3>
-        <button
-          className="readyButton"
-          onClick={() => {
-            window.location.reload();
-          }}
-        >
-          I'm ready
-        </button>
+      <div className="spinner">
+        <Spin size="large" />;
       </div>
     );
   } else {

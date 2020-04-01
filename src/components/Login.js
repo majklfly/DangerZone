@@ -130,8 +130,6 @@ const NormalLoginForm = props => {
   );
 };
 
-// const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-
 const mapStateToProps = state => {
   return {
     loading: state.loading,

@@ -1,0 +1,54 @@
+.backgroundProfilePage {
+  background-image: url(../assets/background.jpg);
+  background-size: cover;
+  position: absolute;
+  width: 100vw;
+  height: 200vh;
+  z-index: -1;
+  overflow: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+.profileContainers{
+  display: flex;
+  position: absolute;
+  border: solid;
+  border-color: #feca95;
+  background-color: #fdbb77;
+  border-width: 2px;
+  box-shadow: 10px 10px 30px 30px #fed8b1;
+  margin-top: 20vh;
+  margin-left: 7vw;
+  margin-right: 7vw;
+  z-index: -1;
+  height: 90vh;
+}
+.leftContainer {
+  width: 40vw;
+  height: 100%;
+}
+.rightContainer {
+  height: 100%;
+  width: 40vw;
+}
+
+.profileUsername {
+  display: flex;
+  margin-top: 60px;
+  margin-left: 60px;
+  color: #4f6eab;
+}
+.profileUnderline {
+  border-color: #4f6eab;
+  margin-left: 5%;
+  width: 90%;
+}
+.profileDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #4f6eab;
+  width: 90%;
+  height: 70%;
+  margin: 5%;
+}

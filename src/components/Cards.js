@@ -52,9 +52,6 @@ const Cards = props => {
     getCompletedChapters();
   }, []); //eslint-disable-line
 
-  console.log("chapterTitles", chapterTitles);
-  console.log("completedChapters", completedChapters);
-
   return (
     <>
       {props.loading ? (

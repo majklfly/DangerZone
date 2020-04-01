@@ -18,6 +18,7 @@ const quizReducer = (state, action) => {
       return state;
   }
 };
+
 const postTestResults = dispatch => {
   return async (correct_answers, isCompleted, userId, chapterId) => {
     try {

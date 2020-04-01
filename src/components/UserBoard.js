@@ -1,21 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Button } from "antd";
+import { Button, Progress } from "antd";
+import { Link } from "react-router-dom";
 
-import { UserOutlined } from "@ant-design/icons";
+import server from "../api/server";
+
+import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+
+import * as actions from "../store/actions/auth";
 
 import "./UserBoard.scss";
 import "font-awesome/css/font-awesome.min.css";
 
+const username = localStorage.getItem("username");
+
 const UserBoard = props => {
+  const [percentage, setPercentage] = useState(0);
+
+  const calculatePercentage = async () => {
+    const chapters = await server.get("/chapters/");
+    const chapterData = await server.get("/chapterdata/");
+    const finishedChapters = [];
+    chapterData.data.map(item => {
+      if (item.username === username && item.completed === true) {
+        finishedChapters.push(item);
+      }
+    });
+    const total = chapters.data.length;
+    const current = finishedChapters.length;
+    const percent = (current / (total / 100)).toFixed(0);
+    console.log(percent);
+    setPercentage(percent);
+  };
+
+  calculatePercentage();
+
   return (
     <>
       <div className="userboard">
-        <Button type="primary" className="profilePageButton">
-          <UserOutlined />
-          Profile page
-        </Button>
-        <div className="welcome-board">Hello {props.userData}</div>
+        <Progress
+          strokeColor={{
+            "100%": "#364d79"
+          }}
+          type="circle"
+          percent={percentage}
+          className="progressBar"
+          width="110px"
+        />
+        <div className="iconsContainer">
+          <Link to="/profile/">
+            <UserOutlined className="iconBoard" />
+          </Link>
+          <Link to="/" onClick={actions.logout}>
+            <LogoutOutlined className="iconBoard" />
+          </Link>
+        </div>
+        <div className="welcomeText">Hello {props.userData}</div>
       </div>
     </>
   );

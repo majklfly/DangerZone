@@ -3,9 +3,9 @@
   justify-content: center;
   position: fixed;
   right: 0;
-  top: -100px;
+  top: -140px;
   width: 20%;
-  height: 160px;
+  height: 200px;
   background-color: #FF7110;
   box-shadow: 2px 2px 2px #ccc;
   cursor: pointer;
@@ -17,7 +17,7 @@
   transition: top 1s;
   z-index: 5;
 }
-.welcome-board {
+.welcomeText {
   display: flex;
   position: absolute;
   bottom: 0;
@@ -27,23 +27,30 @@
   font-size: 17px;
   color: white;
 }
-.profilePageButton {
-  width: 80%;
-  border-radius: 5px;
-  border-color: #364d79;
-  background-color: #364d79;
-  margin-top: 15px;
-}
-.profilePageButton:focus {
-  width: 80%;
-  border-radius: 5px;
-  border-color: #364d79;
-  background-color: #364d79;
-  margin-top: 15px;
+.iconsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 15px;
+  margin-right: 10px;
 }
 
-.profilePageButton:hover {
-  border-color: #364d79;
-  background-color: #FF7110;
-  box-shadow: 0px 0px 14px 0.3px #0e81ce96;
+.iconBoard {
+  font-size: 17px;
+  color: white;
+  padding: 5px;
+}
+.iconBoard:hover {
+  color: #364d79;
+}
+
+.progressBar {
+  margin-top: 1em;
+  top: 0;
+  left: 3em;
+  font-size: 30px;
+  z-index: 6;
 }

@@ -24,6 +24,7 @@ export const authFail = error => {
 
 export const logout = () => {
   localStorage.removeItem("token");
+  window.location.reload();
   return {
     type: actionTypes.AUTH_LOGOUT
   };
