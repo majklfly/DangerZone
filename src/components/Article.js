@@ -28,6 +28,58 @@ function Article(props) {
                   <div className="article_content">
                     {props.articles[item].content}
                   </div>
+                  <div>
+                    <div className="lineIndex">
+                      {props.articles[item].line1 !== null
+                        ? props.articles[item].line1
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line2 !== null
+                        ? props.articles[item].line2
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line3 !== null
+                        ? props.articles[item].line3
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line4 !== null
+                        ? props.articles[item].line4
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line5 !== null
+                        ? props.articles[item].line5
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line6 !== null
+                        ? props.articles[item].line6
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line7 !== null
+                        ? props.articles[item].line7
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line8 !== null
+                        ? props.articles[item].line8
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line9 !== null
+                        ? props.articles[item].line9
+                        : null}
+                    </div>
+                    <div className="lineIndex">
+                      {props.articles[item].line10 !== null
+                        ? props.articles[item].line10
+                        : null}
+                    </div>
+                  </div>
                 </div>
               </div>
             );

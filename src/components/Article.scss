@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans|Permanent+Marker&display=swap');
 
 .container-article {
-  position: relative;
   background-color: green;
   height: 83%;
   z-index: 1;
@@ -17,7 +16,7 @@
 .content-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
   height: 400px;
 }
 
@@ -25,8 +24,12 @@
   color: white;
   margin: 1em;
   font-family: 'PT Sans';
-  font-size: 1.1em
 }
+.lineIndex {
+  margin-top: -10px;
+  color: white;
+}
+
 
 .rightoutlined {
   display: flex;
