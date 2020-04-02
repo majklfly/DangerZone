@@ -1,0 +1,66 @@
+.profileAnimationContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+}
+
+#Person1 {
+  animation-name: Person;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+#Person3 {
+  animation-name: Person;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+#Person2 {
+  animation-name: Person;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+}
+#Person4 {
+  animation-name: Person;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 3s;
+}
+#Vector_32 {
+  animation-name: Jacket;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-delay: 4s;
+  fill: #575A89;
+}
+#Vector_33 {
+  animation-name: Jacket;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-delay: 4s;
+  fill: #575A89;
+}
+#Vector_34 {
+  animation-name: Jacket;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-delay: 4s;
+  fill: #575A89;
+}
+#Vector_35 {
+  animation-name: Jacket;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-delay: 4s;
+  fill: #575A89;
+}
+
+@keyframes Person {
+  from {opacity: 1}
+  to{opacity: 0}
+}
+@keyframes Jacket {
+  from {fill: #575A89}
+  to{fill: #FF7110}
+}

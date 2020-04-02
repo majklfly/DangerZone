@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import server from "../api/server";
 
+import { ProfileAnimation } from "../components/ProfileAnimation";
+
 import "./ProfileScreen.scss";
 
 const ProfileScreen = () => {
@@ -33,7 +35,9 @@ const ProfileScreen = () => {
             <h2>{profileData.lastName}</h2> */}
           </div>
         </div>
-        <div className="rightContainer"></div>
+        <div className="rightContainer">
+          <ProfileAnimation />
+        </div>
       </div>
     </>
   );
