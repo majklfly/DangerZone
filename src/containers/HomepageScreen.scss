@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  position: absolute;
+  z-index: -2;
+  top: 0;
 }
 .welcome-title {
   display: flex;

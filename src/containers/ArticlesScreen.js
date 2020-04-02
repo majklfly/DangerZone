@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "antd";
 
+import { AnimBackground } from "../components/background";
+
 import Article from "../components/Article";
 import "./ArticlesScreen.scss";
 
@@ -11,7 +13,7 @@ const ArticlesScreen = props => {
   const [articles, setArticles] = useState({});
   const history = useHistory();
 
-  const currentChapter = localStorage.getItem('currentChapter')
+  const currentChapter = localStorage.getItem("currentChapter");
 
   const getArticles = () => {
     server.get("/articles/").then(res => {
@@ -33,7 +35,6 @@ const ArticlesScreen = props => {
 
   return (
     <>
-      <img alt="background" className="background" />
       <div className="carousel">
         <Article articles={articles} />
         <Button

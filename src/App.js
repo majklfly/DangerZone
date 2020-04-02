@@ -7,6 +7,8 @@ import "antd/dist/antd.css";
 import BaseRouter from "./router/routes";
 import AuthRouter from "./router/authRoutes";
 
+import { AnimBackground } from "./components/background";
+
 import * as actions from "./store/actions/auth";
 
 class App extends React.Component {
@@ -18,6 +20,7 @@ class App extends React.Component {
     if (localStorage.getItem("token")) {
       return (
         <div>
+          <AnimBackground />
           <Router>
             <BaseRouter {...this.props} />
           </Router>
@@ -34,8 +37,8 @@ class App extends React.Component {
     }
   }
   static navigationOptions = {
-    title: 'hello'
-  }
+    title: "hello"
+  };
 }
 
 const mapStateToProps = state => {

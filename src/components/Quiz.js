@@ -112,50 +112,52 @@ const Quiz = props => {
   } else {
     return (
       <>
-        <Carousel ref={ref}>
-          {questions.map((question, index) => {
-            return question.chapterTitle === currentChapter ? (
-              <div key={index}>
-                <h1 className="question-label">{question.label}</h1>
-                {answers.map((answer, index) => {
-                  return answer.question === question.id ? (
-                    <Button
-                      className="answer-buttons"
-                      key={answer.id}
-                      onClick={() => {
-                        valuateAnswer(answer.is_correct, setValidatedCount);
-                        setIsCorrectAnswer(answer.is_correct);
-                        setAddActiveClass(true);
-                        setTimeout(() => setAddActiveClass(false), 2600);
-                        setTimeout(() => ref.current.next(), 2600);
-                      }}
-                    >
-                      {answer.text}
-                    </Button>
-                  ) : null;
-                })}
-                <div>
-                  {AddActiveClass ? (
-                    <div className="container-indicator">
-                      <div className="loader">
-                        <div
-                          className={
-                            IsCorrectAnswer ? "box-correct" : "box-incorrect"
-                          }
-                        ></div>
-                        <div className="hill"></div>
+        <div>
+          <Carousel ref={ref}>
+            {questions.map((question, index) => {
+              return question.chapterTitle === currentChapter ? (
+                <div key={index}>
+                  <h1 className="question-label">{question.label}</h1>
+                  {answers.map((answer, index) => {
+                    return answer.question === question.id ? (
+                      <Button
+                        className="answer-buttons"
+                        key={answer.id}
+                        onClick={() => {
+                          valuateAnswer(answer.is_correct, setValidatedCount);
+                          setIsCorrectAnswer(answer.is_correct);
+                          setAddActiveClass(true);
+                          setTimeout(() => setAddActiveClass(false), 2600);
+                          setTimeout(() => ref.current.next(), 2600);
+                        }}
+                      >
+                        {answer.text}
+                      </Button>
+                    ) : null;
+                  })}
+                  <div>
+                    {AddActiveClass ? (
+                      <div className="container-indicator">
+                        <div className="loader">
+                          <div
+                            className={
+                              IsCorrectAnswer ? "box-correct" : "box-incorrect"
+                            }
+                          ></div>
+                          <div className="hill"></div>
+                        </div>
                       </div>
-                    </div>
-                  ) : null}
+                    ) : null}
+                  </div>
                 </div>
-              </div>
-            ) : null;
-          })}
-          <FinalQuizAnimation
-            validatedCount={valCountRef.current}
-            questionCount={questionIndex}
-          />
-        </Carousel>
+              ) : null;
+            })}
+            <FinalQuizAnimation
+              validatedCount={valCountRef.current}
+              questionCount={questionIndex}
+            />
+          </Carousel>
+        </div>
       </>
     );
   }
