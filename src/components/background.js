@@ -6,11 +6,7 @@ export const AnimBackground = () => {
   return (
     <>
       <div className="backgroundWaves">
-        <svg
-          viewBox="0 0 3000 745"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="4493.5px" height="100vh" fill="none">
           <g filter="url(#filter0_d)">
             <rect
               x="1494"

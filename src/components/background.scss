@@ -2,20 +2,17 @@
   display: block;
   background-size: cover;
   position: absolute;
-  overflow: hidden;
-  width: 4493.5px;
+  overflow: visible;
+  width: 100vw;
+  height: 10000px;
   z-index: -5;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   animation-name: Waves;
-  animation-duration: 50s;
+  animation-duration: 10s;
   animation-iteration-count: infinite;
-  background-repeat: repeat-x;
-  background-size: cover;
+  background-repeat: repeat;
   animation-timing-function: linear;
 }
 
 @keyframes Waves {
-  100% {transform: translateX(-1000px)}
+  100% {transform: translateX(-4493px)}
 }
