@@ -13,6 +13,12 @@ class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, blank=True, null=True)
     firstName = models.CharField(max_length=200, null=True, blank=True)
     lastName = models.CharField(max_length=200, null=True, blank=True)
+    company = models.CharField(max_length=200, null=True, blank=True)
+    position = models.CharField(max_length=200, null=True, blank=True)
+    country = models.CharField(max_length=200, null=True, blank=True)
+    facebook = models.CharField(max_length=200, null=True, blank=True)
+    twitter = models.CharField(max_length=200, null=True, blank=True)
+    instagram = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

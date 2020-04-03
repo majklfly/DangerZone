@@ -3,6 +3,7 @@ from .models import CustomUser, Profile
 from article.serializers import ChapterSerializer
 
 class UserSerializer(serializers.ModelSerializer):
+    chapterTitle = serializers.ReadOnlyField(source='chapter.title')
     chapters = ChapterSerializer(many=True, read_only=True)
 
     class Meta:
@@ -30,6 +31,9 @@ def create(self, validated_data):
 
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.ReadOnlyField(source='user.username')
+    username = serializers.ReadOnlyField(source='user.email')
+    joined = serializers.ReadOnlyField(source='user.date_joined')
+    last_login = serializers.ReadOnlyField(source='user.last_login')
 
     class Meta:
         model = Profile

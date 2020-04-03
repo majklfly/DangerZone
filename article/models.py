@@ -1,5 +1,7 @@
 from django.db import models
-from user.models import CustomUser
+from user.models import CustomUser, Profile
+from django.db.models.signals import m2m_changed
+from django.dispatch import receiver
 
 class Chapter(models.Model):
     title = models.CharField(max_length=500)
@@ -34,27 +36,20 @@ class Article(models.Model):
         return self.name
 
 
+class UserData(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+
+
 class ChapterData(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False)
     correct_answers = models.IntegerField(default=0)
+    userData = models.ForeignKey(UserData, on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ['-timestamp',]
 
     def __str__(self):
-        return self.chapter.title + ';  account:  ' + self.user.username
-
-
-class UserData(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
-    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True)
-    chapterData = models.ForeignKey(ChapterData, on_delete=models.CASCADE, null=True)
-
-    class Meta:
-        ordering = ['-chapter',]
-
-    def __str__(self):
-        return self.user.username
+        return self.chapter.title

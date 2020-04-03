@@ -39,9 +39,11 @@
 }
 
 .iconBoard {
+  position: relative;
   font-size: 17px;
   color: white;
   padding: 5px;
+  z-index: 5;
 }
 .iconBoard:hover {
   color: #364d79;

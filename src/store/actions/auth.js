@@ -24,6 +24,10 @@ export const authFail = error => {
 
 export const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("length");
+  localStorage.removeItem("username");
+  localStorage.removeItem("currentChapter");
+  localStorage.removeItem("userId");
   window.location.reload();
   return {
     type: actionTypes.AUTH_LOGOUT

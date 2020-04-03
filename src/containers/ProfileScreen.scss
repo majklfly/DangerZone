@@ -1,15 +1,3 @@
-.backgroundProfilePage {
-  background-image: url(../assets/background.jpg);
-  background-size: cover;
-  position: absolute;
-  width: 100vw;
-  height: 200vh;
-  z-index: -1;
-  overflow: hidden;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-}
 .profileContainers{
   display: flex;
   position: absolute;
@@ -20,8 +8,8 @@
   margin-top: 20vh;
   margin-left: 7vw;
   margin-right: 7vw;
-  z-index: -1;
-  height: 90vh;
+  height: 700px;
+  top: 0;
 }
 .leftContainer {
   width: 40vw;
@@ -30,6 +18,14 @@
 .rightContainer {
   height: 100%;
   width: 40vw;
+}
+.profileFormContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #4f6eab;
+  width: 90%;
+  height: 320px;
+  margin: 5%;
 }
 
 .profileUsername {
@@ -48,6 +44,49 @@
   flex-direction: column;
   background-color: #4f6eab;
   width: 90%;
-  height: 70%;
+  height: 540px;
   margin: 5%;
+}
+.displayDetails {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 60px;
+}
+.profileContent {
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+  left: 20vw;
+  padding: 15px;
+  color: white;
+  font-size: 2vw;
+}
+.profileLabels {
+  display: flex;
+  padding: 15px;
+  color: white;
+  font-size: 2vw;
+}
+.profileIcon {
+  color: white;
+  font-size: 50px;
+  margin: 0 20px;
+  transition: 0.5s;
+}
+.profileIcon:hover {
+    font-size: 70px;
+    border: white;
+    border-width: thick;
+    border-color: white;
+    transition: 0.5s;
+    box-shadow: 0px 0px 10px 10px white;
+}
+
+.profileIconsContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.profileFormContainer {
 }

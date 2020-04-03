@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "antd";
 
-import { AnimBackground } from "../components/background";
-
 import Article from "../components/Article";
 import "./ArticlesScreen.scss";
 

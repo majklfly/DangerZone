@@ -8,6 +8,13 @@ class UserListView(CsrfExemptMixin, generics.ListAPIView):
     serializer_class = UserSerializer
 
 
-class ProfileListUpdateView(generics.ListAPIView):
+class UserDetailView(CsrfExemptMixin, generics.RetrieveAPIView):
+
+
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+
+
+class ProfileListUpdateView(CsrfExemptMixin, generics.RetrieveUpdateDestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer

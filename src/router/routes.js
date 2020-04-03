@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import server from "../api/server";
 
-import * as actions from "../store/actions/auth";
 import { Provider as QuizProvider } from "../context/QuizContext";
 
-import { UserDataContext } from "../context/UserDataContext";
+import { UserDataProvider } from "../context/UserDataContext";
 
 import CloudsScreen from "../containers/CloudsScreen";
 import HomepageScreen from "../containers/HomepageScreen";
@@ -19,26 +18,6 @@ import ArticlesScreen from "../containers/ArticlesScreen";
 import ResponsiveNavigation from "../containers/Layout/Layout";
 
 const BaseRouter = () => {
-  const [userData, setUserData] = useState([]);
-
-  const logout = () => {
-    actions.logout();
-    window.location.reload();
-  };
-
-  const getUserData = () => {
-    const username = localStorage.getItem("username");
-    const UserData = [];
-    server.get("userdata/").then(res => {
-      res.data.map(item => {
-        return item.username === username ? UserData.push(item) : null;
-      });
-    });
-    setUserData(UserData);
-  };
-
-  useEffect(getUserData, []);
-
   const navLinks = [
     {
       text: "Homepage",
@@ -60,19 +39,19 @@ const BaseRouter = () => {
   return (
     <>
       <Router>
-        <UserDataContext.Provider value={{ userData, setUserData }}>
-          <QuizProvider>
-            <ResponsiveNavigation navLinks={navLinks} />
-            <div>
+        <QuizProvider>
+          <ResponsiveNavigation navLinks={navLinks} />
+          <div>
+            <UserDataProvider>
               <Route exact path="/homepage/" component={HomepageScreen} />
               <Route exact path="/clouds/" component={CloudsScreen} />
               <Route exact path="/chapters/" component={ChaptersScreen} />
               <Route exact path="/chapter/" component={ArticlesScreen} />
               <Route exact path="/chapter/quiz/" component={QuizScreen} />
               <Route exact path="/profile/" component={ProfileScreen} />
-            </div>
-          </QuizProvider>
-        </UserDataContext.Provider>
+            </UserDataProvider>
+          </div>
+        </QuizProvider>
       </Router>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Row } from "antd";
 import { useHistory } from "react-router-dom";
 
@@ -6,26 +6,22 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 import server from "../api/server";
 import CustomCard from "./Card";
-import { UserDataContext } from "../context/UserDataContext";
 
 import "./Cards.scss";
 
 const Cards = props => {
   const history = useHistory();
-  const { userData } = useContext(UserDataContext);
   const [chapterTitles, setChapterTitles] = useState([]);
   const [completedChapters, setCompletedChapters] = useState([]);
-
-  const activeTitles = [];
 
   const getCompletedChapters = () => {
     server.get("/chapterdata/").then(res => {
       const completedChapters = [];
       const username = localStorage.getItem("username");
       res.data.map(item => {
-        if (item.username === username && item.completed === true) {
-          completedChapters.push(item.chapterTitle);
-        }
+        return item.username === username && item.completed === true
+          ? completedChapters.push(item.chapterTitle)
+          : null;
       });
       setCompletedChapters(completedChapters);
     });

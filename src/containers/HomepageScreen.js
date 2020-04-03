@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 import "./HomepageScreen.scss";
+import server from "../api/server";
 
+import UserDataContext from "../context/UserDataContext";
 import { AnimBackground } from "../components/background";
 
 const HomepageScreen = () => {
+  const { getUserData } = useContext(UserDataContext);
+
+  useEffect(getUserData, []);
+
   return (
     <>
       <AnimBackground />

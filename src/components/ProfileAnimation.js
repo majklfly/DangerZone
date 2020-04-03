@@ -13,7 +13,7 @@ export const ProfileAnimation = props => {
         fill="none"
       >
         <g id="undraw_stand_out_1oag 1">
-          <g clip-path="url(#clip0)">
+          <g clipPath="url(#clip0)">
             <g id="Person4">
               <path
                 id="Vector"
@@ -218,9 +218,9 @@ export const ProfileAnimation = props => {
             width="61.4084"
             height="90.3201"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"

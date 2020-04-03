@@ -1,38 +1,35 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Button, Progress } from "antd";
+import { Progress } from "antd";
 import { Link } from "react-router-dom";
 
 import server from "../api/server";
 
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
-
 import * as actions from "../store/actions/auth";
 
 import "./UserBoard.scss";
 import "font-awesome/css/font-awesome.min.css";
 
-const username = localStorage.getItem("username");
-
 const UserBoard = props => {
   const [percentage, setPercentage] = useState(0);
+
+  const username = localStorage.getItem("username");
 
   const calculatePercentage = async () => {
     const chapters = await server.get("/chapters/");
     const chapterData = await server.get("/chapterdata/");
     const finishedChapters = [];
     chapterData.data.map(item => {
-      if (item.username === username && item.completed === true) {
-        finishedChapters.push(item);
-      }
+      return item.username === username && item.completed === true
+        ? finishedChapters.push(item)
+        : null;
     });
     const total = chapters.data.length;
     const current = finishedChapters.length;
     const percent = (current / (total / 100)).toFixed(0);
-    console.log(percent);
     setPercentage(percent);
   };
-
   calculatePercentage();
 
   return (
@@ -42,7 +39,7 @@ const UserBoard = props => {
           strokeColor={{
             "100%": "#364d79"
           }}
-          type="circle"
+          // type="circle"
           percent={percentage}
           className="progressBar"
           width="110px"

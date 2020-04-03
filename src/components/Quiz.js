@@ -10,15 +10,13 @@ import { Context } from "../context/QuizContext";
 const Quiz = props => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [questionCount, setQuestionCount] = useState(0);
   const [IsCorrectAnswer, setIsCorrectAnswer] = useState(false);
   const [AddActiveClass, setAddActiveClass] = useState(false);
   const [userId, setUserId] = useState(0);
   const [chapterId, setChapterId] = useState(0);
 
   const [questionIndex, setQuestionIndex] = useState(1);
-  const [validatedCount, setValidatedCount] = useState(0);
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [setValidatedCount] = useState(0);
 
   const { postTestResults } = useContext(Context);
 
@@ -56,9 +54,7 @@ const Quiz = props => {
   const getUserId = () => {
     server.get("/users/").then(res => {
       res.data.map(item => {
-        if (item.username === username) {
-          setUserId(item.id);
-        }
+        return item.username === username ? setUserId(item.id) : null;
       });
     });
   };
@@ -66,9 +62,7 @@ const Quiz = props => {
   const getChapterId = () => {
     server.get("/chapters/").then(res => {
       res.data.map(item => {
-        if (item.title === currentChapter) {
-          setChapterId(item.id);
-        }
+        return item.title === currentChapter ? setChapterId(item.id) : null;
       });
     });
   };
