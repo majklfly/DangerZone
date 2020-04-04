@@ -15,7 +15,6 @@ import "./ProfileScreen.scss";
 
 const ProfileScreen = () => {
   const [profileData] = useState({});
-  const username = localStorage.getItem("username");
   const { userData, getUserData } = useContext(UserDataContext);
 
   useEffect(getUserData, []);
@@ -55,7 +54,7 @@ const ProfileScreen = () => {
             </div>
             <div className="displayDetails">
               <h2 className="profileLabels">Account Expired:</h2>
-              <h2 className="profileContent"></h2>
+              <h2 className="profileContent"> </h2>
             </div>
             <div className="profileIconsContainer">
               <TwitterOutlined

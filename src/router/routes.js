@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-
-import server from "../api/server";
 
 import { Provider as QuizProvider } from "../context/QuizContext";
 

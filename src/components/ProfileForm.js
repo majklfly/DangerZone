@@ -8,7 +8,7 @@ import server from "../api/server";
 
 export const ProfileForm = props => {
   const [form] = Form.useForm();
-  const { profileId, userData } = useContext(UserDataContext);
+  const { profileId } = useContext(UserDataContext);
 
   const onSubmit = async () => {
     try {

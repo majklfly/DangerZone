@@ -39,7 +39,7 @@ const UserBoard = props => {
           strokeColor={{
             "100%": "#364d79"
           }}
-          // type="circle"
+          type="circle"
           percent={percentage}
           className="progressBar"
           width="110px"

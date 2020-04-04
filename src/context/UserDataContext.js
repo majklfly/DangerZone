@@ -20,10 +20,6 @@ export const UserDataProvider = ({ children }) => {
     });
   };
 
-  const updateUserData = () => {
-    server.patch(`/userdata/${profileId}`, {}).then(res => {});
-  };
-
   return (
     <UserDataContext.Provider value={{ userData, getUserData, profileId }}>
       {children}

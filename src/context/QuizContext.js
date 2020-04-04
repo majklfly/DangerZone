@@ -27,6 +27,7 @@ const postTestResults = dispatch => {
         completed: isCompleted,
         user: userId,
         chapter: chapterId
+        // userData:
       });
       dispatch({
         type: "post_test_results",
