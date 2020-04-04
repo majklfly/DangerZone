@@ -1,18 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 
 import "./HomepageScreen.scss";
 
-import UserDataContext from "../context/UserDataContext";
+import { useSelector } from "react-redux";
 import { AnimBackground } from "../components/background";
+import { set_userdata } from "../store/actions/userData";
+
+import server from "../api/server";
 
 const HomepageScreen = () => {
-  const { getUserData } = useContext(UserDataContext);
-
-  useEffect(getUserData, []);
-
   return (
     <>
-      <AnimBackground />
       <div className="welcome-speech">
         <h1 className="welcome-title">Welcome to DangerZone!</h1>
         <h3 className="welcome-content">

@@ -11,7 +11,8 @@ const quizReducer = (state, action) => {
           correct_answers: action.payload.correct_answers,
           completed: action.payload.isCompleted,
           user: action.payload.userId,
-          chapter: action.payload.chapterId
+          chapter: action.payload.chapterId,
+          userData: action.payload.userDataId
         }
       ];
     default:
@@ -20,18 +21,24 @@ const quizReducer = (state, action) => {
 };
 
 const postTestResults = dispatch => {
-  return async (correct_answers, isCompleted, userId, chapterId) => {
+  return async (
+    correct_answers,
+    isCompleted,
+    userId,
+    chapterId,
+    userDataId
+  ) => {
     try {
       await server.post("/chapterdata/", {
         correct_answers: correct_answers,
         completed: isCompleted,
         user: userId,
-        chapter: chapterId
-        // userData:
+        chapter: chapterId,
+        userData: userDataId
       });
       dispatch({
         type: "post_test_results",
-        payload: { correct_answers, isCompleted, userId, chapterId }
+        payload: { correct_answers, isCompleted, userId, chapterId, userDataId }
       });
     } catch (e) {
       console.log(e);

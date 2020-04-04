@@ -4,6 +4,7 @@ import { Carousel, Button, Spin } from "antd";
 import server from "../api/server";
 import "./Quiz.scss";
 import { FinalQuizAnimation } from "./FinalQuizAnimation";
+import { useSelector } from "react-redux";
 
 import { Context } from "../context/QuizContext";
 
@@ -18,7 +19,7 @@ const Quiz = props => {
   const [questionIndex, setQuestionIndex] = useState(1);
   const [setValidatedCount] = useState(0);
 
-  const { postTestResults } = useContext(Context);
+  const userData = useSelector(state => state.userDataReducer);
 
   let ref = useRef();
   let isCompletedRef = useRef(false);
@@ -92,9 +93,30 @@ const Quiz = props => {
         valCountRef.current,
         isCompletedRef.current,
         userId,
-        chapterId
+        chapterId,
+        userData.id
       );
     }
+  };
+
+  const postTestResults = (
+    correct_answers,
+    is_Completed,
+    userId,
+    chapterId,
+    userDataId
+  ) => {
+    server
+      .post("/chapterdata/", {
+        correct_answers: correct_answers,
+        completed: is_Completed,
+        user: userId,
+        chapter: chapterId,
+        userData: userDataId
+      })
+      .then(res => {
+        console.log(res);
+      });
   };
 
   if (questions === undefined || questions.length === 0) {

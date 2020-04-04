@@ -1,32 +1,27 @@
 import React, { useContext } from "react";
 
-import UserDataContext from "../context/UserDataContext";
-
 import { Form, Input, Button } from "antd";
 import "./ProfileForm.scss";
 import server from "../api/server";
 
 export const ProfileForm = props => {
   const [form] = Form.useForm();
-  const { profileId } = useContext(UserDataContext);
 
-  const onSubmit = async () => {
-    try {
-      const values = await form.validateFields();
-
-      server
-        .patch(`/profile/${profileId}/`, {
-          facebook: "https://www.facebook.com/" + values.facebook,
-          twitter: "https://twitter.com/" + values.twitter,
-          instagram: "https://www.instagram.com/" + values.instagram
-        })
-        .then(window.location.reload());
-    } catch (errorInfo) {
-      console.log("Failed", errorInfo);
-    }
-  };
-
-  console.log(profileId);
+  // const onSubmit = async () => {
+  //   try {
+  //     const values = await form.validateFields();
+  //
+  //     server
+  //       .patch(`/profile/${profileId}/`, {
+  //         facebook: "https://www.facebook.com/" + values.facebook,
+  //         twitter: "https://twitter.com/" + values.twitter,
+  //         instagram: "https://www.instagram.com/" + values.instagram
+  //       })
+  //       .then(window.location.reload());
+  //   } catch (errorInfo) {
+  //     console.log("Failed", errorInfo);
+  //   }
+  // };
 
   return (
     <>
@@ -43,7 +38,7 @@ export const ProfileForm = props => {
         <Button
           type="primary"
           className="profileSubmitButton"
-          onClick={onSubmit}
+          onClick={() => {}}
         >
           Please, update my profile
         </Button>

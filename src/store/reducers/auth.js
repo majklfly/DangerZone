@@ -7,7 +7,7 @@ const initialState = {
   loading: false
 };
 
-const reducer = (state = initialState, action) => {
+const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_START:
       return authStart(state, action);
@@ -23,7 +23,6 @@ const reducer = (state = initialState, action) => {
 };
 
 const authStart = (state, action) => {
-  console.log(state);
   return updatedObject(state, {
     error: null,
     loading: true
@@ -52,4 +51,4 @@ const AuthLogout = (state, action) => {
   });
 };
 
-export default reducer;
+export default AuthReducer;

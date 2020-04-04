@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 
 import { ProfileForm } from "../components/ProfileForm";
-import UserDataContext from "../context/UserDataContext";
+import { useSelector } from "react-redux";
 
 import {
   TwitterOutlined,
@@ -14,12 +14,8 @@ import { ProfileAnimation } from "../components/ProfileAnimation";
 import "./ProfileScreen.scss";
 
 const ProfileScreen = () => {
+  const userData = useSelector(state => state.userDataReducer);
   const [profileData] = useState({});
-  const { userData, getUserData } = useContext(UserDataContext);
-
-  useEffect(getUserData, []);
-
-  console.log("userData", userData);
 
   return (
     <>

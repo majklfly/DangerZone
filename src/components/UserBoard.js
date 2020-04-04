@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Progress } from "antd";
 import { Link } from "react-router-dom";
 
 import server from "../api/server";
+import { set_userdata } from "../store/actions/userData";
+import { useDispatch, useSelector } from "react-redux";
 
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import * as actions from "../store/actions/auth";
@@ -13,8 +15,9 @@ import "font-awesome/css/font-awesome.min.css";
 
 const UserBoard = props => {
   const [percentage, setPercentage] = useState(0);
-
+  const dispatch = useDispatch();
   const username = localStorage.getItem("username");
+  const userData = useSelector(state => state.userDataReducer);
 
   const calculatePercentage = async () => {
     const chapters = await server.get("/chapters/");
@@ -31,6 +34,16 @@ const UserBoard = props => {
     setPercentage(percent);
   };
   calculatePercentage();
+
+  const getUserData = () => {
+    server.get("/userdata/").then(res => {
+      res.data.map(item => {
+        return item.username === username ? dispatch(set_userdata(item)) : null;
+      });
+    });
+  };
+
+  useEffect(getUserData, []);
 
   return (
     <>
@@ -52,7 +65,7 @@ const UserBoard = props => {
             <LogoutOutlined className="iconBoard" />
           </Link>
         </div>
-        <div className="welcomeText">Hello {props.userData}</div>
+        <div className="welcomeText">Hello {userData.username}</div>
       </div>
     </>
   );

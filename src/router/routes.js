@@ -3,8 +3,6 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import { Provider as QuizProvider } from "../context/QuizContext";
 
-import { UserDataProvider } from "../context/UserDataContext";
-
 import CloudsScreen from "../containers/CloudsScreen";
 import HomepageScreen from "../containers/HomepageScreen";
 import ChaptersScreen from "../containers/ChaptersScreen";
@@ -40,14 +38,12 @@ const BaseRouter = () => {
         <QuizProvider>
           <ResponsiveNavigation navLinks={navLinks} />
           <div>
-            <UserDataProvider>
-              <Route exact path="/homepage/" component={HomepageScreen} />
-              <Route exact path="/clouds/" component={CloudsScreen} />
-              <Route exact path="/chapters/" component={ChaptersScreen} />
-              <Route exact path="/chapter/" component={ArticlesScreen} />
-              <Route exact path="/chapter/quiz/" component={QuizScreen} />
-              <Route exact path="/profile/" component={ProfileScreen} />
-            </UserDataProvider>
+            <Route exact path="/homepage/" component={HomepageScreen} />
+            <Route exact path="/clouds/" component={CloudsScreen} />
+            <Route exact path="/chapters/" component={ChaptersScreen} />
+            <Route exact path="/chapter/" component={ArticlesScreen} />
+            <Route exact path="/chapter/quiz/" component={QuizScreen} />
+            <Route exact path="/profile/" component={ProfileScreen} />
           </div>
         </QuizProvider>
       </Router>

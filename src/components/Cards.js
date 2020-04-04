@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Row } from "antd";
 import { useHistory } from "react-router-dom";
 
 import { LoadingOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
 
 import server from "../api/server";
 import CustomCard from "./Card";
@@ -11,31 +12,30 @@ import "./Cards.scss";
 
 const Cards = props => {
   const history = useHistory();
-  const [chapterTitles, setChapterTitles] = useState([]);
+  const userData = useSelector(state => state.userDataReducer);
+  const [chapters, setChapters] = useState([]);
+  const [chapterIds, setChapterIds] = useState([]);
   const [completedChapters, setCompletedChapters] = useState([]);
-
-  const getCompletedChapters = () => {
-    server.get("/chapterdata/").then(res => {
-      const completedChapters = [];
-      const username = localStorage.getItem("username");
-      res.data.map(item => {
-        return item.username === username && item.completed === true
-          ? completedChapters.push(item.chapterTitle)
-          : null;
-      });
-      setCompletedChapters(completedChapters);
-    });
-  };
 
   const getChapters = () => {
     server.get("/chapters/").then(res => {
-      const chapterTitles = [];
+      const chaptersLocal = [];
       res.data.map(item => {
-        return chapterTitles.push(item.title);
+        chaptersLocal.push(item.title);
       });
-      setChapterTitles(chapterTitles);
+      setChapters(chaptersLocal);
     });
   };
+
+  const getCompletedChapters = () => {
+    const completedChapters = [];
+    userData.chapterdata.map(item => {
+      completedChapters.push(item.chapterTitle);
+    });
+    setCompletedChapters(completedChapters);
+  };
+
+  console.log(completedChapters);
 
   const handleClick = (e, chapter) => {
     console.log("clicked", chapter);
@@ -48,6 +48,9 @@ const Cards = props => {
     getCompletedChapters();
   }, []); //eslint-disable-line
 
+  // console.log("completedChapters", completedChapters);
+  // console.log("chapterIds", chapterIds);
+
   return (
     <>
       {props.loading ? (
@@ -55,7 +58,7 @@ const Cards = props => {
       ) : (
         <div className="container">
           <Row gutter={16} className="cards">
-            {chapterTitles.map((chapter, index) => {
+            {chapters.map((chapter, index) => {
               if (completedChapters.includes(chapter)) {
                 return (
                   <CustomCard

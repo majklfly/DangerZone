@@ -16,6 +16,7 @@ class ChapterSerializer(serializers.ModelSerializer):
 
 
 class ChapterDataSerializer(serializers.ModelSerializer):
+    chapterTitle = serializers.ReadOnlyField(source='chapter.title')
 
     class Meta:
         model = ChapterData

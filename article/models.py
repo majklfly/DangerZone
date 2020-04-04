@@ -3,13 +3,31 @@ from user.models import CustomUser, Profile
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 
+class UserData(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+
+
 class Chapter(models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=100, default=' ')
-    users = models.ManyToManyField('user.CustomUser', through='ChapterData', null=True)
 
     def __str__(self):
         return self.title
+
+
+class ChapterData(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    completed = models.BooleanField(default=False)
+    correct_answers = models.IntegerField(default=0)
+    userData = models.ForeignKey(UserData, on_delete=models.CASCADE, null=True)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        ordering = ['-timestamp',]
+
+    # def __str__(self):
+    #     return self.chapter.title
 
 
 class Article(models.Model):
@@ -34,22 +52,3 @@ class Article(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class UserData(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
-
-
-class ChapterData(models.Model):
-    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    completed = models.BooleanField(default=False)
-    correct_answers = models.IntegerField(default=0)
-    userData = models.ForeignKey(UserData, on_delete=models.CASCADE, null=True)
-
-    class Meta:
-        ordering = ['-timestamp',]
-
-    def __str__(self):
-        return self.chapter.title
