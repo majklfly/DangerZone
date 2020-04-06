@@ -2,12 +2,6 @@ import React from "react";
 
 import "./HomepageScreen.scss";
 
-import { useSelector } from "react-redux";
-import { AnimBackground } from "../components/background";
-import { set_userdata } from "../store/actions/userData";
-
-import server from "../api/server";
-
 const HomepageScreen = () => {
   return (
     <>

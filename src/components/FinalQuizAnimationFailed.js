@@ -12,10 +12,6 @@ export const FinalQuizAnimationFailed = props => {
     history.push("/chapters/");
   };
 
-  const handleClickNegative = () => {
-    history.push("/chapter/");
-  };
-
   return (
     <div>
       <div className="failedAnimationContainer">

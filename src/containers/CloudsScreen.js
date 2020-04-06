@@ -1,8 +1,6 @@
 import React from "react";
 
-import { List, message, Avatar, Spin } from "antd";
-
-import { Daco_2887 as cloud1 } from "../assets/clouds/Daco_2887.png";
+import { List, Avatar } from "antd";
 
 import "./CloudsScreen.css";
 
@@ -29,6 +27,14 @@ const CloudsScreen = () => {
         <List.Item className="cloudListItem">
           <List.Item.Meta
             avatar={
+              <Avatar src="https://clipartart.com/images/javascript-icon-clipart-3.jpg" />
+            }
+          />
+          <div className="cloudListItemText">NodeJs</div>
+        </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={
               <Avatar src="https://p7.hiclipart.com/preview/396/90/545/postgresql-database-logo-computer-icons-replication-software-developer.jpg" />
             }
           />
@@ -41,6 +47,14 @@ const CloudsScreen = () => {
             }
           />
           <div className="cloudListItemText">Django REST framework</div>
+        </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={
+              <Avatar src="https://i7.pngguru.com/preview/10/113/180/django-web-development-web-framework-python-software-framework-django.jpg" />
+            }
+          />
+          <div className="cloudListItemText">Django 3.0</div>
         </List.Item>
         <List.Item className="cloudListItem">
           <List.Item.Meta
@@ -68,13 +82,24 @@ const CloudsScreen = () => {
             CSS 3 (CSS animations of SVG documents)
           </div>
         </List.Item>
-        <List.Item className="cloudListItem">
+        <List.Item
+          className="cloudListItem
+        "
+        >
           <List.Item.Meta
             avatar={
               <Avatar src="https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/5894313931548218185-512.png" />
             }
           />
           <div className="cloudListItemText">Jest</div>
+        </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={
+              <Avatar src="https://cdn4.iconfinder.com/data/icons/bloomies-webdesign-tools/25/Figma_square-512.png" />
+            }
+          />
+          <div className="cloudListItemText">Figma</div>
         </List.Item>
         <List.Item className="cloudListItem">
           <List.Item.Meta
@@ -91,6 +116,14 @@ const CloudsScreen = () => {
             }
           />
           <div className="cloudListItemText">Heroku</div>
+        </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={
+              <Avatar src="https://banner2.cleanpng.com/20180824/jtl/kisspng-computer-icons-logo-portable-network-graphics-clip-icons-for-free-iconza-circle-social-5b7fe46b0bac53.1999041115351082030478.jpg" />
+            }
+          />
+          <div className="cloudListItemText">Github</div>
         </List.Item>
       </List>
     </>

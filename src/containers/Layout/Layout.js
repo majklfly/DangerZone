@@ -13,7 +13,7 @@ function ResponsiveNavigation({
   logo
 }) {
   const [hoverIndex, setHoverIndex] = useState(-1);
-  const [navOpen, setNavOpen] = useState(false);
+  const [navOpen] = useState(false);
 
   return (
     <div className="layout">

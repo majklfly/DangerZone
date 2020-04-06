@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Row } from "antd";
 import { useHistory } from "react-router-dom";
 
@@ -14,14 +14,13 @@ const Cards = props => {
   const history = useHistory();
   const userData = useSelector(state => state.userDataReducer);
   const [chapters, setChapters] = useState([]);
-  const [chapterIds, setChapterIds] = useState([]);
   const [completedChapters, setCompletedChapters] = useState([]);
 
   const getChapters = () => {
     server.get("/chapters/").then(res => {
       const chaptersLocal = [];
       res.data.map(item => {
-        chaptersLocal.push(item.title);
+        return chaptersLocal.push(item.title);
       });
       setChapters(chaptersLocal);
     });
@@ -30,7 +29,7 @@ const Cards = props => {
   const getCompletedChapters = () => {
     const completedChapters = [];
     userData.chapterdata.map(item => {
-      completedChapters.push(item.chapterTitle);
+      return completedChapters.push(item.chapterTitle);
     });
     setCompletedChapters(completedChapters);
   };
