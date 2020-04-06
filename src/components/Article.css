@@ -9,25 +9,45 @@
 .article_name {
   color: white;
   padding-top: 1em;
-  font-size: 25px;
+  font-size: 1.5vw;
   font-family: 'Permanent Marker';
 }
-
-.content-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 400px;
-}
-
 .article_content {
   color: white;
-  margin: 1em;
   font-family: 'PT Sans';
+  font-size: 1vw;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.content-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.articleLeftContainer {
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  height: 30vh;
+}
+.articleRightContainer {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  width: 35vw;
+  height: 30vh;
 }
 .lineIndex {
-  margin-top: -10px;
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'PT Sans';
+  width: 33.7vw;
   color: white;
+  align-self: flex-start;
+  margin: 3px;
+  font-size: 1vw;
 }
 
 

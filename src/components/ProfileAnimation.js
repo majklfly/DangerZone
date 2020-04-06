@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./ProfileAnimation.scss";
+import "./ProfileAnimation.css";
 
 export const ProfileAnimation = props => {
   return (

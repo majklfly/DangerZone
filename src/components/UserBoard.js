@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import * as actions from "../store/actions/auth";
 
-import "./UserBoard.scss";
+import "./UserBoard.css";
 import "font-awesome/css/font-awesome.min.css";
 
 const UserBoard = props => {
@@ -21,12 +21,9 @@ const UserBoard = props => {
 
   const calculatePercentage = async () => {
     const chapters = await server.get("/chapters/");
-    const chapterData = await server.get("/chapterdata/");
     const finishedChapters = [];
-    chapterData.data.map(item => {
-      return item.username === username && item.completed === true
-        ? finishedChapters.push(item)
-        : null;
+    userData.chapterdata.map(item => {
+      return item.completed === true ? finishedChapters.push(item) : null;
     });
     const total = chapters.data.length;
     const current = finishedChapters.length;

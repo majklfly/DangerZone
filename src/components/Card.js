@@ -3,7 +3,7 @@ import { CheckCircleOutlined } from "@ant-design/icons";
 
 import { Card } from "antd";
 
-import "./Cards.scss";
+import "./Cards.css";
 
 const CustomCard = props => {
   return (

@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect, useContext } from "react";
 
 import { Carousel, Button, Spin } from "antd";
 import server from "../api/server";
-import "./Quiz.scss";
-import { FinalQuizAnimation } from "./FinalQuizAnimation";
+import "./Quiz.css";
+import { FinalQuizAnimationFailed } from "./FinalQuizAnimationFailed";
+import { FinalQuizAnimationSuccess } from "./FinalQuizAnimationSuccess";
 import { useSelector } from "react-redux";
 
 import { Context } from "../context/QuizContext";
@@ -17,7 +18,6 @@ const Quiz = props => {
   const [chapterId, setChapterId] = useState(0);
 
   const [questionIndex, setQuestionIndex] = useState(1);
-  const [setValidatedCount] = useState(0);
 
   const userData = useSelector(state => state.userDataReducer);
 
@@ -52,14 +52,6 @@ const Quiz = props => {
     });
   };
 
-  const getUserId = () => {
-    server.get("/users/").then(res => {
-      res.data.map(item => {
-        return item.username === username ? setUserId(item.id) : null;
-      });
-    });
-  };
-
   const getChapterId = () => {
     server.get("/chapters/").then(res => {
       res.data.map(item => {
@@ -71,12 +63,11 @@ const Quiz = props => {
   useEffect(() => {
     getQuestions();
     getAnswers();
-    getUserId();
     getChapterId();
     // eslint-disable-next-line
   }, []);
 
-  const valuateAnswer = (answerIsCorrect, ValidatedCount) => {
+  const valuateAnswer = answerIsCorrect => {
     setQuestionIndex(questionIndex => questionIndex + 1);
     if (answerIsCorrect === true) {
       valCountRef.current = valCountRef.current + 1;
@@ -88,36 +79,44 @@ const Quiz = props => {
   };
 
   const valuateQuiz = () => {
+    const postTestResults = (
+      correct_answers,
+      is_Completed,
+      userId,
+      chapterId,
+      userDataId
+    ) => {
+      console.log("is_Completed", is_Completed);
+      console.log("correct_answers", correct_answers);
+      console.log("userId", userId);
+      console.log("userDataId", userDataId);
+      console.log("chapterId", chapterId);
+      server
+        .post("/chapterdata/", {
+          completed: is_Completed,
+          correct_answers: correct_answers,
+          user: userId,
+          userData: userDataId,
+          chapter: chapterId
+        })
+        .then(res => {
+          console.log(res);
+        });
+    };
+
     if (questionIndex === 5) {
       postTestResults(
         valCountRef.current,
         isCompletedRef.current,
-        userId,
+        userData.id,
         chapterId,
         userData.id
       );
     }
   };
 
-  const postTestResults = (
-    correct_answers,
-    is_Completed,
-    userId,
-    chapterId,
-    userDataId
-  ) => {
-    server
-      .post("/chapterdata/", {
-        correct_answers: correct_answers,
-        completed: is_Completed,
-        user: userId,
-        chapter: chapterId,
-        userData: userDataId
-      })
-      .then(res => {
-        console.log(res);
-      });
-  };
+  console.log("valCountRef", valCountRef.current);
+  console.log("questionIndex", questionIndex);
 
   if (questions === undefined || questions.length === 0) {
     return (
@@ -129,7 +128,7 @@ const Quiz = props => {
     return (
       <>
         <div>
-          <Carousel ref={ref}>
+          <Carousel ref={ref} className="carouselQuiz">
             {questions.map((question, index) => {
               return question.chapterTitle === currentChapter ? (
                 <div key={index}>
@@ -140,7 +139,7 @@ const Quiz = props => {
                         className="answer-buttons"
                         key={answer.id}
                         onClick={() => {
-                          valuateAnswer(answer.is_correct, setValidatedCount);
+                          valuateAnswer(answer.is_correct);
                           setIsCorrectAnswer(answer.is_correct);
                           setAddActiveClass(true);
                           setTimeout(() => setAddActiveClass(false), 2600);
@@ -168,15 +167,28 @@ const Quiz = props => {
                 </div>
               ) : null;
             })}
-            <FinalQuizAnimation
-              validatedCount={valCountRef.current}
-              questionCount={questionIndex}
-            />
           </Carousel>
+          {valCountRef.current === 5 && questionIndex === 6 ? (
+            <div>
+              <div className="quizFailedAnimation">
+                <FinalQuizAnimationSuccess
+                  validatedCount={valCountRef.current}
+                />
+              </div>
+            </div>
+          ) : null}
+          {valCountRef.current !== 5 && questionIndex === 6 ? (
+            <div>
+              <div className="quizFailedAnimation">
+                <FinalQuizAnimationFailed
+                  validatedCount={valCountRef.current}
+                />
+              </div>
+            </div>
+          ) : null}
         </div>
       </>
     );
   }
 };
-
 export default Quiz;

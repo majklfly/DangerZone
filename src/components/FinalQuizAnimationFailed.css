@@ -1,0 +1,198 @@
+.failedAnimationContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.failedAnimationText {
+  display: flex;
+  justify-content: center;
+  font-size: 3vw;
+  margin-top: 20px;
+  color: white;
+}
+.failedAnimationText2 {
+  display: flex;
+  justify-content:flex-start;
+  font-size: 2.5vw;
+  margin-top: 60px;
+  margin-left: 30px;
+  color: white;
+  width: 350px;
+}
+.failedAnimation {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  width: 450px;
+  height: 290px;
+}
+
+.failedAnimationButton {
+  position: absolute;
+  left: 9vw;
+  bottom: 5vh;
+  width: 14vh;
+  height: 14vh;
+  border-radius: 100%;
+  background-color: #ff4000;
+  border-color: #ff4000;
+  duration: 1s;
+  color: #d13400;
+  font-size: 40px;
+}
+.failedAnimationButton:focus {
+  background-color: #ff4000;
+  border-color: #d13400;
+  border-style: double;
+  duration: 1s;
+  color: #d13400;
+}
+.failedAnimationButton:hover {
+  background-color: #ff4000;
+  border-color: #d13400;
+  border-style: double;
+  border-width: 13px;
+  duration: 1s;
+  color: #d13400;
+}
+
+
+
+/* ANIMATION */
+
+#rightTable {
+  opacity: 0;
+}
+#leftTable {
+  opacity: 0;
+}
+#Line1 {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 0.2s;
+  fill: green;
+}
+#Line2 {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 0.2s;
+  animation-delay: 0.4s;
+  opacity: 0;
+  fill: green;
+}
+#Line3 {
+  animation-name: RedLine;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 8;
+  animation-duration: 0.2s;
+  animation-delay: 0.6s;
+  opacity: 0;
+  fill: red;
+}
+#rightTable {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-delay: 0.7s;
+}
+#rightBack {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-delay: 0.9s;
+  opacity: 0;
+}
+#rightFront {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-delay: 1.1s;
+  opacity: 0;
+}
+#Line4 {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 0.2s;
+  animation-delay: 1.3s;
+  opacity: 0;
+  fill: green;
+}
+#Line5 {
+  animation-name: RedLine;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 8;
+  animation-duration: 0.2s;
+  animation-delay: 1.5s;
+  opacity: 0;
+  fill: red;
+}
+#leftTable {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-delay: 1.6s;
+  opacity: 0;
+}
+#Line6 {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 1.8s;
+  opacity: 0;
+  fill: green;
+}
+#Line7 {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 2s;
+  opacity: 0;
+  fill: green;
+}
+#Line8 {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 2.2s;
+  opacity: 0;
+  fill: green;
+}
+#Line9 {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 2.4s;
+  opacity: 0;
+  fill: green;
+}
+#Line10 {
+  animation-name: Line;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 2.6s;
+  opacity: 0;
+  fill: green;
+}
+
+#tshirt, #Vector_42, #Vector_43 {
+  animation-name: Tshirt;
+  animation-fill-mode: forwards;
+  animation-duration: 5s;
+  animation-delay: 2.7s;
+}
+
+@keyframes Line {
+  from {opacity: 0}
+  to{opacity: 1}
+}
+
+@keyframes RedLine {
+  0% {opacity: 0; fill: red; animation-iteration-count: infinite;}
+  50% {opacity: 1; fill: red;}
+  to{opacity: 1; fill: green;}
+}
+
+@keyframes Tshirt {
+  from {fill: #575A89}
+  to{fill: #FF7110}
+}

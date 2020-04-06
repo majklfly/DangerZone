@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Layout.scss";
 import { Link } from "react-router-dom";
 
-import menuLogo from "../../assets/menuLogo.png";
+import DangerZoneLined from "../../assets/DangerZoneLined.svg";
 import UserBoard from "../../components/UserBoard";
 
 function ResponsiveNavigation({
@@ -19,18 +19,15 @@ function ResponsiveNavigation({
     <div className="layout">
       <nav className="responsive-toolbar" style={{ background }}>
         <ul style={{ background }} className={navOpen ? "active" : ""}>
-          <figure
-            onClick={() => {
-              setNavOpen(!navOpen);
-            }}
-          >
+          <Link to="/homepage/">
             <img
-              src={menuLogo}
+              src={DangerZoneLined}
               height="40px"
               width="40px"
               alt="logo-nav-toggler"
+              className="LayoutIcon"
             />
-          </figure>
+          </Link>
           {navLinks.map((link, index) => (
             <li
               key={index}
@@ -40,13 +37,15 @@ function ResponsiveNavigation({
                 background: hoverIndex === index ? hoverBackground || "" : ""
               }}
             >
-              <i className={link.icon}></i>
               <Link
                 to={link.path}
                 style={{ color: linkColor }}
                 onClick={link.action}
               >
-                {link.text}
+                <div className="navLinkItem">
+                  <i className={link.icon}></i>
+                  <div className="navLinkItemText">{link.text}</div>
+                </div>
               </Link>
             </li>
           ))}

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import server from "../api/server";
 import CustomCard from "./Card";
 
-import "./Cards.scss";
+import "./Cards.css";
 
 const Cards = props => {
   const history = useHistory();

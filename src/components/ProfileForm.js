@@ -1,27 +1,32 @@
 import React, { useContext } from "react";
 
+import { useSelector } from "react-redux";
+
 import { Form, Input, Button } from "antd";
-import "./ProfileForm.scss";
+import "./ProfileForm.css";
 import server from "../api/server";
 
 export const ProfileForm = props => {
   const [form] = Form.useForm();
+  const userData = useSelector(state => state.userDataReducer);
 
-  // const onSubmit = async () => {
-  //   try {
-  //     const values = await form.validateFields();
-  //
-  //     server
-  //       .patch(`/profile/${profileId}/`, {
-  //         facebook: "https://www.facebook.com/" + values.facebook,
-  //         twitter: "https://twitter.com/" + values.twitter,
-  //         instagram: "https://www.instagram.com/" + values.instagram
-  //       })
-  //       .then(window.location.reload());
-  //   } catch (errorInfo) {
-  //     console.log("Failed", errorInfo);
-  //   }
-  // };
+  const onSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+
+      server
+        .patch(`/profile/${userData.profileId}/`, {
+          facebook: "https://www.facebook.com/" + values.facebook,
+          twitter: "https://twitter.com/" + values.twitter,
+          instagram: "https://www.instagram.com/" + values.instagram
+        })
+        .then(window.location.reload());
+    } catch (errorInfo) {
+      console.log("Failed", errorInfo);
+    }
+  };
+
+  console.log(userData);
 
   return (
     <>
@@ -38,7 +43,7 @@ export const ProfileForm = props => {
         <Button
           type="primary"
           className="profileSubmitButton"
-          onClick={() => {}}
+          onClick={onSubmit}
         >
           Please, update my profile
         </Button>

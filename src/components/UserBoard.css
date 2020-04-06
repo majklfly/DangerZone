@@ -45,7 +45,6 @@
 }
 .iconBoard:hover {
   color: #364d79;
-  z-index: 5;
 }
 
 .progressBar {
@@ -54,4 +53,16 @@
   left: 3em;
   font-size: 30px;
   z-index: 6;
+}
+
+@media screen and (max-width: 850px) {
+  .welcomeText {
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .progressBar {
+    opacity: 0;
+  }
 }

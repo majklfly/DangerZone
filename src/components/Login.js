@@ -10,7 +10,7 @@ import {
 } from "@ant-design/icons";
 import icon from "../assets/icon.jpeg";
 import * as actions from "../store/actions/auth";
-import "./Login.scss";
+import "./Login.css";
 
 import server from "../api/server";
 

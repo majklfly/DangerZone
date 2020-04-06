@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Carousel } from "antd";
-import "./Article.scss";
+import "./Article.css";
 
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 
@@ -24,11 +24,11 @@ function Article(props) {
             return (
               <div key={index}>
                 <div className="article_name">{props.articles[item].name}</div>
+                <div className="article_content">
+                  {props.articles[item].content}
+                </div>
                 <div className="content-container">
-                  <div className="article_content">
-                    {props.articles[item].content}
-                  </div>
-                  <div>
+                  <div className="articleLeftContainer">
                     <div className="lineIndex">
                       {props.articles[item].line1 !== null
                         ? props.articles[item].line1
@@ -54,6 +54,8 @@ function Article(props) {
                         ? props.articles[item].line5
                         : null}
                     </div>
+                  </div>
+                  <div className="articleRightContainer">
                     <div className="lineIndex">
                       {props.articles[item].line6 !== null
                         ? props.articles[item].line6

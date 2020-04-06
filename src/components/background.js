@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./background.scss";
+import "./background.css";
 
 export const AnimBackground = () => {
   return (
