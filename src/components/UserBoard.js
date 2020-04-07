@@ -13,6 +13,8 @@ import * as actions from "../store/actions/auth";
 import "./UserBoard.css";
 import "font-awesome/css/font-awesome.min.css";
 
+const token = localStorage.getItem("token");
+
 const UserBoard = props => {
   const [percentage, setPercentage] = useState(0);
   const dispatch = useDispatch();
@@ -20,7 +22,9 @@ const UserBoard = props => {
   const userData = useSelector(state => state.userDataReducer);
 
   const calculatePercentage = async () => {
-    const chapters = await server.get("/chapters/");
+    const chapters = await server.get("/chapters/", {
+      headers: { authorization: `Token ${token}` }
+    });
     const finishedChapters = [];
     userData.chapterdata.map(item => {
       return item.completed === true ? finishedChapters.push(item) : null;
@@ -33,11 +37,17 @@ const UserBoard = props => {
   calculatePercentage();
 
   const getUserData = () => {
-    server.get("/userdata/").then(res => {
-      res.data.map(item => {
-        return item.username === username ? dispatch(set_userdata(item)) : null;
+    server
+      .get("/userdata/", {
+        headers: { authorization: `Token ${token}` }
+      })
+      .then(res => {
+        res.data.map(item => {
+          return item.username === username
+            ? dispatch(set_userdata(item))
+            : null;
+        });
       });
-    });
   };
 
   useEffect(getUserData, []);

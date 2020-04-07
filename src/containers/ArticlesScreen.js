@@ -7,6 +7,8 @@ import "./ArticlesScreen.scss";
 
 import server from "../api/server";
 
+const token = localStorage.getItem("token");
+
 const ArticlesScreen = props => {
   const [articles, setArticles] = useState({});
   const history = useHistory();
@@ -14,15 +16,19 @@ const ArticlesScreen = props => {
   const currentChapter = localStorage.getItem("currentChapter");
 
   const getArticles = () => {
-    server.get("/articles/").then(res => {
-      var articles = [];
-      res.data.map(item => {
-        return item.chapterTitle === currentChapter
-          ? articles.push(item)
-          : null;
+    server
+      .get("/articles/", {
+        headers: { authorization: `Token ${token}` }
+      })
+      .then(res => {
+        var articles = [];
+        res.data.map(item => {
+          return item.chapterTitle === currentChapter
+            ? articles.push(item)
+            : null;
+        });
+        setArticles(articles);
       });
-      setArticles(articles);
-    });
   };
 
   const handleClick = () => {

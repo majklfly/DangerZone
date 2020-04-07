@@ -28,6 +28,7 @@ export const logout = () => {
   localStorage.removeItem("username");
   localStorage.removeItem("currentChapter");
   localStorage.removeItem("userId");
+  localStorage.removeItem("persist:root");
   window.location.reload();
   return {
     type: actionTypes.AUTH_LOGOUT

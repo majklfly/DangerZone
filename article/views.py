@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Article, Chapter, ChapterData, UserData
 from .serializers import ArticleSerializer, ChapterSerializer, ChapterDataSerializer, UserDataSerializer
@@ -12,6 +14,8 @@ class ArticleDetailView(generics.RetrieveAPIView):
     serializer_class = ArticleSerializer
 
 class ChapterListView(generics.ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
 

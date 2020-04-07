@@ -4,6 +4,8 @@ import "./Article.css";
 
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 
+const token = localStorage.getItem("token");
+
 function Article(props) {
   const ref = useRef();
 

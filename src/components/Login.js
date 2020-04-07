@@ -25,6 +25,7 @@ const NormalLoginForm = props => {
 
   const handleSubmit = async () => {
     const values = await form.validateFields();
+    console.log(values);
     server
       .post("rest-auth/login/", {
         username: values.username,

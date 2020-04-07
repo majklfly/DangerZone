@@ -7,6 +7,8 @@ import { FinalQuizAnimationFailed } from "./FinalQuizAnimationFailed";
 import { FinalQuizAnimationSuccess } from "./FinalQuizAnimationSuccess";
 import { useSelector } from "react-redux";
 
+const token = localStorage.getItem("token");
+
 const Quiz = props => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
@@ -23,35 +25,47 @@ const Quiz = props => {
   const currentChapter = localStorage.getItem("currentChapter");
 
   const getQuestions = () => {
-    server.get("/question/").then(res => {
-      let questionsLocal = [];
-      res.data.map(item => {
-        return item.chapterTitle === currentChapter
-          ? questionsLocal.push(item)
-          : null;
+    server
+      .get("/question/", {
+        headers: { authorization: `Token ${token}` }
+      })
+      .then(res => {
+        let questionsLocal = [];
+        res.data.map(item => {
+          return item.chapterTitle === currentChapter
+            ? questionsLocal.push(item)
+            : null;
+        });
+        setQuestions(questionsLocal);
       });
-      setQuestions(questionsLocal);
-    });
   };
 
   const getAnswers = () => {
-    server.get("/answer/").then(res => {
-      let answersLocal = [];
-      res.data.map(item => {
-        return item.chapterTitle === currentChapter
-          ? answersLocal.push(item)
-          : null;
+    server
+      .get("/answer/", {
+        headers: { authorization: `Token ${token}` }
+      })
+      .then(res => {
+        let answersLocal = [];
+        res.data.map(item => {
+          return item.chapterTitle === currentChapter
+            ? answersLocal.push(item)
+            : null;
+        });
+        setAnswers(answersLocal);
       });
-      setAnswers(answersLocal);
-    });
   };
 
   const getChapterId = () => {
-    server.get("/chapters/").then(res => {
-      res.data.map(item => {
-        return item.title === currentChapter ? setChapterId(item.id) : null;
+    server
+      .get("/chapters/", {
+        headers: { authorization: `Token ${token}` }
+      })
+      .then(res => {
+        res.data.map(item => {
+          return item.title === currentChapter ? setChapterId(item.id) : null;
+        });
       });
-    });
   };
 
   useEffect(() => {
@@ -108,9 +122,6 @@ const Quiz = props => {
       );
     }
   };
-
-  console.log("valCountRef", valCountRef.current);
-  console.log("questionIndex", questionIndex);
 
   if (questions === undefined || questions.length === 0) {
     return (

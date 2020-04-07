@@ -2,8 +2,7 @@ import React from "react";
 
 import "./HomepageScreen.scss";
 
-const logo = document.querySelectorAll("#logo path");
-console.log(logo);
+console.log(localStorage);
 
 const HomepageScreen = () => {
   return (

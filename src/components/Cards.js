@@ -10,6 +10,8 @@ import CustomCard from "./Card";
 
 import "./Cards.css";
 
+const token = localStorage.getItem("token");
+
 const Cards = props => {
   const history = useHistory();
   const userData = useSelector(state => state.userDataReducer);
@@ -17,13 +19,17 @@ const Cards = props => {
   const [completedChapters, setCompletedChapters] = useState([]);
 
   const getChapters = () => {
-    server.get("/chapters/").then(res => {
-      const chaptersLocal = [];
-      res.data.map(item => {
-        return chaptersLocal.push(item.title);
+    server
+      .get("/chapters/", {
+        headers: { authorization: `Token ${token}` }
+      })
+      .then(res => {
+        const chaptersLocal = [];
+        res.data.map(item => {
+          return chaptersLocal.push(item.title);
+        });
+        setChapters(chaptersLocal);
       });
-      setChapters(chaptersLocal);
-    });
   };
 
   const getCompletedChapters = () => {
@@ -33,8 +39,6 @@ const Cards = props => {
     });
     setCompletedChapters(completedChapters);
   };
-
-  console.log(completedChapters);
 
   const handleClick = (e, chapter) => {
     console.log("clicked", chapter);

@@ -6,6 +6,9 @@ from django.dispatch import receiver
 class UserData(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
 
+    def __str__(self):
+        return self.user
+
 
 class Chapter(models.Model):
     title = models.CharField(max_length=500)
@@ -26,8 +29,8 @@ class ChapterData(models.Model):
     class Meta:
         ordering = ['-timestamp',]
 
-    # def __str__(self):
-    #     return self.chapter.title
+    def __str__(self):
+        return self.chapter.title
 
 
 class Article(models.Model):
