@@ -7,43 +7,80 @@
   display: flex;
   width: 100%;
 }
-
 .active-container {
   display: flex;
   flex-direction: row;
-  width: 33%;
+  width: 27vw;
 }
-
 .active {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.3em;
-  background-color: #4f6eab;
-  border-width: 5px;
+  background-color: #fdbb77;
+  border: 5px solid #4f6eab;
   opacity: 1;
-  color: white;
-  height: 12em;
+  color: #4f6eab;
+  height: 11vw;;
   width: 100%;
   margin: 10px;
 }
+.active::before, .active::after{
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 7px;
+  background-color: #fdbb77;
+  transform: skewX(50deg);
+  transition: 0.4s linear;
+}
+.active::before{
+  top: -4px;
+  left: 10%;
+  margin-top: -1px;
+}
+.active::after{
+  bottom: -4px;
+  right: 10%;
+  margin-bottom: -1px;
+}
+.active:hover::before {
+  left: 80%;
+}
+.active:hover::after {
+  right: 80%;
+}
+
+
 .inactive {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.3em;
-  background-color: green;
-  border-width: 5px;
+  background-color: #fdbb77;
+  border: 5px solid #d13400;
   opacity: 1;
-  color: white;
-  height: 12em;
-  width: 32%;
+  color: #d13400;
+  height: 11vw;;
+  width: 27vw;
   margin: 10px;
 }
-#checkedIcon {
-  position: relative;
-  height: auto;
-  width: auto;
-  font-size: 30px;
-  margin: 5px;
+.inactive::before, .inactive::after{
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 7px;
+  background-color: #fdbb77;
+  transform: skewX(50deg);
+  transition: 0.4s linear;
+}
+.inactive::before{
+  top: -4px;
+  left: 80%;
+  margin-top: -1px;
+}
+.inactive::after{
+  bottom: -4px;
+  right: 80%;
+  margin-bottom: -1px;
 }

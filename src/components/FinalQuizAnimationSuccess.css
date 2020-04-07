@@ -1,5 +1,7 @@
 .successAnimation {
   position: absolute;
+  width: 35vw;
+  height: 35vh;
   bottom: 7vh;
   right: 7vw;
 }

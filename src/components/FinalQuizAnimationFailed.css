@@ -23,8 +23,8 @@
   position: absolute;
   bottom: 20px;
   right: 10px;
-  width: 450px;
-  height: 290px;
+  width: 40vw;
+  height: 30vh;
 }
 
 .failedAnimationButton {
@@ -38,7 +38,7 @@
   border-color: #ff4000;
   duration: 1s;
   color: #d13400;
-  font-size: 40px;
+  font-size: 7vh;
 }
 .failedAnimationButton:focus {
   background-color: #ff4000;
@@ -55,7 +55,6 @@
   duration: 1s;
   color: #d13400;
 }
-
 
 
 /* ANIMATION */

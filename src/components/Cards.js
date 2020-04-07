@@ -47,9 +47,6 @@ const Cards = props => {
     getCompletedChapters();
   }, []); //eslint-disable-line
 
-  // console.log("completedChapters", completedChapters);
-  // console.log("chapterIds", chapterIds);
-
   return (
     <>
       {props.loading ? (
@@ -60,15 +57,17 @@ const Cards = props => {
             {chapters.map((chapter, index) => {
               if (completedChapters.includes(chapter)) {
                 return (
-                  <CustomCard
-                    className="inactive"
-                    bordered={true}
-                    key={index}
-                    index={index + 1}
-                    title={chapter}
-                    id={chapter.id}
-                    hoverable={false}
-                  ></CustomCard>
+                  <div className="active-container" key={index}>
+                    <CustomCard
+                      className="inactive"
+                      bordered={true}
+                      key={index}
+                      index={index + 1}
+                      title={chapter}
+                      id={chapter.id}
+                      hoverable={false}
+                    ></CustomCard>
+                  </div>
                 );
               } else {
                 return (

@@ -1,10 +1,19 @@
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
 import AuthReducer from "./auth";
 import userDataReducer from "./userData";
-import { combineReducers } from "redux";
 
-const allReducers = combineReducers({
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["userDataReducer"]
+};
+
+const rootReducer = combineReducers({
   AuthReducer,
   userDataReducer
 });
 
-export default allReducers;
+export default persistReducer(persistConfig, rootReducer);

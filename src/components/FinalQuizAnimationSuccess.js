@@ -21,8 +21,7 @@ export const FinalQuizAnimationSuccess = props => {
         <RocketFilled />
       </Button>
       <svg
-        width="486"
-        height="320"
+        viewBox="0, 0, 500, 300"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="successAnimation"

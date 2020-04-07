@@ -24,7 +24,7 @@ export const FinalQuizAnimationFailed = props => {
         <Button className="failedAnimationButton" onClick={handleClickPositive}>
           <RiseOutlined />
         </Button>
-        <svg className="failedAnimation" fill="none">
+        <svg className="failedAnimation" viewBox="0, 0, 450, 290" fill="none">
           <g id="undraw_annotation_7das 1">
             <g clip-path="url(#clip0)">
               <rect fill="#364D79" />

@@ -10,8 +10,6 @@ import { useSelector } from "react-redux";
 const Quiz = props => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [IsCorrectAnswer, setIsCorrectAnswer] = useState(false);
-  const [AddActiveClass, setAddActiveClass] = useState(false);
   const [chapterId, setChapterId] = useState(0);
 
   const [questionIndex, setQuestionIndex] = useState(1);
@@ -136,30 +134,13 @@ const Quiz = props => {
                         key={answer.id}
                         onClick={() => {
                           valuateAnswer(answer.is_correct);
-                          setIsCorrectAnswer(answer.is_correct);
-                          setAddActiveClass(true);
-                          setTimeout(() => setAddActiveClass(false), 2600);
-                          setTimeout(() => ref.current.next(), 2600);
+                          setTimeout(() => ref.current.next(), 300);
                         }}
                       >
                         {answer.text}
                       </Button>
                     ) : null;
                   })}
-                  <div>
-                    {AddActiveClass ? (
-                      <div className="container-indicator">
-                        <div className="loader">
-                          <div
-                            className={
-                              IsCorrectAnswer ? "box-correct" : "box-incorrect"
-                            }
-                          ></div>
-                          <div className="hill"></div>
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
                 </div>
               ) : null;
             })}

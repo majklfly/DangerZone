@@ -1,18 +1,96 @@
-.welcome-speech {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+.welcomeScreenContainer {
+  position: absolute;
+  background-color: #fdbb77;
+  width: 80vw;
+  height: 80vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+.homeScreenText {
+  position: absolute;
+  background-color: #4f6eab;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  font-size: 1.8vw;
+  font-family: 'PT Sans';
+  padding: 50px;
+}
+
+#logo {
   position: absolute;
   z-index: 5;
-  top: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -180%);
+  animation: fill 0.5s ease forwards 3.9s;
 }
-.welcome-title {
-  display: flex;
-  justify-content: center;
-  margin-top: 5em;
+
+#logo path:nth-child(12){
+  stroke-dasharray: 320px;
+  stroke-dashoffset: 320px;
+  animation: line-anim 2s ease forwards;
 }
-.welcome-content {
-  display: flex;
-  justify-content: center;
-  margin: 0 3em;
+#logo path:nth-child(13){
+  stroke-dasharray: 320px;
+  stroke-dashoffset: 320px;
+  animation: line-anim 2s ease forwards 0.3s;
+}
+#logo path:nth-child(14){
+  stroke-dasharray: 380px;
+  stroke-dashoffset: 380px;
+  animation: line-anim 2s ease forwards 0.6s;
+}
+#logo path:nth-child(15){
+  stroke-dasharray: 370px;
+  stroke-dashoffset: 370px;
+  animation: line-anim 2s ease forwards 0.9s;
+}
+#logo path:nth-child(16){
+  stroke-dasharray: 310px;
+  stroke-dashoffset: 310px;
+  animation: line-anim 2s ease forwards 1.2s;
+}
+#logo path:nth-child(17){
+  stroke-dasharray: 230px;
+  stroke-dashoffset: 230px;
+  animation: line-anim 2s ease forwards 1.5s;
+}
+#logo path:nth-child(18){
+  stroke-dasharray: 495px;
+  stroke-dashoffset: 495px;
+  animation: line-anim 2s ease forwards 1.8s;
+}
+#logo path:nth-child(19){
+  stroke-dasharray: 225px;
+  stroke-dashoffset: 225px;
+  animation: line-anim 2s ease forwards 2.1s;
+}
+#logo path:nth-child(20){
+  stroke-dasharray: 380px;
+  stroke-dashoffset: 380px;
+  animation: line-anim 2s ease forwards 2.4s;
+}
+#logo path:nth-child(21){
+  stroke-dasharray: 310px;
+  stroke-dashoffset: 310px;
+  animation: line-anim 2s ease forwards 2.7s;
+}
+
+@keyframes line-anim{
+  to{
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fill {
+  from {
+    fill: transparent;
+  }
+  to{
+    fill: white;
+  }
 }
