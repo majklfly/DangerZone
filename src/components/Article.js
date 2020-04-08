@@ -4,8 +4,6 @@ import "./Article.css";
 
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 
-const token = localStorage.getItem("token");
-
 function Article(props) {
   const ref = useRef();
 
@@ -26,7 +24,7 @@ function Article(props) {
             return (
               <div key={index}>
                 <div className="article_name">{props.articles[item].name}</div>
-                <div className="article_content">
+                <div className="article_content" data-testid="article-content">
                   {props.articles[item].content}
                 </div>
                 <div className="content-container">

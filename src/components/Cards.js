@@ -15,6 +15,7 @@ const token = localStorage.getItem("token");
 const Cards = props => {
   const history = useHistory();
   const userData = useSelector(state => state.userDataReducer);
+  const [chapterIds, setChapterIds] = useState({});
   const [chapters, setChapters] = useState([]);
   const [completedChapters, setCompletedChapters] = useState([]);
 
@@ -24,11 +25,14 @@ const Cards = props => {
         headers: { authorization: `Token ${token}` }
       })
       .then(res => {
+        const tempData = {};
         const chaptersLocal = [];
         res.data.map(item => {
+          tempData[item.title] = item.id;
           return chaptersLocal.push(item.title);
         });
         setChapters(chaptersLocal);
+        setChapterIds(tempData);
       });
   };
 
@@ -42,6 +46,8 @@ const Cards = props => {
 
   const handleClick = (e, chapter) => {
     console.log("clicked", chapter);
+    let currentChapterId = chapterIds[chapter];
+    localStorage.setItem("currentChapterId", currentChapterId);
     localStorage.setItem("currentChapter", chapter);
     history.push("/chapter/");
   };

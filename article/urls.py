@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import ArticleListView, ArticleDetailView, ChapterListView, ChapterDataListCreateView, UserDataListCreateView, UserDataDetailView
+from .views import ArticleListView, ArticleDetailView, ChapterListView, ChapterDataListCreateView, UserDataListCreateView, UserDataDetailView, ChapterDetailView
 
 urlpatterns = [
     path('chapters/', ChapterListView.as_view()),
+    path('chapters/<pk>/', ChapterDetailView.as_view()),
     path('chapterdata/', ChapterDataListCreateView.as_view()),
     path('userdata/', UserDataListCreateView.as_view()),
     path('userdata/<pk>/', UserDataDetailView.as_view()),

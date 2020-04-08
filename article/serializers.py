@@ -10,6 +10,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class ChapterSerializer(serializers.ModelSerializer):
+    articles = ArticleSerializer(source='article_set', many=True, read_only=True)
 
     class Meta:
         model = Chapter

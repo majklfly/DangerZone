@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { Button } from "antd";
 
 import Article from "../components/Article";
@@ -8,31 +7,23 @@ import "./ArticlesScreen.scss";
 import server from "../api/server";
 
 const token = localStorage.getItem("token");
+const currentChapterId = localStorage.getItem("currentChapterId");
+
+console.log("currentChapter", currentChapterId);
 
 const ArticlesScreen = props => {
   const [articles, setArticles] = useState({});
-  const history = useHistory();
 
   const currentChapter = localStorage.getItem("currentChapter");
 
   const getArticles = () => {
     server
-      .get("/articles/", {
+      .get(`/chapters/${currentChapterId}`, {
         headers: { authorization: `Token ${token}` }
       })
       .then(res => {
-        var articles = [];
-        res.data.map(item => {
-          return item.chapterTitle === currentChapter
-            ? articles.push(item)
-            : null;
-        });
-        setArticles(articles);
+        console.log(res);
       });
-  };
-
-  const handleClick = () => {
-    history.push("quiz/");
   };
 
   useEffect(getArticles, [props]);
@@ -40,12 +31,12 @@ const ArticlesScreen = props => {
   return (
     <>
       <div className="carousel">
-        <Article articles={articles} />
+        <Article articles={articles} data-testid="fetch-articles" />
         <Button
           type="primary"
           size="large"
           style={buttonStyle}
-          onClick={handleClick}
+          onClick={() => props.history.push("/chapters/quiz/")}
         >
           Test me!
         </Button>
