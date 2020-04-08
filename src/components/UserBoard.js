@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import { Progress } from "antd";
 import { Link } from "react-router-dom";
 
 import server from "../api/server";
 import { set_userdata } from "../store/actions/userData";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import * as actions from "../store/actions/auth";
@@ -62,7 +61,6 @@ const UserBoard = props => {
           type="circle"
           percent={percentage}
           className="progressBar"
-          width="110px"
         />
         <div className="iconsContainer">
           <Link to="/profile/">

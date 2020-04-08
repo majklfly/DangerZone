@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Article, Chapter, ChapterData, UserData
 
+from quiz.serializers import QuizSerializer
+
 class ArticleSerializer(serializers.ModelSerializer):
     chapterTitle = serializers.ReadOnlyField(source='chapter.title')
 
@@ -10,6 +12,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class ChapterSerializer(serializers.ModelSerializer):
+    quiz = serializers.ReadOnlyField(source='quiz.id')
     articles = ArticleSerializer(source='article_set', many=True, read_only=True)
 
     class Meta:

@@ -5,6 +5,8 @@ import Article from "../components/Article";
 import "./ArticlesScreen.scss";
 
 import server from "../api/server";
+import { set_chapter } from "../store/actions/chapter";
+import { useDispatch } from "react-redux";
 
 const token = localStorage.getItem("token");
 const currentChapterId = localStorage.getItem("currentChapterId");
@@ -13,20 +15,18 @@ console.log("currentChapter", currentChapterId);
 
 const ArticlesScreen = props => {
   const [articles, setArticles] = useState({});
+  const dispatch = useDispatch();
 
-  const currentChapter = localStorage.getItem("currentChapter");
-
-  const getArticles = () => {
-    server
-      .get(`/chapters/${currentChapterId}`, {
+  useEffect(() => {
+    async function fetchData() {
+      const result = await server.get(`/chapters/${currentChapterId}/`, {
         headers: { authorization: `Token ${token}` }
-      })
-      .then(res => {
-        console.log(res);
       });
-  };
-
-  useEffect(getArticles, [props]);
+      console.log("resultdata", result.data);
+      dispatch(set_chapter(result.data));
+    }
+    fetchData();
+  });
 
   return (
     <>

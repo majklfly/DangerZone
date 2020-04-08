@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 
 import AuthReducer from "./auth";
 import userDataReducer from "./userData";
+import chapterReducer from "./chapter";
 
 const persistConfig = {
   key: "root",
@@ -13,7 +14,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   AuthReducer,
-  userDataReducer
+  userDataReducer,
+  chapterReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
