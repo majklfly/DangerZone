@@ -12,7 +12,7 @@ const persistConfig = {
   whitelist: ["userDataReducer"]
 };
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   AuthReducer,
   userDataReducer,
   chapterReducer

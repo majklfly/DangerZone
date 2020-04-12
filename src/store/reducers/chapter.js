@@ -1,5 +1,8 @@
 import { updatedObject } from "../utility";
 
+import { types } from "../actions/actionTypes";
+import { type } from "os";
+
 const initialState = {
   id: 0,
   quiz: 0,
@@ -10,7 +13,7 @@ const initialState = {
 
 const chapterReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_CHAPTER":
+    case types.GET_CHAPTERS:
       return updatedObject(state, {
         id: action.payload.id,
         quiz: action.payload.quiz,

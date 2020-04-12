@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import { Carousel } from "antd";
 import "./Article.css";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { getChapter } from "../../store/actions/chapter";
 
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 
-function Article(props) {
-  const chapterData = useSelector(state => state.chapterReducer);
-
+export function Article(props) {
   const ref = useRef();
 
   const toggleNext = () => {
@@ -20,16 +19,23 @@ function Article(props) {
 
   return (
     <>
-      <div className="container-article">
-        <RightOutlined className="rightoutlined" onClick={toggleNext} />
-        <Carousel className="container-carousel" ref={ref} dots={false}>
-          {chapterData.articles.map((item, index) => {
+      <div className="container-article" data-test="articleContainer">
+        <RightOutlined
+          className="rightoutlined"
+          onClick={toggleNext}
+          data-test="articleToggleRight"
+        />
+        <Carousel
+          className="container-carousel"
+          data-test="articleCarousel"
+          ref={ref}
+          dots={false}
+        >
+          {props.chapterData.articles.map((item, index) => {
             return (
               <div key={index}>
                 <div className="article_name">{item.name}</div>
-                <div className="article_content" data-testid="article-content">
-                  {item.content}
-                </div>
+                <div>{item.content}</div>
                 <div className="content-container">
                   <div className="articleLeftContainer">
                     <div className="lineIndex">
@@ -70,10 +76,23 @@ function Article(props) {
             );
           })}
         </Carousel>
-        <LeftOutlined className="leftoutlined" onClick={togglePrevious} />
+        <LeftOutlined
+          className="leftoutlined"
+          data-test="articleToggleLeft"
+          onClick={togglePrevious}
+        />
       </div>
     </>
   );
 }
 
-export default Article;
+const mapStatetoProps = state => {
+  return {
+    chapterData: state.chapterReducer
+  };
+};
+
+export default connect(
+  mapStatetoProps,
+  { getChapter }
+)(Article);

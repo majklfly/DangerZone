@@ -4,12 +4,12 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import { Provider as QuizProvider } from "../context/QuizContext";
 
 import CloudsScreen from "../containers/CloudsScreen";
-import HomepageScreen from "../containers/HomepageScreen";
+import HomepageScreen from "../containers/HomepageScreen/HomepageScreen";
 import ChaptersScreen from "../containers/ChaptersScreen";
 import QuizScreen from "../containers/QuizScreen";
 import ProfileScreen from "../containers/ProfileScreen";
 
-import ArticlesScreen from "../containers/ArticlesScreen";
+import ArticlesScreen from "../containers/ArticlesScreen/ArticlesScreen";
 
 import ResponsiveNavigation from "../containers/Layout/Layout";
 

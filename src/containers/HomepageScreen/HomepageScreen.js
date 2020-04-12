@@ -2,18 +2,20 @@ import React from "react";
 
 import "./HomepageScreen.scss";
 
-console.log(localStorage);
-
 const HomepageScreen = () => {
   return (
     <>
-      <div className="welcomeScreenContainer">
+      <div
+        className="welcomeScreenContainer"
+        data-test="welcomeScreenContainer"
+      >
         <svg
           id="logo"
           width="736"
           height="143"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          data-test="logo"
         >
           <mask
             id="path-1-outside-1"
@@ -113,7 +115,7 @@ const HomepageScreen = () => {
             mask="url(#path-1-outside-1)"
           />
         </svg>
-        <div className="homeScreenText">
+        <div className="homeScreenText" data-test="homeScreenText">
           <p>
             This page is designed to help you immprove your knowledge and
             practice in hygiene. Please visit Food safety Level 2 to continue on
