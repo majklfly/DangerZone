@@ -1,31 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Progress } from "antd";
 import { Link } from "react-router-dom";
-
-import server from "../api/server";
-import { set_userdata } from "../store/actions/userData";
-import { useDispatch, useSelector, connect } from "react-redux";
-
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import { connect } from "react-redux";
+import "font-awesome/css/font-awesome.min.css";
+
 import * as actions from "../store/actions/auth";
 
+import server from "../api/server";
 import "./UserBoard.css";
-import "font-awesome/css/font-awesome.min.css";
 
 const token = localStorage.getItem("token");
 
+const userData = [
+  { username: "Peter" },
+  {
+    chapterdata: {
+      one: "test1",
+      two: "two"
+    }
+  }
+];
+
 const UserBoard = props => {
   const [percentage, setPercentage] = useState(0);
-  const dispatch = useDispatch();
-  const username = localStorage.getItem("username");
-  const userData = useSelector(state => state.userDataReducer);
 
   const calculatePercentage = async () => {
     const chapters = await server.get("/chapters/", {
       headers: { authorization: `Token ${token}` }
     });
     const finishedChapters = [];
-    userData.chapterdata.map(item => {
+    props.userData.chapterdata.map(item => {
       return item.completed === true ? finishedChapters.push(item) : null;
     });
     const total = chapters.data.length;
@@ -34,22 +39,6 @@ const UserBoard = props => {
     setPercentage(percent);
   };
   calculatePercentage();
-
-  const getUserData = () => {
-    server
-      .get("/userdata/", {
-        headers: { authorization: `Token ${token}` }
-      })
-      .then(res => {
-        res.data.map(item => {
-          return item.username === username
-            ? dispatch(set_userdata(item))
-            : null;
-        });
-      });
-  };
-
-  useEffect(getUserData, []);
 
   return (
     <>
@@ -77,8 +66,9 @@ const UserBoard = props => {
 };
 
 const mapStateToProps = state => {
-  const userData = state.userData;
-  return { userData };
+  return {
+    userData: state.userDataReducer
+  };
 };
 
 export default connect(mapStateToProps)(UserBoard);

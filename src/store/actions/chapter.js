@@ -10,8 +10,22 @@ export const getChapter = currentChapterId => async dispatch => {
       headers: { authorization: `Token ${token}` }
     })
     .then(res => {
-      console.log("runned", res);
-      console.log("currentChapterId", currentChapterId);
+      dispatch({
+        type: types.GET_CHAPTER,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const getChapters = () => async dispatch => {
+  await server
+    .get("/chapters/", {
+      headers: { authorization: `Token ${token}` }
+    })
+    .then(res => {
       dispatch({
         type: types.GET_CHAPTERS,
         payload: res.data

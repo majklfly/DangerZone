@@ -4,11 +4,9 @@ import { Button } from "antd";
 import Article from "../../components/Article/Article";
 import "./ArticlesScreen.scss";
 
-import server from "../../api/server";
 import { connect } from "react-redux";
 import { getChapter } from "../../store/actions/chapter";
 
-const token = localStorage.getItem("token");
 const currentChapterId = localStorage.getItem("currentChapterId");
 
 console.log("currentChapter", currentChapterId);
@@ -16,7 +14,7 @@ console.log("currentChapter", currentChapterId);
 const ArticlesScreen = props => {
   useEffect(() => {
     props.getChapter(currentChapterId);
-  }, []);
+  }, [props]);
 
   return (
     <>

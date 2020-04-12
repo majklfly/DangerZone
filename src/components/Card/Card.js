@@ -2,12 +2,14 @@ import React from "react";
 
 import { Card } from "antd";
 
-import "./Cards.css";
+import "../Cards/Cards.css";
 
 const CustomCard = props => {
   return (
     <>
-      <Card className={props.className}>{props.title}</Card>
+      <Card className={props.className} data-test="customCard">
+        {props.title}
+      </Card>
     </>
   );
 };

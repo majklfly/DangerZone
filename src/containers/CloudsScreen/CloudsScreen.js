@@ -7,14 +7,17 @@ import "./CloudsScreen.css";
 const CloudsScreen = () => {
   return (
     <>
-      <List className="cloudsList">
-        <List.Item className="cloudListItem">
+      <List className="cloudsList" data-test="cloudsList">
+        <List.Item className="cloudListItem" data-test="cloudListItem">
           <List.Item.Meta
+            data-test="cloudListAvatar"
             avatar={
               <Avatar src="https://b1.pngbarn.com/png/742/401/alternative-python-icons-and-folder-icon-python-2-png-clip-art.png" />
             }
           />
-          <div className="cloudListItemText">Python 3.1.0</div>
+          <div className="cloudListItemText" data-test="cloudListItemText">
+            Python 3.1.0
+          </div>
         </List.Item>
         <List.Item className="cloudListItem">
           <List.Item.Meta

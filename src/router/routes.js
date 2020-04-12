@@ -3,11 +3,11 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import { Provider as QuizProvider } from "../context/QuizContext";
 
-import CloudsScreen from "../containers/CloudsScreen";
+import CloudsScreen from "../containers/CloudsScreen/CloudsScreen";
 import HomepageScreen from "../containers/HomepageScreen/HomepageScreen";
-import ChaptersScreen from "../containers/ChaptersScreen";
-import QuizScreen from "../containers/QuizScreen";
-import ProfileScreen from "../containers/ProfileScreen";
+import ChaptersScreen from "../containers/ChaptersScreen/ChaptersScreen";
+import QuizScreen from "../containers/QuizScreen/QuizScreen";
+import ProfileScreen from "../containers/ProfileScreen/ProfileScreen";
 
 import ArticlesScreen from "../containers/ArticlesScreen/ArticlesScreen";
 

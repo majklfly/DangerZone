@@ -26,8 +26,6 @@ export const ProfileForm = props => {
     }
   };
 
-  console.log(userData);
-
   return (
     <>
       <Form form={form} className="ProfileForm">

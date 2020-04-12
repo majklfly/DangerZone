@@ -1,47 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Row } from "antd";
 import { useHistory } from "react-router-dom";
-
 import { LoadingOutlined } from "@ant-design/icons";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
-import server from "../api/server";
-import CustomCard from "./Card";
+import { getChapters } from "../../store/actions/chapter";
+import CustomCard from "../Card/Card";
 
 import "./Cards.css";
 
-const token = localStorage.getItem("token");
-
 const Cards = props => {
   const history = useHistory();
-  const userData = useSelector(state => state.userDataReducer);
   const [chapterIds, setChapterIds] = useState({});
   const [chapters, setChapters] = useState([]);
   const [completedChapters, setCompletedChapters] = useState([]);
 
-  const getChapters = () => {
-    server
-      .get("/chapters/", {
-        headers: { authorization: `Token ${token}` }
-      })
-      .then(res => {
-        const tempData = {};
-        const chaptersLocal = [];
-        res.data.map(item => {
-          tempData[item.title] = item.id;
-          return chaptersLocal.push(item.title);
-        });
-        setChapters(chaptersLocal);
-        setChapterIds(tempData);
-      });
-  };
-
-  const getCompletedChapters = () => {
-    const completedChapters = [];
-    userData.chapterdata.map(item => {
-      return completedChapters.push(item.chapterTitle);
+  const sortChapters = () => {
+    console.log("runned2");
+    const tempData = {};
+    const chaptersLocal = [];
+    console.log("props.chapters", props.chapters);
+    props.chapters.map(item => {
+      console.log("item", item);
+      tempData[item.title] = item.id;
+      return chaptersLocal.push(item.title);
     });
-    setCompletedChapters(completedChapters);
+    setChapters(chaptersLocal);
   };
 
   const handleClick = (e, chapter) => {
@@ -52,10 +36,8 @@ const Cards = props => {
     history.push("/chapter/");
   };
 
-  useEffect(() => {
-    getChapters();
-    getCompletedChapters();
-  }, []); //eslint-disable-line
+  useEffect(getChapters, []); //eslint-disable-line
+  console.log(props);
 
   return (
     <>
@@ -64,8 +46,8 @@ const Cards = props => {
       ) : (
         <div className="container">
           <Row gutter={16} className="cards">
-            {chapters.map((chapter, index) => {
-              if (completedChapters.includes(chapter)) {
+            {props.chapters.map((chapter, index) => {
+              if (props.completedChapters.includes(chapter)) {
                 return (
                   <div className="active-container" key={index}>
                     <CustomCard
@@ -105,4 +87,23 @@ const Cards = props => {
   );
 };
 
-export default Cards;
+const mapStateToProps = state => {
+  return {
+    chapters: state.chapterReducer.chapters,
+    userData: state.userDataReducer,
+    completedChapters: [state.userDataReducer.chapterdata]
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getChapters: () => {
+      dispatch(getChapters);
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cards);

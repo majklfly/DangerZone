@@ -1,4 +1,5 @@
 import { updatedObject } from "../utility";
+import { types } from "../actions/actionTypes";
 
 const initialState = {
   id: 0,
@@ -20,7 +21,7 @@ const initialState = {
 
 const userDataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_USERDATA":
+    case types.GET_USERDATA:
       return updatedObject(state, {
         id: action.payload.id,
         email: action.payload.email,

@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import BaseRouter from "./router/routes";
 import AuthRouter from "./router/authRoutes";
 
-import { AnimBackground } from "./components/background";
+import { AnimBackground } from "./components/background/background";
 
 import * as actions from "./store/actions/auth";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 
-import LoginScreen from "../containers/LoginScreen";
+import LoginScreen from "../containers/LoginScreen/LoginScreen";
 
 const AuthRouter = () => {
   return (

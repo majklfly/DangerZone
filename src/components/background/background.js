@@ -5,8 +5,12 @@ import "./background.css";
 export const AnimBackground = () => {
   return (
     <>
-      <div className="backgroundContainer">
-        <svg fill="none" className="backgroundWaves">
+      <div className="backgroundContainer" data-test="backgroundContainer">
+        <svg
+          fill="none"
+          className="backgroundWaves"
+          data-test="backgroundWaves"
+        >
           <g id="CombinedWifes">
             <g id="Wives">
               <rect

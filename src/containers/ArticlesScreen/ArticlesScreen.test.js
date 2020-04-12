@@ -41,7 +41,6 @@ describe("ArticlesScreen Component", () => {
   it("should render the button", () => {
     const component = setUp();
     const button = findByTestAttr(component, "ArticlesScreenButton");
-    console.log(button);
     expect(button.length).toBe(0);
   });
 });
