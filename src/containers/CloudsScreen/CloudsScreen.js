@@ -16,7 +16,7 @@ const CloudsScreen = () => {
             }
           />
           <div className="cloudListItemText" data-test="cloudListItemText">
-            Python 3.1.0
+            Python 3.x
           </div>
         </List.Item>
         <List.Item className="cloudListItem">
