@@ -65,7 +65,7 @@ const CloudsScreen = () => {
               <Avatar src="https://i7.pngguru.com/preview/452/495/745/react-javascript-angularjs-ionic-github.jpg" />
             }
           />
-          <div className="cloudListItemText">Reactjs 16.1 (with hooks)</div>
+          <div className="cloudListItemText">Reactjs 16.x (with hooks)</div>
         </List.Item>
         <List.Item className="cloudListItem">
           <List.Item.Meta
@@ -73,7 +73,7 @@ const CloudsScreen = () => {
               <Avatar src="https://www.stickpng.com/assets/images/5848309bcef1014c0b5e4a9a.png" />
             }
           />
-          <div className="cloudListItemText">Redux</div>
+          <div className="cloudListItemText">Redux 7.x</div>
         </List.Item>
         <List.Item className="cloudListItem">
           <List.Item.Meta
@@ -96,6 +96,26 @@ const CloudsScreen = () => {
           />
           <div className="cloudListItemText">Jest</div>
         </List.Item>
+        <List.Item
+          className="cloudListItem
+        "
+        >
+          <List.Item.Meta
+            avatar={
+              <Avatar src="https://spectrum.imgix.net/communities/583ce9f6-fb1f-484f-b19b-e7f8adec525c/f9607fee-ac53-4d41-8749-4b2232f48bd8-logo-large.png?w=256&h=256&dpr=2&auto=compress&expires=1585353600000&ixlib=js-1.3.0&s=3d199376b42e94e101817a00ab0814de" />
+            }
+          />
+          <div className="cloudListItemText">React testing library</div>
+        </List.Item>
+        <List.Item
+          className="cloudListItem
+        "
+        >
+          <List.Item.Meta
+            avatar={<Avatar src="https://airbnb.io/img/projects/enzyme.png" />}
+          />
+          <div className="cloudListItemText">Enzyme</div>
+        </List.Item>
         <List.Item className="cloudListItem">
           <List.Item.Meta
             avatar={
@@ -111,6 +131,14 @@ const CloudsScreen = () => {
             }
           />
           <div className="cloudListItemText">AntD</div>
+        </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={
+              <Avatar src="https://www.stickpng.com/assets/images/5847f981cef1014c0b5e48be.png" />
+            }
+          />
+          <div className="cloudListItemText">Git</div>
         </List.Item>
         <List.Item className="cloudListItem">
           <List.Item.Meta
