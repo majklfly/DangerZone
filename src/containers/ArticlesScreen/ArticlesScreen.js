@@ -1,21 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "antd";
 
 import Article from "../../components/Article/Article";
 import "./ArticlesScreen.scss";
 
 import { connect } from "react-redux";
-import { getChapter } from "../../store/actions/chapter";
-
-const currentChapterId = localStorage.getItem("currentChapterId");
-
-console.log("currentChapter", currentChapterId);
 
 const ArticlesScreen = props => {
-  useEffect(() => {
-    props.getChapter(currentChapterId);
-  }, [props]);
-
   return (
     <>
       <div className="carousel" data-test="ArticlesScreenContainer">
@@ -41,14 +32,10 @@ const buttonStyle = {
   marginTop: "10px"
 };
 
-const mapStatetoProps = state => {
-  console.log("state", state);
+const mapStateToProps = state => {
   return {
     chapterData: state.chapterReducer
   };
 };
 
-export default connect(
-  mapStatetoProps,
-  { getChapter }
-)(ArticlesScreen);
+export default connect(mapStateToProps)(ArticlesScreen);

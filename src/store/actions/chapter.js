@@ -4,9 +4,10 @@ import server from "../../api/server";
 
 const token = localStorage.getItem("token");
 
-export const getChapter = currentChapterId => async dispatch => {
+export const getChapter = ChapterId => async dispatch => {
+  console.log("runned", ChapterId);
   await server
-    .get(`/chapters/${currentChapterId}/`, {
+    .get(`/chapters/${ChapterId}/`, {
       headers: { authorization: `Token ${token}` }
     })
     .then(res => {

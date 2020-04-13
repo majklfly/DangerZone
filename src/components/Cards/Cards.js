@@ -1,53 +1,52 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect } from "react";
 import { Row } from "antd";
 import { useHistory } from "react-router-dom";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
 import { connect } from "react-redux";
 
-import { getChapters } from "../../store/actions/chapter";
+import { getChapters, getChapter } from "../../store/actions/chapter";
+import { getUserData } from "../../store/actions/userData";
 import CustomCard from "../Card/Card";
 
 import "./Cards.css";
 
 const Cards = props => {
   const history = useHistory();
-  const [chapterIds, setChapterIds] = useState({});
-  const [chapters, setChapters] = useState([]);
-  const [completedChapters, setCompletedChapters] = useState([]);
+
+  const chapters = [];
+  const completedChapters = [];
 
   const sortChapters = () => {
-    console.log("runned2");
-    const tempData = {};
-    const chaptersLocal = [];
-    console.log("props.chapters", props.chapters);
-    props.chapters.map(item => {
-      console.log("item", item);
-      tempData[item.title] = item.id;
-      return chaptersLocal.push(item.title);
-    });
-    setChapters(chaptersLocal);
+    if (props.chapters !== undefined) {
+      props.chapters.map(item => {
+        return chapters.push([item.id, item.title]);
+      });
+      props.completedChapters[0].map(item => {
+        return completedChapters.push(item.chapterTitle);
+      });
+    }
   };
+  sortChapters();
 
-  const handleClick = (e, chapter) => {
-    console.log("clicked", chapter);
-    let currentChapterId = chapterIds[chapter];
-    localStorage.setItem("currentChapterId", currentChapterId);
-    localStorage.setItem("currentChapter", chapter);
+  const handleClick = (e, chapterId) => {
+    props.getChapter(chapterId);
     history.push("/chapter/");
   };
 
-  useEffect(getChapters, []); //eslint-disable-line
-  console.log(props);
+  useEffect(() => {
+    props.getChapters();
+    props.getUserData();
+  }, []); // eslint-disable-line
 
   return (
     <>
-      {props.loading ? (
-        <LoadingOutlined />
+      {props.chapters === undefined ? (
+        <Spin size="large" className="spinnerCards" />
       ) : (
         <div className="container">
           <Row gutter={16} className="cards">
-            {props.chapters.map((chapter, index) => {
-              if (props.completedChapters.includes(chapter)) {
+            {chapters.map((chapter, index) => {
+              if (completedChapters.includes(chapter[1])) {
                 return (
                   <div className="active-container" key={index}>
                     <CustomCard
@@ -55,7 +54,7 @@ const Cards = props => {
                       bordered={true}
                       key={index}
                       index={index + 1}
-                      title={chapter}
+                      title={chapter[1]}
                       id={chapter.id}
                       hoverable={false}
                     ></CustomCard>
@@ -65,14 +64,14 @@ const Cards = props => {
                 return (
                   <div
                     className="active-container"
-                    onClick={e => handleClick(e, chapter)}
+                    onClick={e => handleClick(e, chapter[0])}
                     key={index}
                   >
                     <CustomCard
                       className="active"
                       bordered={true}
                       index={index + 1}
-                      title={chapter}
+                      title={chapter[1]}
                       id={chapter.id}
                       hoverable={true}
                     ></CustomCard>
@@ -98,7 +97,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getChapters: () => {
-      dispatch(getChapters);
+      dispatch(getChapters());
+    },
+    getUserData: () => {
+      dispatch(getUserData());
+    },
+    getChapter: chapterId => {
+      dispatch(getChapter(chapterId));
     }
   };
 };

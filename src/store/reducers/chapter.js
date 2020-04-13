@@ -2,16 +2,7 @@ import { updatedObject } from "../utility";
 
 import { types } from "../actions/actionTypes";
 
-const initialState = {
-  id: 0,
-  quiz: 0,
-  articles: [],
-  title: " ",
-  description: " ",
-  chapters: []
-};
-
-const chapterReducer = (state = initialState, action) => {
+const chapterReducer = (state = {}, action) => {
   switch (action.type) {
     case types.GET_CHAPTER:
       return updatedObject(state, {

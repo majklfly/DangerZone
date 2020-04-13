@@ -12,6 +12,12 @@
   flex-direction: row;
   width: 27vw;
 }
+.spinnerCards {
+  position: absolute;
+  left: 50vw;
+  top: 30vh;
+}
+
 .active {
   display: flex;
   justify-content: center;

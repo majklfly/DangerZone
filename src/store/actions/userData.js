@@ -7,7 +7,7 @@ const token = localStorage.getItem("token");
 
 export const getUserData = username => async dispatch => {
   await server
-    .get(`/userdata/${userId}`, {
+    .get(`/userdata/${userId}/`, {
       headers: { authorization: `Token ${token}` }
     })
     .then(res => {

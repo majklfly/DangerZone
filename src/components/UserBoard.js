@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Progress } from "antd";
 import { Link } from "react-router-dom";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
@@ -6,21 +6,12 @@ import { connect } from "react-redux";
 import "font-awesome/css/font-awesome.min.css";
 
 import * as actions from "../store/actions/auth";
+import { getUserData } from '../store/actions/userData'
 
 import server from "../api/server";
 import "./UserBoard.css";
 
 const token = localStorage.getItem("token");
-
-const userData = [
-  { username: "Peter" },
-  {
-    chapterdata: {
-      one: "test1",
-      two: "two"
-    }
-  }
-];
 
 const UserBoard = props => {
   const [percentage, setPercentage] = useState(0);
@@ -39,6 +30,8 @@ const UserBoard = props => {
     setPercentage(percent);
   };
   calculatePercentage();
+
+  useEffect(props.getUserData, [])
 
   return (
     <>
@@ -59,7 +52,7 @@ const UserBoard = props => {
             <LogoutOutlined className="iconBoard" />
           </Link>
         </div>
-        <div className="welcomeText">Hello {userData.username}</div>
+        <div className="welcomeText">Hello {props.userData.username}</div>
       </div>
     </>
   );
@@ -71,4 +64,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(UserBoard);
+const mapDispatchToProps = dispatch => {
+  return {
+    getUserData: () => {
+      dispatch(getUserData())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserBoard);
