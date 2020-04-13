@@ -1,13 +1,15 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Article from "./Article";
+import { Provider } from "react-redux";
 import { findByTestAttr, testStore } from "../../utils";
 
 const setUp = (initialState = {}) => {
   const store = testStore(initialState);
   const component = shallow(<Article store={store} />)
-    .childAt(0)
+    .dive()
     .dive();
+  console.log(component.debug());
   return component;
 };
 
@@ -46,7 +48,6 @@ describe("Article Component", () => {
     const carousel = findByTestAttr(component, "articleCarousel");
     expect(carousel.length).toBe(1);
   });
-
   it("should render the toggle left arrow", () => {
     const component = setUp();
     const toggler = findByTestAttr(component, "articleToggleLeft");
