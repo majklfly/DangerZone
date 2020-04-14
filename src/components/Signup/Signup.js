@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { LoadingOutlined } from "@ant-design/icons";
-import icon from "../assets/icon.jpeg";
-import * as actions from "../store/actions/auth";
-import "./Login/Login.css";
+import icon from "../../assets/icon.jpeg";
+import * as actions from "../../store/actions/auth";
+import "../Login/Login.css";
 
-import server from "../api/server";
+import server from "../../api/server";
 
 const SignupForm = props => {
   const [form] = Form.useForm();
@@ -42,8 +42,12 @@ const SignupForm = props => {
   };
 
   return (
-    <div className="base-container" ref={props.containerRef}>
-      <div className="content">
+    <div
+      className="base-container"
+      ref={props.containerRef}
+      data-test="base-container"
+    >
+      <div className="content" data-test="content">
         <img src={icon} alt="icon" className="image" />
         {props.loading ? (
           <LoadingOutlined />
@@ -53,8 +57,9 @@ const SignupForm = props => {
               form={form}
               onSubmit={handleSubmit}
               name="dynamic_rule"
-              className="login-form"
+              className="signup-form"
               hideRequiredMark={true}
+              data-test="signup-form"
             >
               <Form.Item
                 className="form-group"

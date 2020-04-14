@@ -2,7 +2,7 @@ import React from "react";
 // import icon from "../assets/icon";
 import "./LoginScreen.scss";
 import NormalLoginForm from "../../components/Login/Login";
-import WrappedNormalSignupForm from "../../components/signup";
+import WrappedNormalSignupForm from "../../components/Signup/Signup";
 
 class LoginScreen extends React.Component {
   constructor(props) {

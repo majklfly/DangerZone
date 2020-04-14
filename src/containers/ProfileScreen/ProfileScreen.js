@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { ProfileForm } from "../../components/ProfileForm";
+import { ProfileForm } from "../../components/ProfileForm/ProfileForm";
 import { connect } from "react-redux";
 
 import {

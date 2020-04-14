@@ -3,7 +3,7 @@ import "./Layout.scss";
 import { Link } from "react-router-dom";
 
 import DangerZoneLined from "../../assets/DangerZoneLined.svg";
-import UserBoard from "../../components/UserBoard";
+import UserBoard from "../../components/UserBoard/UserBoard";
 
 function ResponsiveNavigation({
   navLinks,

@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import { Carousel, Button, Spin } from "antd";
-import server from "../api/server";
+import server from "../../api/server";
 import "./Quiz.css";
-import { FinalQuizAnimationFailed } from "./FinalQuizAnimationFailed/FinalQuizAnimationFailed";
-import { FinalQuizAnimationSuccess } from "./FinalQuizAnimationSuccess/FinalQuizAnimationSuccess";
+import { FinalQuizAnimationFailed } from "../FinalQuizAnimationFailed/FinalQuizAnimationFailed";
+import { FinalQuizAnimationSuccess } from "../FinalQuizAnimationSuccess/FinalQuizAnimationSuccess";
 import { useSelector } from "react-redux";
 
 const token = localStorage.getItem("token");

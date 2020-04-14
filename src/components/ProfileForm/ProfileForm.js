@@ -1,21 +1,18 @@
 import React from "react";
 
-import { useSelector } from "react-redux";
-
 import { Form, Input, Button } from "antd";
 import "./ProfileForm.css";
-import server from "../api/server";
+import server from "../../api/server";
 
 export const ProfileForm = props => {
   const [form] = Form.useForm();
-  const userData = useSelector(state => state.userDataReducer);
 
   const onSubmit = async () => {
     try {
       const values = await form.validateFields();
 
       server
-        .patch(`/profile/${userData.profileId}/`, {
+        .patch(`/profile/${props.userData.profileId}/`, {
           facebook: "https://www.facebook.com/" + values.facebook,
           twitter: "https://twitter.com/" + values.twitter,
           instagram: "https://www.instagram.com/" + values.instagram
@@ -28,7 +25,7 @@ export const ProfileForm = props => {
 
   return (
     <>
-      <Form form={form} className="ProfileForm">
+      <Form form={form} className="ProfileForm" data-test="ProfileForm">
         <Form.Item className="profileInput" name="twitter">
           <Input placeholder="Tell me your Twitter account name" />
         </Form.Item>
@@ -42,10 +39,17 @@ export const ProfileForm = props => {
           type="primary"
           className="profileSubmitButton"
           onClick={onSubmit}
+          data-test="profileSubmitButton"
         >
           Please, update my profile
         </Button>
       </Form>
     </>
   );
+};
+
+const mapStateToProps = state => {
+  return {
+    userData: state.userDataReducer
+  };
 };

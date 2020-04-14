@@ -18,4 +18,9 @@ describe("ProfileAnimation", () => {
     const container = findByTestAttr(component, "profileAnimationContainer");
     expect(container.length).toBe(1);
   });
+
+  it("should render the animation", () => {
+    const animation = findByTestAttr(component, "ProfileAnim");
+    expect(animation.length).toBe(1);
+  });
 });

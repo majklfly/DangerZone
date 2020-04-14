@@ -5,10 +5,10 @@ import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import "font-awesome/css/font-awesome.min.css";
 
-import * as actions from "../store/actions/auth";
-import { getUserData } from '../store/actions/userData'
+import * as actions from "../../store/actions/auth";
+import { getUserData } from "../../store/actions/userData";
 
-import server from "../api/server";
+import server from "../../api/server";
 import "./UserBoard.css";
 
 const token = localStorage.getItem("token");
@@ -31,11 +31,11 @@ const UserBoard = props => {
   };
   calculatePercentage();
 
-  useEffect(props.getUserData, [])
+  useEffect(props.getUserData, []);
 
   return (
     <>
-      <div className="userboard">
+      <div className="userboard" data-test="userboard">
         <Progress
           strokeColor={{
             "100%": "#364d79"
@@ -43,8 +43,9 @@ const UserBoard = props => {
           type="circle"
           percent={percentage}
           className="progressBar"
+          data-test="progressBar"
         />
-        <div className="iconsContainer">
+        <div className="iconsContainer" data-test="iconsContainer">
           <Link to="/profile/">
             <UserOutlined className="iconBoard" />
           </Link>
@@ -52,7 +53,9 @@ const UserBoard = props => {
             <LogoutOutlined className="iconBoard" />
           </Link>
         </div>
-        <div className="welcomeText">Hello {props.userData.username}</div>
+        <div className="welcomeText" data-test="welcomeText">
+          Hello {props.userData.username}
+        </div>
       </div>
     </>
   );
@@ -67,9 +70,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUserData: () => {
-      dispatch(getUserData())
+      dispatch(getUserData());
     }
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserBoard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserBoard);
