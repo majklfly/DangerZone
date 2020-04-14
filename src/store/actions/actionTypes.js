@@ -6,5 +6,6 @@ export const AUTH_LOGOUT = "AUTH_LOGOUT";
 export const types = {
   GET_CHAPTER: "getChapter",
   GET_USERDATA: "getUserData",
-  GET_CHAPTERS: "getChapters"
+  GET_CHAPTERS: "getChapters",
+  GET_QUIZ: "getQuiz"
 };

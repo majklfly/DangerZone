@@ -16,7 +16,7 @@ const ArticlesScreen = props => {
           type="primary"
           size="large"
           style={buttonStyle}
-          onClick={() => props.history.push("/chapters/quiz/")}
+          onClick={() => props.history.push("/chapter/quiz/")}
         >
           Test me!
         </Button>

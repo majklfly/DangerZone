@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import { Carousel } from "antd";
 import "./Article.css";
-import { connect } from "react-redux";
-import { getChapter } from "../../store/actions/chapter";
 import { Spin } from "antd";
 
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";

@@ -1,79 +1,17 @@
-import React, { useRef, useState, useEffect } from "react";
-
+import React, { useRef, useState } from "react";
 import { Carousel, Button, Spin } from "antd";
-import server from "../../api/server";
+import { connect } from "react-redux";
+
 import "./Quiz.css";
 import { FinalQuizAnimationFailed } from "../FinalQuizAnimationFailed/FinalQuizAnimationFailed";
 import { FinalQuizAnimationSuccess } from "../FinalQuizAnimationSuccess/FinalQuizAnimationSuccess";
-import { useSelector } from "react-redux";
-
-const token = localStorage.getItem("token");
+import { postTestResults } from "../../store/actions/quiz";
 
 const Quiz = props => {
-  const [questions, setQuestions] = useState([]);
-  const [answers, setAnswers] = useState([]);
-  const [chapterId, setChapterId] = useState(0);
-
   const [questionIndex, setQuestionIndex] = useState(1);
-
-  const userData = useSelector(state => state.userDataReducer);
-
   let ref = useRef();
   let isCompletedRef = useRef(false);
   let valCountRef = useRef(null);
-
-  const currentChapter = localStorage.getItem("currentChapter");
-
-  const getQuestions = () => {
-    server
-      .get("/question/", {
-        headers: { authorization: `Token ${token}` }
-      })
-      .then(res => {
-        let questionsLocal = [];
-        res.data.map(item => {
-          return item.chapterTitle === currentChapter
-            ? questionsLocal.push(item)
-            : null;
-        });
-        setQuestions(questionsLocal);
-      });
-  };
-
-  const getAnswers = () => {
-    server
-      .get("/answer/", {
-        headers: { authorization: `Token ${token}` }
-      })
-      .then(res => {
-        let answersLocal = [];
-        res.data.map(item => {
-          return item.chapterTitle === currentChapter
-            ? answersLocal.push(item)
-            : null;
-        });
-        setAnswers(answersLocal);
-      });
-  };
-
-  const getChapterId = () => {
-    server
-      .get("/chapters/", {
-        headers: { authorization: `Token ${token}` }
-      })
-      .then(res => {
-        res.data.map(item => {
-          return item.title === currentChapter ? setChapterId(item.id) : null;
-        });
-      });
-  };
-
-  useEffect(() => {
-    getQuestions();
-    getAnswers();
-    getChapterId();
-    // eslint-disable-next-line
-  }, []);
 
   const valuateAnswer = answerIsCorrect => {
     setQuestionIndex(questionIndex => questionIndex + 1);
@@ -83,77 +21,45 @@ const Quiz = props => {
     if (valCountRef.current > 3) {
       isCompletedRef.current = true;
     }
-    valuateQuiz();
   };
 
-  const valuateQuiz = () => {
-    const postTestResults = (
-      correct_answers,
-      is_Completed,
-      userId,
-      chapterId,
-      userDataId
-    ) => {
-      console.log("is_Completed", is_Completed);
-      console.log("correct_answers", correct_answers);
-      console.log("userId", userId);
-      console.log("userDataId", userDataId);
-      console.log("chapterId", chapterId);
-      server
-        .post("/chapterdata/", {
-          completed: is_Completed,
-          correct_answers: correct_answers,
-          user: userId,
-          userData: userDataId,
-          chapter: chapterId
-        })
-        .then(res => {
-          console.log(res);
-        });
-    };
-
-    if (questionIndex === 5) {
-      postTestResults(
-        valCountRef.current,
-        isCompletedRef.current,
-        userData.id,
-        chapterId,
-        userData.id
-      );
-    }
-  };
-
-  if (questions === undefined || questions.length === 0) {
-    return (
-      <div className="spinner">
-        <Spin size="large" />;
-      </div>
+  if (questionIndex === 6) {
+    postTestResults(
+      valCountRef.current,
+      isCompletedRef.current,
+      props.user,
+      props.chapterId,
+      props.userDataId
     );
-  } else {
+  }
+
+  console.log("props", props);
+
+  if (props.questions) {
     return (
       <>
         <div>
           <Carousel ref={ref} className="carouselQuiz">
-            {questions.map((question, index) => {
-              return question.chapterTitle === currentChapter ? (
-                <div key={index}>
-                  <h1 className="question-label">{question.label}</h1>
-                  {answers.map((answer, index) => {
-                    return answer.question === question.id ? (
+            {props.questions.questions.map((question, index) => {
+              return (
+                <>
+                  <h1 className="question-label">{question.label}</h1>;
+                  {question.answers.map(answer => {
+                    return question.id === answer.question ? (
                       <Button
                         className="answer-buttons"
                         key={answer.id}
                         onClick={() => {
                           valuateAnswer(answer.is_correct);
-                          setTimeout(() => ref.current.next(), 300);
+                          setTimeout(() => ref.current.next(), 150);
                         }}
                       >
                         {answer.text}
                       </Button>
                     ) : null;
                   })}
-                </div>
-              ) : null;
+                </>
+              );
             })}
           </Carousel>
           {valCountRef.current === 5 && questionIndex === 6 ? (
@@ -178,5 +84,15 @@ const Quiz = props => {
       </>
     );
   }
+  return <Spin size="large" className="spinner" />;
 };
-export default Quiz;
+
+const mapStateToProps = state => {
+  return {
+    userDataId: state.userDataReducer.id,
+    chapterId: state.chapterReducer.id,
+    user: state.userDataReducer.user
+  };
+};
+
+export default connect(mapStateToProps)(Quiz);

@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import AuthReducer from "./auth";
 import userDataReducer from "./userData";
 import chapterReducer from "./chapter";
+import quizReducer from "./quiz";
 
 const persistConfig = {
   key: "root",
@@ -15,7 +16,8 @@ const persistConfig = {
 export const rootReducer = combineReducers({
   AuthReducer,
   userDataReducer,
-  chapterReducer
+  chapterReducer,
+  quizReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
