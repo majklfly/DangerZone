@@ -4,13 +4,17 @@ import "./ProfileAnimation.css";
 
 export const ProfileAnimation = props => {
   return (
-    <div className="profileAnimationContainer">
+    <div
+      className="profileAnimationContainer"
+      data-test="profileAnimationContainer"
+    >
       <svg
         width="300"
         height="300"
         className="ProfileAnim"
         viewBox="0 0 611 494"
         fill="none"
+        data-test="ProfileAnim"
       >
         <g id="undraw_stand_out_1oag 1">
           <g clipPath="url(#clip0)">

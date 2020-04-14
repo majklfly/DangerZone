@@ -18,7 +18,7 @@ function Article(props) {
     ref.current.slick.slickPrev();
   };
 
-  if (props.chapterData.articles === undefined) {
+  if (props.articles === undefined) {
     return <Spin size="large" />;
   }
 
@@ -35,7 +35,7 @@ function Article(props) {
         ref={ref}
         dots={false}
       >
-        {props.chapterData.articles.map((item, index) => {
+        {props.articles.map((item, index) => {
           return (
             <div key={index}>
               <div className="article_name">{item.name}</div>
@@ -89,19 +89,4 @@ function Article(props) {
   );
 }
 
-const mapStatetoProps = state => {
-  return {
-    chapterData: state.chapterReducer
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getChapter: dispatch(getChapter())
-  };
-};
-
-export default connect(
-  mapStatetoProps,
-  mapDispatchToProps
-)(Article);
+export default Article;

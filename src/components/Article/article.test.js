@@ -6,10 +6,8 @@ import { findByTestAttr, testStore } from "../../utils";
 
 const setUp = (initialState = {}) => {
   const store = testStore(initialState);
-  const component = shallow(<Article store={store} />)
-    .dive()
-    .dive();
-  console.log(component.debug());
+  const component = shallow(<Article articles={["article1", "article2"]} />);
+
   return component;
 };
 

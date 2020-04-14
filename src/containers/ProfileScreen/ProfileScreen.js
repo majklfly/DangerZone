@@ -9,7 +9,7 @@ import {
   InstagramOutlined
 } from "@ant-design/icons";
 
-import { ProfileAnimation } from "../../components/ProfileAnimation";
+import { ProfileAnimation } from "../../components/ProfileAnimation/ProfileAnimation";
 
 import "./ProfileScreen.scss";
 

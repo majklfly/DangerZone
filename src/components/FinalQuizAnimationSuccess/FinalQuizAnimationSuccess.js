@@ -13,11 +13,15 @@ export const FinalQuizAnimationSuccess = props => {
   };
 
   return (
-    <div className="QuizAnimationContainer">
-      <div className="failedAnimationText">
+    <div className="QuizAnimationContainer" data-test="QuizAnimationContainer">
+      <div className="failedAnimationText" data-test="failedAnimationText">
         You have answered all questions correctly
       </div>
-      <Button className="successAnimationButton" onClick={handleClickPositive}>
+      <Button
+        className="successAnimationButton"
+        onClick={handleClickPositive}
+        data-test="successAnimationButton"
+      >
         <RocketFilled />
       </Button>
       <svg
@@ -25,6 +29,7 @@ export const FinalQuizAnimationSuccess = props => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="successAnimation"
+        data-test="successAnimation"
       >
         <rect width="486" height="320" fill="#E5E5E5" />
         <g id="undraw_confirmation_2uy0 1">

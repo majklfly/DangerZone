@@ -1,24 +1,15 @@
 import React from "react";
 import { shallow } from "enzyme";
 import ArticlesScreen from "./ArticlesScreen";
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import allReducers from "../../store/reducers";
-import { createStore, compose, applyMiddleware } from "redux";
-import { findByTestAttr } from "../../utils";
+import { findByTestAttr, testStore } from "../../utils";
 
-const store = createStore(allReducers, compose(applyMiddleware(thunk)));
-
-const setUp = () => {
-  const component = shallow(
-    <Provider store={store}>
-      <ArticlesScreen />
-    </Provider>
-  );
+const setUp = (initialState = {}) => {
+  const store = testStore(initialState);
+  const component = shallow(<ArticlesScreen store={store} />)
+    .dive()
+    .dive();
   return component;
 };
-
-const currentChapterId = 1;
 
 describe("ArticlesScreen Component", () => {
   let component;
@@ -29,18 +20,18 @@ describe("ArticlesScreen Component", () => {
   it("should render the articlescreen container", () => {
     const component = setUp();
     const container = findByTestAttr(component, "ArticlesScreenContainer");
-    expect(container.length).toBe(0);
+    expect(container.length).toBe(1);
   });
 
   it("should render the articles", () => {
     const component = setUp();
     const articles = findByTestAttr(component, "articles");
-    expect(articles.length).toBe(0);
+    expect(articles.length).toBe(1);
   });
 
   it("should render the button", () => {
     const component = setUp();
     const button = findByTestAttr(component, "ArticlesScreenButton");
-    expect(button.length).toBe(0);
+    expect(button.length).toBe(1);
   });
 });

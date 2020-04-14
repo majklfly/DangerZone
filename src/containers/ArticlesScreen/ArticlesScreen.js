@@ -10,7 +10,7 @@ const ArticlesScreen = props => {
   return (
     <>
       <div className="carousel" data-test="ArticlesScreenContainer">
-        <Article data-test="articles" />
+        <Article data-test="articles" articles={props.articles} />
         <Button
           data-test="ArticlesScreenButton"
           type="primary"
@@ -34,7 +34,7 @@ const buttonStyle = {
 
 const mapStateToProps = state => {
   return {
-    chapterData: state.chapterReducer
+    articles: state.chapterReducer.articles
   };
 };
 

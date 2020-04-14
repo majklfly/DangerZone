@@ -8,11 +8,11 @@ import {
   FacebookFilled,
   LoadingOutlined
 } from "@ant-design/icons";
-import icon from "../assets/icon.jpeg";
-import * as actions from "../store/actions/auth";
+import icon from "../../assets/icon.jpeg";
+import * as actions from "../../store/actions/auth";
 import "./Login.css";
 
-import server from "../api/server";
+import server from "../../api/server";
 
 const NormalLoginForm = props => {
   const [form] = Form.useForm();
@@ -66,8 +66,12 @@ const NormalLoginForm = props => {
   };
 
   return (
-    <div className="base-container" ref={props.containerRef}>
-      <div className="content">
+    <div
+      className="base-container"
+      ref={props.containerRef}
+      data-test="base-container"
+    >
+      <div className="content" data-test="content">
         <img src={icon} alt="icon" className="image" />
         {props.loading ? (
           <LoadingOutlined />
@@ -79,6 +83,7 @@ const NormalLoginForm = props => {
               name="dynamic_rule"
               className="login-form"
               hideRequiredMark={true}
+              data-test="login-form"
             >
               <Form.Item
                 className="form-group"
@@ -111,15 +116,27 @@ const NormalLoginForm = props => {
                 />
               </Form.Item>
               <Form.Item>
-                <Button onClick={handleSubmit} className="buttonSubmit">
+                <Button
+                  onClick={handleSubmit}
+                  className="buttonSubmit"
+                  data-test="buttonSubmit"
+                >
                   Log in
                 </Button>
               </Form.Item>
             </Form>
-            <Button onClick={handleGoogleLogin} className="googleLogin">
+            <Button
+              onClick={handleGoogleLogin}
+              className="googleLogin"
+              data-test="googleLogin"
+            >
               <GoogleOutlined /> Login with Google account{" "}
             </Button>
-            <Button onClick={handleFacebookLogin} className="facebookLogin">
+            <Button
+              onClick={handleFacebookLogin}
+              className="facebookLogin"
+              data-test="facebookLogin"
+            >
               <FacebookFilled className="facebookIcon" />
               Login with Facebook account
             </Button>

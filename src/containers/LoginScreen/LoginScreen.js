@@ -1,7 +1,7 @@
 import React from "react";
 // import icon from "../assets/icon";
 import "./LoginScreen.scss";
-import NormalLoginForm from "../../components/Login";
+import NormalLoginForm from "../../components/Login/Login";
 import WrappedNormalSignupForm from "../../components/signup";
 
 class LoginScreen extends React.Component {

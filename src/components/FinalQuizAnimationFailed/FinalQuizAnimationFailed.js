@@ -14,17 +14,29 @@ export const FinalQuizAnimationFailed = props => {
 
   return (
     <div>
-      <div className="failedAnimationContainer">
-        <div className="failedAnimationText">
+      <div
+        className="failedAnimationContainer"
+        data-test="failedAnimationContainer"
+      >
+        <div className="failedAnimationText" data-test="failedAnimationText">
           You have answered {props.validatedCount} out of 5 questions correctly
         </div>
-        <div className="failedAnimationText2">
+        <div className="failedAnimationText2" data-test="failedAnimationText2">
           Oops, that didn't go well. Let's revisit this chapter again.
         </div>
-        <Button className="failedAnimationButton" onClick={handleClickPositive}>
+        <Button
+          className="failedAnimationButton"
+          onClick={handleClickPositive}
+          data-test="failedAnimationButton"
+        >
           <RiseOutlined />
         </Button>
-        <svg className="failedAnimation" viewBox="0, 0, 450, 290" fill="none">
+        <svg
+          className="failedAnimation"
+          viewBox="0, 0, 450, 290"
+          fill="none"
+          data-test="failedAnimation"
+        >
           <g id="undraw_annotation_7das 1">
             <g clip-path="url(#clip0)">
               <rect fill="#364D79" />
