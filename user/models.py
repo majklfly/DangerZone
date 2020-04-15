@@ -21,7 +21,7 @@ class Profile(models.Model):
     instagram = models.CharField(max_length=200, default=' ')
 
     def __str__(self):
-        return self.user
+        return self.firstName
 
 @receiver(post_save, sender=CustomUser)
 def create_profile(sender,instance, created, **kwargs):

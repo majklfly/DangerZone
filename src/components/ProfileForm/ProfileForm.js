@@ -47,9 +47,3 @@ export const ProfileForm = props => {
     </>
   );
 };
-
-const mapStateToProps = state => {
-  return {
-    userData: state.userDataReducer
-  };
-};

@@ -1,15 +1,15 @@
-import * as actionTypes from "./actionTypes";
+import { types } from "./actionTypes";
 import server from "../../api/server";
 
 export const authStart = userData => {
   return {
-    type: actionTypes.AUTH_START
+    type: types.AUTH_START
   };
 };
 
 export const authSuccess = (token, userData) => {
   return {
-    type: actionTypes.AUTH_SUCCESS,
+    type: types.AUTH_SUCCESS,
     token: token,
     userData: localStorage.getItem("username")
   };
@@ -17,7 +17,7 @@ export const authSuccess = (token, userData) => {
 
 export const authFail = error => {
   return {
-    type: actionTypes.AUTH_FAIL,
+    type: types.AUTH_FAIL,
     error: error
   };
 };
@@ -31,7 +31,7 @@ export const logout = () => {
   localStorage.removeItem("persist:root");
   window.location.reload();
   return {
-    type: actionTypes.AUTH_LOGOUT
+    type: types.AUTH_LOGOUT
   };
 };
 

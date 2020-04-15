@@ -18,7 +18,7 @@ const Quiz = props => {
     if (answerIsCorrect === true) {
       valCountRef.current = valCountRef.current + 1;
     }
-    if (valCountRef.current > 3) {
+    if (valCountRef.current > 4) {
       isCompletedRef.current = true;
     }
     if (questionIndex === 5) {
@@ -32,7 +32,7 @@ const Quiz = props => {
     }
   };
 
-  console.log(questionIndex);
+  console.log(props.questions);
 
   if (props.questions === undefined) {
     return <Spin size="large" className="spinner" />;
@@ -40,15 +40,19 @@ const Quiz = props => {
   return (
     <>
       <div>
-        <Carousel ref={ref} className="carouselQuiz">
+        <Carousel ref={ref} className="carouselQuiz" data-test="carouselQuiz">
           {props.questions.questions.map((question, index) => {
             return (
               <>
-                <h1 className="question-label">{question.label}</h1>;
+                <h1 className="question-label" data-test="question-label">
+                  {question.label}
+                </h1>
+                ;
                 {question.answers.map(answer => {
                   return question.id === answer.question ? (
                     <Button
                       className="answer-buttons"
+                      data-test="answer-buttons"
                       key={answer.id}
                       onClick={() => {
                         valuateAnswer(answer.is_correct);
@@ -65,14 +69,20 @@ const Quiz = props => {
         </Carousel>
         {valCountRef.current === 5 && questionIndex === 6 ? (
           <div>
-            <div className="quizFailedAnimation">
+            <div
+              className="quizFailedAnimation"
+              data-test="quizFailedAnimation"
+            >
               <FinalQuizAnimationSuccess validatedCount={valCountRef.current} />
             </div>
           </div>
         ) : null}
         {valCountRef.current !== 5 && questionIndex === 6 ? (
           <div>
-            <div className="quizFailedAnimation">
+            <div
+              className="quizFailedAnimation"
+              data-test="quizFailedAnimation"
+            >
               <FinalQuizAnimationFailed validatedCount={valCountRef.current} />
             </div>
           </div>

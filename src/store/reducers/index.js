@@ -2,10 +2,10 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import AuthReducer from "./auth";
+import AuthReducer from "./authReducer/auth";
 import userDataReducer from "./userData";
-import chapterReducer from "./chapter";
-import quizReducer from "./quiz";
+import chapterReducer from "./chapterReducer/chapter";
+import quizReducer from "./quizReducer/quiz";
 
 const persistConfig = {
   key: "root",

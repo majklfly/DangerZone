@@ -17,14 +17,14 @@ const Cards = props => {
   const completedChapters = [];
 
   const sortChapters = () => {
-    if (props.chapters !== undefined) {
-      props.chapters.map(item => {
+    if (props.chapters.chapters !== undefined) {
+      props.chapters.chapters.map(item => {
         return chapters.push([item.id, item.title]);
       });
       props.completedChapters[0].map(item => {
-        if (item.completed === true) {
-          return completedChapters.push(item.chapterTitle);
-        }
+        return item.completed === true
+          ? completedChapters.push(item.chapterTitle)
+          : null;
       });
     }
   };
@@ -43,55 +43,54 @@ const Cards = props => {
 
   return (
     <>
-      {props.chapters === undefined ? (
-        <Spin size="large" className="spinnerCards" />
-      ) : (
-        <div className="container">
-          <Row gutter={16} className="cards">
-            {chapters.map((chapter, index) => {
-              if (completedChapters.includes(chapter[1])) {
-                return (
-                  <div className="active-container" key={index}>
-                    <CustomCard
-                      className="inactive"
-                      bordered={true}
-                      key={index}
-                      index={index + 1}
-                      title={chapter[1]}
-                      id={chapter.id}
-                      hoverable={false}
-                    ></CustomCard>
-                  </div>
-                );
-              } else {
-                return (
-                  <div
-                    className="active-container"
-                    onClick={e => handleClick(e, chapter[0])}
+      <div className="container" data-test="container">
+        <Row gutter={16} className="cards" data-test="cards">
+          {chapters.map((chapter, index) => {
+            if (completedChapters.includes(chapter[1])) {
+              return (
+                <div className="active-container" key={index}>
+                  <CustomCard
+                    className="inactive"
+                    data-test="inactive"
+                    bordered={true}
                     key={index}
-                  >
-                    <CustomCard
-                      className="active"
-                      bordered={true}
-                      index={index + 1}
-                      title={chapter[1]}
-                      id={chapter.id}
-                      hoverable={true}
-                    ></CustomCard>
-                  </div>
-                );
-              }
-            })}
-          </Row>
-        </div>
-      )}
+                    index={index + 1}
+                    title={chapter[1]}
+                    id={chapter.id}
+                    hoverable={false}
+                  ></CustomCard>
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  className="active-container"
+                  onClick={e => handleClick(e, chapter[0])}
+                  key={index}
+                  data-test="active-container"
+                >
+                  <CustomCard
+                    className="active"
+                    data-test="active"
+                    bordered={true}
+                    index={index + 1}
+                    title={chapter[1]}
+                    id={chapter.id}
+                    hoverable={true}
+                  ></CustomCard>
+                </div>
+              );
+            }
+          })}
+        </Row>
+      </div>
     </>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    chapters: state.chapterReducer.chapters,
+    chapters: state.chapterReducer,
     userData: state.userDataReducer,
     completedChapters: [state.userDataReducer.chapterdata]
   };

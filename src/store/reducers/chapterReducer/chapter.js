@@ -1,6 +1,6 @@
-import { updatedObject } from "../utility";
+import { updatedObject } from "../../utility";
 
-import { types } from "../actions/actionTypes";
+import { types } from "../../actions/actionTypes";
 
 const chapterReducer = (state = {}, action) => {
   switch (action.type) {

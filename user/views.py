@@ -9,8 +9,6 @@ class UserListView(CsrfExemptMixin, generics.ListAPIView):
 
 
 class UserDetailView(CsrfExemptMixin, generics.RetrieveAPIView):
-
-
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 

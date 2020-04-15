@@ -1,5 +1,5 @@
-import * as actionTypes from "../actions/actionTypes";
-import { updatedObject } from "../utility";
+import { types } from "../../actions/actionTypes";
+import { updatedObject } from "../../utility";
 
 const initialState = {
   token: null,
@@ -9,13 +9,13 @@ const initialState = {
 
 const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.AUTH_START:
+    case types.AUTH_START:
       return authStart(state, action);
-    case actionTypes.AUTH_SUCCESS:
+    case types.AUTH_SUCCESS:
       return AuthSuccess(state, action);
-    case actionTypes.AUTH_FAIL:
+    case types.AUTH_FAIL:
       return AuthFail(state, action);
-    case actionTypes.AUTH_LOGOUT:
+    case types.AUTH_LOGOUT:
       return AuthLogout(state, action);
     default:
       return state;

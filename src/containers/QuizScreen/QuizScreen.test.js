@@ -1,10 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { findByTestAttr } from "../../utils";
+import { findByTestAttr, testStore } from "../../utils";
 import QuizScreen from "./QuizScreen";
 
-const setUp = () => {
-  const component = shallow(<QuizScreen />);
+const setUp = (initialState = {}) => {
+  const store = testStore(initialState);
+  const component = shallow(<QuizScreen store={store} />)
+    .dive()
+    .dive();
   return component;
 };
 

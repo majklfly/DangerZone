@@ -1,7 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Article from "./Article";
-import { Provider } from "react-redux";
 import { findByTestAttr, testStore } from "../../utils";
 
 const setUp = (initialState = {}) => {
