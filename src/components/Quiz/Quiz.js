@@ -21,70 +21,65 @@ const Quiz = props => {
     if (valCountRef.current > 3) {
       isCompletedRef.current = true;
     }
+    if (questionIndex === 5) {
+      postTestResults(
+        valCountRef.current,
+        isCompletedRef.current,
+        props.user,
+        props.chapterId,
+        props.userDataId
+      );
+    }
   };
 
-  if (questionIndex === 6) {
-    postTestResults(
-      valCountRef.current,
-      isCompletedRef.current,
-      props.user,
-      props.chapterId,
-      props.userDataId
-    );
-  }
+  console.log(questionIndex);
 
-  console.log("props", props);
-
-  if (props.questions) {
-    return (
-      <>
-        <div>
-          <Carousel ref={ref} className="carouselQuiz">
-            {props.questions.questions.map((question, index) => {
-              return (
-                <>
-                  <h1 className="question-label">{question.label}</h1>;
-                  {question.answers.map(answer => {
-                    return question.id === answer.question ? (
-                      <Button
-                        className="answer-buttons"
-                        key={answer.id}
-                        onClick={() => {
-                          valuateAnswer(answer.is_correct);
-                          setTimeout(() => ref.current.next(), 150);
-                        }}
-                      >
-                        {answer.text}
-                      </Button>
-                    ) : null;
-                  })}
-                </>
-              );
-            })}
-          </Carousel>
-          {valCountRef.current === 5 && questionIndex === 6 ? (
-            <div>
-              <div className="quizFailedAnimation">
-                <FinalQuizAnimationSuccess
-                  validatedCount={valCountRef.current}
-                />
-              </div>
-            </div>
-          ) : null}
-          {valCountRef.current !== 5 && questionIndex === 6 ? (
-            <div>
-              <div className="quizFailedAnimation">
-                <FinalQuizAnimationFailed
-                  validatedCount={valCountRef.current}
-                />
-              </div>
-            </div>
-          ) : null}
-        </div>
-      </>
-    );
+  if (props.questions === undefined) {
+    return <Spin size="large" className="spinner" />;
   }
-  return <Spin size="large" className="spinner" />;
+  return (
+    <>
+      <div>
+        <Carousel ref={ref} className="carouselQuiz">
+          {props.questions.questions.map((question, index) => {
+            return (
+              <>
+                <h1 className="question-label">{question.label}</h1>;
+                {question.answers.map(answer => {
+                  return question.id === answer.question ? (
+                    <Button
+                      className="answer-buttons"
+                      key={answer.id}
+                      onClick={() => {
+                        valuateAnswer(answer.is_correct);
+                        setTimeout(() => ref.current.next(), 150);
+                      }}
+                    >
+                      {answer.text}
+                    </Button>
+                  ) : null;
+                })}
+              </>
+            );
+          })}
+        </Carousel>
+        {valCountRef.current === 5 && questionIndex === 6 ? (
+          <div>
+            <div className="quizFailedAnimation">
+              <FinalQuizAnimationSuccess validatedCount={valCountRef.current} />
+            </div>
+          </div>
+        ) : null}
+        {valCountRef.current !== 5 && questionIndex === 6 ? (
+          <div>
+            <div className="quizFailedAnimation">
+              <FinalQuizAnimationFailed validatedCount={valCountRef.current} />
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </>
+  );
 };
 
 const mapStateToProps = state => {

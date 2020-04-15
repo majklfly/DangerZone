@@ -10,7 +10,7 @@ const QuizScreen = props => {
     }
     if (props.questions) {
     }
-  }, [props]);
+  }, []); // eslint-disable-line
 
   return (
     <>

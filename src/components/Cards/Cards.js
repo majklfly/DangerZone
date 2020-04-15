@@ -22,7 +22,9 @@ const Cards = props => {
         return chapters.push([item.id, item.title]);
       });
       props.completedChapters[0].map(item => {
-        return completedChapters.push(item.chapterTitle);
+        if (item.completed === true) {
+          return completedChapters.push(item.chapterTitle);
+        }
       });
     }
   };
@@ -39,8 +41,6 @@ const Cards = props => {
     props.getUserData();
   }, []); // eslint-disable-line
 
-  console.log(props.completedChapters.chapter);
-
   return (
     <>
       {props.chapters === undefined ? (
@@ -48,50 +48,39 @@ const Cards = props => {
       ) : (
         <div className="container">
           <Row gutter={16} className="cards">
-            {props.chapters.map((chapter, index) => {
-              return (
-                <>
-                  {props.completedChapters[0].map((item, index) => {
-                    console.log(chapter.title);
-                    if (item.chapterTitle === chapter.title) {
-                      console.log("hurray");
-                      return (
-                        <div
-                          className="active-container"
-                          onClick={e => handleClick(e, chapter[0])}
-                          key={index}
-                        >
-                          <CustomCard
-                            className="active"
-                            bordered={true}
-                            index={index + 1}
-                            title={chapter[1]}
-                            id={chapter.id}
-                            hoverable={true}
-                          >
-                            Active Text
-                          </CustomCard>
-                        </div>
-                      );
-                    }
-                    return (
-                      <div className="active-container" key={index}>
-                        <CustomCard
-                          className="inactive"
-                          bordered={true}
-                          key={index}
-                          index={index + 1}
-                          title={chapter[1]}
-                          id={chapter.id}
-                          hoverable={false}
-                        >
-                          Inactive text
-                        </CustomCard>
-                      </div>
-                    );
-                  })}
-                </>
-              );
+            {chapters.map((chapter, index) => {
+              if (completedChapters.includes(chapter[1])) {
+                return (
+                  <div className="active-container" key={index}>
+                    <CustomCard
+                      className="inactive"
+                      bordered={true}
+                      key={index}
+                      index={index + 1}
+                      title={chapter[1]}
+                      id={chapter.id}
+                      hoverable={false}
+                    ></CustomCard>
+                  </div>
+                );
+              } else {
+                return (
+                  <div
+                    className="active-container"
+                    onClick={e => handleClick(e, chapter[0])}
+                    key={index}
+                  >
+                    <CustomCard
+                      className="active"
+                      bordered={true}
+                      index={index + 1}
+                      title={chapter[1]}
+                      id={chapter.id}
+                      hoverable={true}
+                    ></CustomCard>
+                  </div>
+                );
+              }
             })}
           </Row>
         </div>
