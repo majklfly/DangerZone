@@ -1,5 +1,5 @@
-import { updatedObject } from "../utility";
-import { types } from "../actions/actionTypes";
+import { updatedObject } from "../../utility";
+import { types } from "../../actions/actionTypes";
 
 const initialState = {
   id: 0,

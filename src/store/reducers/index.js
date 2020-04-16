@@ -3,7 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import AuthReducer from "./authReducer/auth";
-import userDataReducer from "./userData";
+import userDataReducer from "./userDataReducer/userData";
 import chapterReducer from "./chapterReducer/chapter";
 import quizReducer from "./quizReducer/quiz";
 
