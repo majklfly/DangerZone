@@ -1,13 +1,6 @@
 version: 2.1
+orbs:
+  welcome: circleci/welcome-orb@0.3.1
 workflows:
-  jobs:
-    - react/install
-    - react/eslint:
-        requires:
-          - react/install
-    - react/test:
-        requires:
-          - react/install
-    - react/coverage:
-        requires:
-          - react/install
+  Welcome:
+    jobs: -welcome/run
