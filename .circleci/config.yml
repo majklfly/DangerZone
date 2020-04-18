@@ -10,7 +10,7 @@ jobs:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
-          command: npm  run test:ci
+          command: npm run test
           env:
             CI: ""
       - save_cache:
