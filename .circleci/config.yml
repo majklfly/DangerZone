@@ -18,6 +18,8 @@ jobs:
 
       - run: npm install
 
+      - run: npm install react-scripts
+
       - save_cache:
           paths:
             - node_modules
