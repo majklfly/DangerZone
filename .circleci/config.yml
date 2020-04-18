@@ -17,7 +17,7 @@ jobs:
             - v1-dependencies-
 
       - run: npm install
-
+      - run: npm install react
       - run: npm install react-scripts
 
       - save_cache:
