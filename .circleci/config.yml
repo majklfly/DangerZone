@@ -18,6 +18,7 @@ jobs:
 
       - run: npm install
       - run: npm rebuild node-sass
+      - run: npm install react-scripts --save
 
       - save_cache:
           paths:
