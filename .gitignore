@@ -5,6 +5,9 @@ node_modules/
 /.pnp
 .pnp.js
 
+# Specific files
+backend/settings.py
+
 # testing
 /coverage
 

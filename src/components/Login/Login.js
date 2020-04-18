@@ -57,10 +57,11 @@ const NormalLoginForm = props => {
 
   const handleFacebookLogin = () => {
     server.get("accounts/facebook/login").then(res => {
+      console.log(res.data);
       if (res.status === 200) {
         localStorage.setItem("token", res.data.key);
-        setNavigate(true);
-        window.location.reload();
+        // setNavigate(true);
+        // window.location.reload();
       }
     });
   };
@@ -162,7 +163,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NormalLoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NormalLoginForm);

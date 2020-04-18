@@ -119,6 +119,14 @@ const CloudsScreen = () => {
         <List.Item className="cloudListItem">
           <List.Item.Meta
             avatar={
+              <Avatar src="https://banner2.cleanpng.com/20180907/pyg/kisspng-computer-icons-gitlab-scalable-vector-graphics-ci-circleci-logo-svg-vector-amp-png-transparent-v-5b92b5229299d3.9570815315363412826005.jpg" />
+            }
+          />
+          <div className="cloudListItemText">Circle CI</div>
+        </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={
               <Avatar src="https://cdn4.iconfinder.com/data/icons/bloomies-webdesign-tools/25/Figma_square-512.png" />
             }
           />

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Row } from "antd";
 import { useHistory } from "react-router-dom";
-import { Spin } from "antd";
 import { connect } from "react-redux";
 
 import { getChapters, getChapter } from "../../store/actions/chapter";
@@ -110,7 +109,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Cards);
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);
