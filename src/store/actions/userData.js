@@ -18,3 +18,15 @@ export const getUserData = username => async dispatch => {
     })
     .catch(err => [console.log(err)]);
 };
+
+export const setUser = res => async dispatch => {
+  try {
+    const response = await res;
+    dispatch({
+      type: types.SET_USER,
+      payload: response
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

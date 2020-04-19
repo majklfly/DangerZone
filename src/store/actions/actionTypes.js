@@ -3,8 +3,13 @@ export const types = {
   AUTH_FAIL: "AUTH_FAIL",
   AUTH_SUCCESS: "AUTH_SUCESS",
   AUTH_START: "AUTH_START",
+
   GET_CHAPTER: "getChapter",
-  GET_USERDATA: "getUserData",
   GET_CHAPTERS: "getChapters",
-  GET_QUIZ: "getQuiz"
+
+  GET_USERDATA: "getUserData",
+
+  GET_QUIZ: "getQuiz",
+
+  SET_USER: "setUser"
 };

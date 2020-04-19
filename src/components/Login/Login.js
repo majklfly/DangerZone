@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Facebook from "../Facebook/Facebook";
 
 import {
   GoogleOutlined,
@@ -133,14 +134,14 @@ const NormalLoginForm = props => {
             >
               <GoogleOutlined /> Login with Google account{" "}
             </Button>
-            <Button
+            <Facebook
               onClick={handleFacebookLogin}
               className="facebookLogin"
               data-test="facebookLogin"
             >
               <FacebookFilled className="facebookIcon" />
               Login with Facebook account
-            </Button>
+            </Facebook>
             <div style={{ color: "red" }}>{errorMessage}</div>
           </>
         )}

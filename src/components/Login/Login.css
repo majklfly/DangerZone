@@ -73,16 +73,6 @@
   color: black;
   border-color: black;
 }
-
-.facebookLogin {
-  margin: 5px;
-  margin-bottom: 25px;
-}
-.facebookLogin:hover {
-  background-color: #3b5998;
-  color: white;
-  box-shadow: 0px 0px 14px 0.3px #0e81ce96;
-}
 .footer {
     margin-top: 3em;
 }
