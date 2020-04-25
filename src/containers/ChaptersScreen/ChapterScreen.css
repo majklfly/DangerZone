@@ -1,7 +1,7 @@
 .container-cards {
   display: flex;
   justify-content: center;
-  padding: 10% 5%;
+  padding: 20% 5%;
   position: absolute;
-  top: 0;
+  top: 5vh;
 }

@@ -164,6 +164,10 @@ const CloudsScreen = () => {
           />
           <div className="cloudListItemText">Github</div>
         </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta avatar={<Avatar src="" />} />
+          <div className="cloudListItemText">jsPDF</div>
+        </List.Item>
       </List>
     </>
   );

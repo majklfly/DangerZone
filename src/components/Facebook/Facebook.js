@@ -11,13 +11,10 @@ const Facebook = props => {
   const history = useHistory();
 
   const responseFacebook = res => {
-    console.log(res);
-    props.setUser(res);
-    localStorage.setItem("token", res.acessToken);
-
-    // history.push("/homepage/");
-    // window.location.reload();
+    props.setUser(res.accessToken);
+    history.push("/homepage/");
   };
+
   const componentClicked = () => console.log("clicked");
 
   return (
@@ -25,6 +22,7 @@ const Facebook = props => {
       appId="723054295168510"
       fields="name,email,picture"
       cssClass="facebookLogin"
+      data-test="facebookLogin"
       textButton=" Login with Facebook account"
       icon={<FacebookFilled />}
       onClick={componentClicked}

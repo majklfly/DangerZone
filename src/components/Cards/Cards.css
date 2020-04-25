@@ -2,6 +2,7 @@
   background-color: #fdbb77;
   padding: 2em;
   width: 90vw;
+  display: flex;
 }
 .cards {
   display: flex;

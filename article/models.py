@@ -7,7 +7,7 @@ class UserData(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 class Chapter(models.Model):

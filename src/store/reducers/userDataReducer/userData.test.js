@@ -49,4 +49,21 @@ describe("UserDataReducer", () => {
     });
     expect(newState).toEqual(payload);
   });
+
+  it("should receive a new state from facebook login", () => {
+    const payload = {
+      id: 1,
+      first_name: "testName",
+      last_name: "testSurname",
+      email: "testEmail"
+    };
+    const newState = userDataReducer(undefined, {
+      type: types.SET_USER,
+      payload: payload
+    });
+    expect(newState.email).toEqual(payload.email);
+    expect(newState.firstName).toEqual(payload.first_name);
+    expect(newState.lastName).toEqual(payload.last_name);
+    expect(newState.id).toEqual(payload.id);
+  });
 });

@@ -19,14 +19,18 @@ export const getUserData = username => async dispatch => {
     .catch(err => [console.log(err)]);
 };
 
-export const setUser = res => async dispatch => {
-  try {
-    const response = await res;
-    dispatch({
-      type: types.SET_USER,
-      payload: response
+export const setUser = token => async dispatch => {
+  await server
+    .post(`/social/`, {
+      provider: "facebook",
+      access_token: token
+    })
+    .then(res => {
+      localStorage.setItem("token", res.data.token);
+      window.location.reload();
+      dispatch({
+        type: types.SET_USER,
+        payload: res.data
+      });
     });
-  } catch (error) {
-    console.log(error);
-  }
 };

@@ -11,26 +11,30 @@ import { AnimBackground } from "./components/background/background";
 
 import * as actions from "./store/actions/auth";
 
+const token = localStorage.getItem("token");
+
+console.log(localStorage);
+
 class App extends React.Component {
   componentDidMount() {
     this.props.onTryAutoSignup();
   }
 
   render() {
-    if (localStorage.getItem("token")) {
+    if (token === null || token.length <= 38) {
       return (
         <div>
-          <AnimBackground />
           <Router>
-            <BaseRouter {...this.props} />
+            <AuthRouter />
           </Router>
         </div>
       );
     } else {
       return (
         <div>
+          <AnimBackground />
           <Router>
-            <AuthRouter />
+            <BaseRouter {...this.props} />
           </Router>
         </div>
       );
@@ -53,7 +57,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

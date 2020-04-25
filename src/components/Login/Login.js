@@ -15,6 +15,8 @@ import "./Login.css";
 
 import server from "../../api/server";
 
+const token = localStorage.getItem("token");
+
 const NormalLoginForm = props => {
   const [form] = Form.useForm();
   const [navigate, setNavigate] = useState(false);
@@ -46,23 +48,14 @@ const NormalLoginForm = props => {
       });
   };
 
+  console.log("token", token);
+
   const handleGoogleLogin = () => {
     server.get("accounts/google/login").then(res => {
       if (res.status === 200) {
         localStorage.setItem("token", res.data.key);
         setNavigate(true);
         window.location.reload();
-      }
-    });
-  };
-
-  const handleFacebookLogin = () => {
-    server.get("accounts/facebook/login").then(res => {
-      console.log(res.data);
-      if (res.status === 200) {
-        localStorage.setItem("token", res.data.key);
-        // setNavigate(true);
-        // window.location.reload();
       }
     });
   };
@@ -134,11 +127,7 @@ const NormalLoginForm = props => {
             >
               <GoogleOutlined /> Login with Google account{" "}
             </Button>
-            <Facebook
-              onClick={handleFacebookLogin}
-              className="facebookLogin"
-              data-test="facebookLogin"
-            >
+            <Facebook className="facebookLogin" data-test="facebookLogin">
               <FacebookFilled className="facebookIcon" />
               Login with Facebook account
             </Facebook>

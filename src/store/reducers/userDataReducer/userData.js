@@ -39,6 +39,13 @@ const userDataReducer = (state = initialState, action) => {
         chapterdata: action.payload.chapterdata,
         user: action.payload.user
       });
+    case types.SET_USER:
+      return updatedObject(state, {
+        id: action.payload.id,
+        firstName: action.payload.first_name,
+        lastName: action.payload.last_name,
+        email: action.payload.email
+      });
     default:
       return state;
   }
