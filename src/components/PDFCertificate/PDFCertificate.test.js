@@ -4,15 +4,17 @@ import PDFCertificate from "./PDFCertificate";
 import { findByTestAttr, testStore } from "../../utils";
 import jsPDF from "jspdf";
 
-jest.mock("jspdf", () => {
-  () => {
-    addImage = jest.fn();
-  };
-});
+jest.mock("jspdf");
 
 describe("PDFCertificate", () => {
   console.log(jsPDF);
   let component;
+  beforeAll(() => {
+    jsPDF.mockImplementation(() => {
+      return { jsPDF };
+    });
+  });
+
   beforeEach(() => {
     const store = testStore();
     component = shallow(<PDFCertificate store={store} />)
