@@ -47,8 +47,8 @@ const SignupForm = props => {
       ref={props.containerRef}
       data-test="base-container"
     >
+      <img src={icon} alt="icon" className="image" />
       <div className="content" data-test="content">
-        <img src={icon} alt="icon" className="image" />
         {props.loading ? (
           <LoadingOutlined />
         ) : (
@@ -149,7 +149,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignupForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

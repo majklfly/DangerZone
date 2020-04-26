@@ -1,6 +1,7 @@
 from .models import CustomUser, Profile
 from .serializers import UserSerializer, ProfileSerializer, SocialSerializer
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 from braces.views import CsrfExemptMixin
 from rest_framework import generics, permissions, status, views
 from rest_framework_jwt.settings import api_settings
@@ -75,11 +76,9 @@ class SocialLoginView(generics.GenericAPIView):
             }, status=status.HTTP_400_BAD_REQUEST)
 
         if authenticated_user and authenticated_user.is_active:
-			#generate JWT token
-            data={
-                "token": jwt_encode_handler(
-                    jwt_payload_handler(user)
-                )}
+			#generate token
+            user = authenticated_user
+            token, created = Token.objects.get_or_create(user=user)
 			#customize the response to your needs
             response = {
                 "id": authenticated_user.id,
@@ -87,6 +86,6 @@ class SocialLoginView(generics.GenericAPIView):
                 "username": authenticated_user.username,
                 "firstName": authenticated_user.first_name,
                 "lastName": authenticated_user.last_name,
-                "token": data.get('token')
+                "token": token.key
             }
             return Response(status=status.HTTP_200_OK, data=response)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Progress } from "antd";
 import { Link } from "react-router-dom";
-import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined, AuditOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -52,6 +52,9 @@ const UserBoard = props => {
           <Link to="/" onClick={actions.logout}>
             <LogoutOutlined className="iconBoard" />
           </Link>
+          <Link to="/terms/">
+            <AuditOutlined className="iconBoard" />
+          </Link>
         </div>
         <div className="welcomeText" data-test="welcomeText">
           Hello {props.userData.username}
@@ -75,7 +78,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UserBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(UserBoard);

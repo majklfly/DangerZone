@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Facebook from "../Facebook/Facebook";
 
 import {
@@ -66,8 +66,8 @@ const NormalLoginForm = props => {
       ref={props.containerRef}
       data-test="base-container"
     >
+      <img src={icon} alt="icon" className="image" />
       <div className="content" data-test="content">
-        <img src={icon} alt="icon" className="image" />
         {props.loading ? (
           <LoadingOutlined />
         ) : (
@@ -131,6 +131,7 @@ const NormalLoginForm = props => {
               <FacebookFilled className="facebookIcon" />
               Login with Facebook account
             </Facebook>
+            <Link to="/terms/">Privacy notice</Link>
             <div style={{ color: "red" }}>{errorMessage}</div>
           </>
         )}

@@ -120,11 +120,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
 }
@@ -157,6 +156,9 @@ SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'INSERT_PROVIDED_KEY_HERE'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'U88595a1Z3j8pZI0ckhzlZtH'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '723054295168510'
 SOCIAL_AUTH_FACEBOOK_SECRET ='aeb41b50b3e0d18ae1d36ee911c7a902'

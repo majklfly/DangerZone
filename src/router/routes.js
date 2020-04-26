@@ -8,7 +8,6 @@ import HomepageScreen from "../containers/HomepageScreen/HomepageScreen";
 import ChaptersScreen from "../containers/ChaptersScreen/ChaptersScreen";
 import QuizScreen from "../containers/QuizScreen/QuizScreen";
 import ProfileScreen from "../containers/ProfileScreen/ProfileScreen";
-
 import ArticlesScreen from "../containers/ArticlesScreen/ArticlesScreen";
 
 import ResponsiveNavigation from "../containers/Layout/Layout";
