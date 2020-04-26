@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "antd";
 import { connect } from "react-redux";
 import "./PDFCertificate.css";
 import jsPDF from "jspdf";
-import icon from "../../assets/icon.jpeg";
 
 const PDFCertificate = props => {
   const [chapters, setChapters] = useState([]);
@@ -11,7 +9,7 @@ const PDFCertificate = props => {
   const setChapterNames = () => {
     const chaptersLocal = [];
     props.userData.chapterdata.map(item => {
-      chaptersLocal.push(item.chapterTitle);
+      return chaptersLocal.push(item.chapterTitle);
     });
     setChapters(chaptersLocal);
   };
