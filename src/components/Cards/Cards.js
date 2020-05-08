@@ -42,7 +42,7 @@ const Cards = props => {
 
   return (
     <>
-      <div className="container" data-test="container">
+      <div className="containerCards" data-test="container">
         <Row gutter={16} className="cards" data-test="cards">
           {chapters.map((chapter, index) => {
             if (completedChapters.includes(chapter[1])) {

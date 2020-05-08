@@ -4,15 +4,11 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from braces.views import CsrfExemptMixin
 from rest_framework import generics, permissions, status, views
-from rest_framework_jwt.settings import api_settings
 from django.http import JsonResponse
 from requests.exceptions import HTTPError
 from social_django.utils import load_strategy, load_backend
 from social_core.backends.oauth import BaseOAuth2
 from social_core.exceptions import MissingBackend, AuthTokenError, AuthForbidden
-
-jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 class UserListView(CsrfExemptMixin, generics.ListAPIView):
     queryset = CustomUser.objects.all()

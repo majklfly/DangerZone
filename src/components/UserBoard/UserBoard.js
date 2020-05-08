@@ -52,9 +52,6 @@ const UserBoard = props => {
           <Link to="/" onClick={actions.logout}>
             <LogoutOutlined className="iconBoard" />
           </Link>
-          <Link to="/terms/">
-            <AuditOutlined className="iconBoard" />
-          </Link>
         </div>
         <div className="welcomeText" data-test="welcomeText">
           Hello {props.userData.username}

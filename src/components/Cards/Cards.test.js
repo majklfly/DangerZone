@@ -1,6 +1,7 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import Cards from "./Cards";
+import Article from "../Article/Article";
 import { findByTestAttr, testStore } from "../../utils";
 
 const setUp = (initialState = {}) => {
@@ -22,12 +23,16 @@ describe("Cards", () => {
   beforeEach(() => {
     const initialState = {
       chapterReducer: {
-        chapters: [[1, "Test1"], [2, "Test2"]]
+        chapters: [
+          { id: 1, title: "Test1" },
+          { id: 2, title: "Test3" }
+        ]
       },
       userDataReducer: {
         chapterdata: [
-          { id: 1, chaptertitle: "Test1" },
-          { id: 2, chaptertitle: "Test3" }
+          { id: 1, chapterTitle: "Test1", completed: true },
+          { id: 2, chapterTitle: "Test3", completed: false },
+          { id: 3, chapterTitle: "Test4", completed: true }
         ]
       }
     };
@@ -46,6 +51,17 @@ describe("Cards", () => {
 
   it("should render the active container", () => {
     const card = findByTestAttr(component, "active");
-    expect(card.length).toBe(2);
+    expect(card.length).toBe(1);
+  });
+
+  it("should render the inactive container", () => {
+    const card = findByTestAttr(component, "inactive");
+    expect(card.length).toBe(1);
+  });
+
+  it("should render the article after click on the button", () => {
+    const card = findByTestAttr(component, "active");
+    const articleWrapper = mount(<Article />);
+    card.simulate("click");
   });
 });

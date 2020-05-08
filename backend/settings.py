@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'knox',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',

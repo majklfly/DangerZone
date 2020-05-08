@@ -1,25 +1,34 @@
 import React from "react";
-import { shallow } from "enzyme";
+import Enzyme, { shallow } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import PDFCertificate from "./PDFCertificate";
 import { findByTestAttr, testStore } from "../../utils";
 import jsPDF from "jspdf";
 
-jest.mock("jspdf");
+Enzyme.configure({ adapter: new Adapter() });
+
+jest.mock("jspdf", () => {
+  return function() {
+    return {
+      addImage: jest.fn(),
+      setLineWidth: jest.fn(),
+      setDrawColor: jest.fn(),
+      line: jest.fn(),
+      setFontSize: jest.fn(),
+      text: jest.fn(),
+      save: jest.fn()
+    };
+  };
+});
 
 describe("PDFCertificate", () => {
-  console.log(jsPDF);
   let component;
-  beforeAll(() => {
-    jsPDF.mockImplementation(() => {
-      return { jsPDF };
-    });
-  });
-
   beforeEach(() => {
     const store = testStore();
     component = shallow(<PDFCertificate store={store} />)
       .dive()
       .dive();
+    return component;
   });
 
   it("should render the PDF button", () => {
@@ -29,6 +38,7 @@ describe("PDFCertificate", () => {
 
   it("should show a pdf file to download", () => {
     const button = findByTestAttr(component, "certificateButton");
+    // TODO: find a way to check if it starts the download
     button.simulate("click");
   });
 });
