@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Progress } from "antd";
 import { Link } from "react-router-dom";
-import { UserOutlined, LogoutOutlined, AuditOutlined } from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import "font-awesome/css/font-awesome.min.css";
 
