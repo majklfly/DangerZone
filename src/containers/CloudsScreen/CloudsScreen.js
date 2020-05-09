@@ -33,7 +33,7 @@ const CloudsScreen = () => {
               <Avatar src="https://clipartart.com/images/javascript-icon-clipart-3.jpg" />
             }
           />
-          <div className="cloudListItemText">NodeJs</div>
+          <div className="cloudListItemText">NodeJs 14.x</div>
         </List.Item>
         <List.Item className="cloudListItem">
           <List.Item.Meta
@@ -167,6 +167,22 @@ const CloudsScreen = () => {
         <List.Item className="cloudListItem">
           <List.Item.Meta avatar={<Avatar src="" />} />
           <div className="cloudListItemText">jsPDF</div>
+        </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={
+              <Avatar src="https://cdn.clipart.email/cfc5d676f9b850a384a440ccf1917097_react-javascript-angularjs-ionic-github-transparent-background-_500-500.jpeg" />
+            }
+          />
+          <div className="cloudListItemText">React Native 0.62</div>
+        </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={
+              <Avatar src="https://apprecs.org/ios/images/app-icons/256/83/982107779.jpg" />
+            }
+          />
+          <div className="cloudListItemText">Expo</div>
         </List.Item>
       </List>
     </>

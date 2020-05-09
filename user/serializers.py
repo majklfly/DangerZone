@@ -1,6 +1,15 @@
 from rest_framework import serializers
 from .models import CustomUser, Profile
 from article.serializers import ChapterSerializer
+from rest_auth.serializers import UserDetailsSerializer
+from rest_auth.models import TokenModel
+
+class CustomTokenSerializer(serializers.ModelSerializer):
+    user = UserDetailsSerializer(read_only=True)
+
+    class Meta:
+        model = TokenModel
+        fields = ('key', 'user', )
 
 class UserSerializer(serializers.ModelSerializer):
     chapterTitle = serializers.ReadOnlyField(source='chapter.title')
