@@ -2,6 +2,8 @@ import React from "react";
 import "./HomepageScreen.scss";
 
 const HomepageScreen = () => {
+  console.log(localStorage);
+
   return (
     <>
       <div
@@ -115,7 +117,6 @@ const HomepageScreen = () => {
           />
         </svg>
         <div className="homeScreenText" data-test="homeScreenText">
-          {console.log(localStorage)}
           <p>
             This page is designed to help you immprove your knowledge and
             practice in hygiene. Please visit Food safety Level 2 to continue on

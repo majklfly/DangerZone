@@ -13,8 +13,6 @@ import * as actions from "./store/actions/auth";
 
 const token = localStorage.getItem("token");
 
-console.log("hello");
-
 class App extends React.Component {
   componentDidMount() {
     this.props.onTryAutoSignup();

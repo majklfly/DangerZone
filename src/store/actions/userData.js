@@ -20,6 +20,7 @@ export const getUserData = username => async dispatch => {
 };
 
 export const setUser = token => async dispatch => {
+  console.log("actions userdata", token);
   await server
     .post(`/social/`, {
       provider: "facebook",

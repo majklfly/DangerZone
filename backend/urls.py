@@ -9,6 +9,6 @@ urlpatterns = [
     path('', include('quiz.urls')),
     path('', include('article.urls')),
     path('accounts/', include('allauth.urls')),
-    path('auth/', include('rest_framework_social_oauth2.urls')),
+    path('api/auth/oauth/', include('rest_framework_social_oauth2.urls')),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]

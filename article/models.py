@@ -1,13 +1,7 @@
 from django.db import models
-from user.models import CustomUser, Profile
+from user.models import CustomUser, Profile, UserData
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
-
-class UserData(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.user.username
 
 
 class Chapter(models.Model):

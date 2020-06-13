@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import CustomUser, Profile
-from article.serializers import ChapterSerializer
+from .models import CustomUser, Profile, UserData
+from article.serializers import ChapterSerializer, ChapterDataSerializer
 from rest_auth.serializers import UserDetailsSerializer
 from rest_auth.models import TokenModel
 
@@ -52,3 +52,28 @@ class ProfileSerializer(serializers.ModelSerializer):
 class SocialSerializer(serializers.Serializer):
     provider = serializers.CharField(max_length=255, required=True)
     access_token = serializers.CharField(max_length=4096, required=True, trim_whitespace=True)
+
+
+class UserDataSerializer(serializers.ModelSerializer):
+    lastLogin = serializers.ReadOnlyField(source='user.lastLogin')
+    userId = email = serializers.ReadOnlyField(source='user.id')
+    email = serializers.ReadOnlyField(source='user.email')
+    joined = serializers.ReadOnlyField(source='user.date_joined')
+    username = serializers.ReadOnlyField(source='user.username')
+    firstName = serializers.ReadOnlyField(source='user.first_name')
+    lastName = serializers.ReadOnlyField(source='user.last_name')
+    profileId = serializers.ReadOnlyField(source='user.profile.id')
+    facebook = serializers.ReadOnlyField(source='user.profile.facebook')
+    twitter = serializers.ReadOnlyField(source='user.profile.twitter')
+    instagram = serializers.ReadOnlyField(source='user.profile.instagram')
+    company = serializers.ReadOnlyField(source='user.profile.company')
+    position = serializers.ReadOnlyField(source='user.profile.position')
+    country = serializers.ReadOnlyField(source='user.profile.country')
+    chapterdata = ChapterDataSerializer(source='chapterdata_set', many=True, read_only=True)
+
+    class Meta:
+        model = UserData
+        fields = '__all__'
+
+    def __str__(self):
+        return self.username

@@ -1,5 +1,5 @@
-from .models import CustomUser, Profile
-from .serializers import UserSerializer, ProfileSerializer, SocialSerializer
+from .models import CustomUser, Profile, UserData
+from .serializers import UserSerializer, ProfileSerializer, SocialSerializer, UserDataSerializer
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from braces.views import CsrfExemptMixin
@@ -18,6 +18,15 @@ class UserListView(CsrfExemptMixin, generics.ListAPIView):
 class ProfileListUpdateView(CsrfExemptMixin, generics.RetrieveUpdateDestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+
+
+class UserDataListCreateView(generics.ListCreateAPIView):
+    queryset = UserData.objects.all()
+    serializer_class = UserDataSerializer
+
+class UserDataDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserData.objects.all()
+    serializer_class = UserDataSerializer
 
 
 class SocialLoginView(generics.GenericAPIView):
