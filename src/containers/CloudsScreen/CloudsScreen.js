@@ -184,6 +184,12 @@ const CloudsScreen = () => {
           />
           <div className="cloudListItemText">Expo</div>
         </List.Item>
+        <List.Item className="cloudListItem">
+          <List.Item.Meta
+            avatar={<Avatar src="https://airbnb.io/lottie/images/logo.webp" />}
+          />
+          <div className="cloudListItemText">Lottie</div>
+        </List.Item>
       </List>
     </>
   );

@@ -9,7 +9,7 @@ class CustomTokenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TokenModel
-        fields = ('key', 'user', )
+        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
     chapterTitle = serializers.ReadOnlyField(source='chapter.title')

@@ -30,6 +30,7 @@ class ChapterDataSerializer(serializers.ModelSerializer):
 
 class UserDataSerializer(serializers.ModelSerializer):
     lastLogin = serializers.ReadOnlyField(source='user.lastLogin')
+    userId = email = serializers.ReadOnlyField(source='user.id')
     email = serializers.ReadOnlyField(source='user.email')
     joined = serializers.ReadOnlyField(source='user.date_joined')
     username = serializers.ReadOnlyField(source='user.username')

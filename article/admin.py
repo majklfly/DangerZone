@@ -6,7 +6,10 @@ admin.site.site_header = 'DangerZone'
 class SnippetAdmin(admin.ModelAdmin):
     list_display = ('name', 'chapter', 'description')
 
+class SnippetChapter(admin.ModelAdmin):
+    list_display = ('chapter','user','correct_answers', 'completed', 'timestamp')
+
 admin.site.register(Chapter)
 admin.site.register(Article, SnippetAdmin)
-admin.site.register(ChapterData)
+admin.site.register(ChapterData, SnippetChapter)
 admin.site.register(UserData)

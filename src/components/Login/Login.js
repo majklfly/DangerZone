@@ -15,12 +15,10 @@ import "./Login.css";
 
 import server from "../../api/server";
 
-const token = localStorage.getItem("token");
-
 const NormalLoginForm = props => {
   const [form] = Form.useForm();
   const [navigate, setNavigate] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage] = useState("");
 
   if (navigate) {
     return <Redirect to="/homepage/" />;
@@ -28,27 +26,8 @@ const NormalLoginForm = props => {
 
   const handleSubmit = async () => {
     const values = await form.validateFields();
-    console.log(values);
-    server
-      .post("rest-auth/login/", {
-        username: values.username,
-        password: values.password
-      })
-      .then(res => {
-        if (res.status === 200) {
-          localStorage.setItem("token", res.data.key);
-          localStorage.setItem("username", values.username);
-          setNavigate(true);
-          window.location.reload();
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-        setErrorMessage("Olala, try again. Your details are not matching...");
-      });
+    props.login(values.username, values.password);
   };
-
-  console.log("token", token);
 
   const handleGoogleLogin = () => {
     server.get("accounts/google/login").then(res => {
@@ -132,7 +111,9 @@ const NormalLoginForm = props => {
               Login with Facebook account
             </Facebook>
             <Link to="/terms/">Privacy notice</Link>
-            <div style={{ color: "red" }}>{errorMessage}</div>
+            {props.error ? (
+              <div style={{ color: "red" }}>Upps, something went wrong</div>
+            ) : null}
           </>
         )}
       </div>
@@ -141,15 +122,16 @@ const NormalLoginForm = props => {
 };
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    loading: state.loading,
-    error: state.error
+    loading: state.AuthReducer.loading,
+    error: state.AuthReducer.error
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (username, password) =>
+    login: (username, password) =>
       dispatch(actions.authLogin(username, password))
   };
 };

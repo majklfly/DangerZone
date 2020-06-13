@@ -13,7 +13,7 @@ import * as actions from "./store/actions/auth";
 
 const token = localStorage.getItem("token");
 
-console.log(localStorage);
+console.log("hello");
 
 class App extends React.Component {
   componentDidMount() {

@@ -7,7 +7,7 @@ export const authStart = userData => {
   };
 };
 
-export const authSuccess = (token, userData) => {
+export const authSuccess = (token, username) => {
   return {
     type: types.AUTH_SUCCESS,
     token: token,
@@ -36,20 +36,21 @@ export const logout = () => {
 };
 
 export const authLogin = (username, password) => {
+  console.log("auth actions triggered");
   return dispatch => {
     dispatch(authStart());
-    console.log("AuthLogin ", username, password);
-    localStorage.setItem("username", username);
-    const userData = localStorage.getItem("username");
     server
       .post("/rest-auth/login/", { username, password })
       .then(res => {
-        const token = res.data.key;
-        localStorage.setItem("token", token);
-        dispatch(authSuccess(token, userData));
+        if (res.status === 200) {
+          localStorage.setItem("username", username);
+          localStorage.setItem("token", res.data.key);
+          dispatch(authSuccess(res.data.key, username));
+          window.location.reload();
+        }
       })
       .catch(err => {
-        dispatch(authFail(err));
+        dispatch(authFail(err.response.data));
       });
   };
 };
