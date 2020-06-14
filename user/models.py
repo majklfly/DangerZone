@@ -9,24 +9,26 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+
 class UserData(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.user.username
 
-@receiver(post_save, sender=CustomUser)
-def create_userdata(sender,instance, created, **kwargs):
-
-    if created:
-        UserData.objects.create(user=instance)
-
-
-@receiver(post_save, sender=CustomUser)
-def update_userdata(sender, instance, created, **kwargs):
-
-    if created == False:
-        instance.userdata.save()
+# @receiver(post_save, sender=CustomUser)
+# def create_userdata(sender,instance, created, **kwargs):
+#     print(instance)
+#
+#     if created:
+#         UserData.objects.create(user=instance)
+#
+#
+# @receiver(post_save, sender=CustomUser)
+# def update_userdata(sender, instance, created, **kwargs):
+#
+#     if created == False:
+#         instance.userdata.save()
 
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, blank=True, null=True)
