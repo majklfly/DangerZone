@@ -5,7 +5,6 @@ import server from "../../api/server";
 const token = localStorage.getItem("token");
 
 export const getChapter = ChapterId => async dispatch => {
-  console.log("runned", ChapterId);
   await server
     .get(`/chapters/${ChapterId}/`, {
       headers: { authorization: `Token ${token}` }

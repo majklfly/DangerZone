@@ -37,7 +37,7 @@ const ProfileScreen = props => {
               </h2>
             </div>
             <div className="displayDetails">
-              <h2 className="profileLabels">Second Name:</h2>
+              <h2 className="profileLabels">Last Name:</h2>
               <h2 className="profileContent">{props.userData.lastName}</h2>
             </div>
             <div className="displayDetails">

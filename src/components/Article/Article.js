@@ -37,7 +37,7 @@ function Article(props) {
           return (
             <div key={index}>
               <div className="article_name">{item.name}</div>
-              <div>{item.content}</div>
+              <div className="article_content">{item.content}</div>
               <div className="content-container">
                 <div className="articleLeftContainer">
                   <div className="lineIndex">

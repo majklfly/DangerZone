@@ -1,7 +1,7 @@
 import { types } from "./actionTypes";
 import server from "../../api/server";
 
-export const authStart = userData => {
+export const authStart = () => {
   return {
     type: types.AUTH_START
   };
@@ -23,12 +23,7 @@ export const authFail = error => {
 };
 
 export const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("length");
-  localStorage.removeItem("username");
-  localStorage.removeItem("currentChapter");
-  localStorage.removeItem("userId");
-  localStorage.removeItem("persist:root");
+  localStorage.clear();
   window.location.reload();
   return {
     type: types.AUTH_LOGOUT
@@ -47,7 +42,7 @@ export const authLogin = (username, password) => {
           localStorage.setItem("token", res.data.key);
           localStorage.setItem("userId", res.data.user.pk);
           dispatch(authSuccess(res.data.key, userId));
-          // window.location.reload();
+          window.location.reload();
         }
       })
       .catch(err => {
@@ -85,18 +80,8 @@ export const authCheckState = () => {
   return dispatch => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-    if (
-      token === undefined ||
-      token === null ||
-      userId === null ||
-      userId === undefined
-    ) {
-      console.log("authCheck triggered", userId);
-      // dispatch(logout());
-    } else {
-      console.log("autologin", userId);
-      // dispatch(logout());
-      // dispatch(authSuccess(token, userId));
+    if (token) {
+      dispatch(authSuccess(token, userId));
     }
   };
 };
