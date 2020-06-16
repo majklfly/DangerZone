@@ -2,25 +2,30 @@ import { types } from "./actionTypes";
 
 import server from "../../api/server";
 
-const userId = 7;
-const token = localStorage.getItem("token");
-
-export const getUserData = username => async dispatch => {
-  await server
-    .get(`/userdata/${userId}/`, {
-      headers: { authorization: `Token ${token}` }
-    })
-    .then(res => {
-      dispatch({
-        type: types.GET_USERDATA,
-        payload: res.data
-      });
-    })
-    .catch(err => [console.log(err)]);
+export const getUserData = (userId, token) => async dispatch => {
+  const parsedUserId = parseInt(userId);
+  if (token) {
+    await server
+      .get(`/userdata/`, {
+        headers: { authorization: `Token ${token}` }
+      })
+      .then(res => {
+        res.data.map(item => {
+          if (item.userId === parsedUserId) {
+            console.log(item);
+            return dispatch({
+              type: types.GET_USERDATA,
+              payload: item
+            });
+          }
+          return null;
+        });
+      })
+      .catch(err => [console.log(err)]);
+  }
 };
 
 export const setUser = token => async dispatch => {
-  console.log("actions userdata", token);
   await server
     .post(`/social/`, {
       provider: "facebook",
@@ -29,7 +34,8 @@ export const setUser = token => async dispatch => {
     .then(res => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
-      window.location.reload();
+      localStorage.setItem("userId", res.data.id);
+      // window.location.reload();
       dispatch({
         type: types.SET_USER,
         payload: res.data

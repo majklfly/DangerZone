@@ -22,6 +22,7 @@ const initialState = {
 const userDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.GET_USERDATA:
+      console.log("triggered", action.payload);
       return updatedObject(state, {
         id: action.payload.id,
         email: action.payload.email,

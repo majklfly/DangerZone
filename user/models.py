@@ -11,27 +11,7 @@ class CustomUser(AbstractUser):
 
 
 class UserData(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.user.username
-
-# @receiver(post_save, sender=CustomUser)
-# def create_userdata(sender,instance, created, **kwargs):
-#     print(instance)
-#
-#     if created:
-#         UserData.objects.create(user=instance)
-#
-#
-# @receiver(post_save, sender=CustomUser)
-# def update_userdata(sender, instance, created, **kwargs):
-#
-#     if created == False:
-#         instance.userdata.save()
-
-class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     firstName = models.CharField(max_length=200, default=' ')
     lastName = models.CharField(max_length=200, default=' ')
     company = models.CharField(max_length=200, default=' ')
@@ -42,17 +22,10 @@ class Profile(models.Model):
     instagram = models.CharField(max_length=200, default=' ')
 
     def __str__(self):
-        return self.firstName
+        return self.user.username
 
 @receiver(post_save, sender=CustomUser)
-def create_profile(sender,instance, created, **kwargs):
+def create_userdata(sender,instance, created, **kwargs):
 
     if created:
-        Profile.objects.create(user=instance)
-
-
-@receiver(post_save, sender=CustomUser)
-def update_profile(sender, instance, created, **kwargs):
-
-    if created == False:
-        instance.profile.save()
+        UserData.objects.create(user=instance)

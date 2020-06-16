@@ -1,5 +1,5 @@
 from django.db import models
-from user.models import CustomUser, Profile, UserData
+from user.models import CustomUser, UserData
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 

@@ -15,7 +15,7 @@ const token = localStorage.getItem("token");
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.onTryAutoSignup();
+    // this.props.onTryAutoSignup();
   }
 
   render() {

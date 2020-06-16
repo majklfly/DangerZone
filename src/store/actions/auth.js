@@ -7,11 +7,11 @@ export const authStart = userData => {
   };
 };
 
-export const authSuccess = (token, username) => {
+export const authSuccess = (token, userId) => {
   return {
     type: types.AUTH_SUCCESS,
     token: token,
-    userData: localStorage.getItem("username")
+    userId: userId
   };
 };
 
@@ -36,17 +36,18 @@ export const logout = () => {
 };
 
 export const authLogin = (username, password) => {
-  console.log("auth actions triggered");
   return dispatch => {
     dispatch(authStart());
     server
       .post("/rest-auth/login/", { username, password })
       .then(res => {
         if (res.status === 200) {
-          localStorage.setItem("username", username);
+          const userId = res.data.user.pk;
+          localStorage.setItem("username", res.data.user.username);
           localStorage.setItem("token", res.data.key);
-          dispatch(authSuccess(res.data.key, username));
-          window.location.reload();
+          localStorage.setItem("userId", res.data.user.pk);
+          dispatch(authSuccess(res.data.key, userId));
+          // window.location.reload();
         }
       })
       .catch(err => {
@@ -66,12 +67,16 @@ export const authSignup = (username, email, password1, password2) => {
         password2
       })
       .then(res => {
+        console.log("triggered", res);
         const token = res.data.key;
-        localStorage.setItem("token", token);
+        localStorage.setItem("username", res.data.user.username);
+        localStorage.setItem("token", res.data.key);
+        localStorage.setItem("userId", res.data.user.pk);
         dispatch(authSuccess(token));
+        window.location.reload();
       })
       .catch(err => {
-        dispatch(authFail(err));
+        dispatch(authFail(err.response.data));
       });
   };
 };
@@ -79,10 +84,19 @@ export const authSignup = (username, email, password1, password2) => {
 export const authCheckState = () => {
   return dispatch => {
     const token = localStorage.getItem("token");
-    if (token === undefined) {
-      dispatch(logout());
+    const userId = localStorage.getItem("userId");
+    if (
+      token === undefined ||
+      token === null ||
+      userId === null ||
+      userId === undefined
+    ) {
+      console.log("authCheck triggered", userId);
+      // dispatch(logout());
     } else {
-      dispatch(authSuccess(token));
+      console.log("autologin", userId);
+      // dispatch(logout());
+      // dispatch(authSuccess(token, userId));
     }
   };
 };

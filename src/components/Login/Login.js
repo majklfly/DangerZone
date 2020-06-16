@@ -18,7 +18,6 @@ import server from "../../api/server";
 const NormalLoginForm = props => {
   const [form] = Form.useForm();
   const [navigate, setNavigate] = useState(false);
-  const [errorMessage] = useState("");
 
   if (navigate) {
     return <Redirect to="/homepage/" />;

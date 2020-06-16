@@ -1,5 +1,5 @@
-from .models import CustomUser, Profile, UserData
-from .serializers import UserSerializer, ProfileSerializer, SocialSerializer, UserDataSerializer
+from .models import CustomUser, UserData
+from .serializers import UserSerializer, SocialSerializer, UserDataSerializer
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from braces.views import CsrfExemptMixin
@@ -13,11 +13,6 @@ from social_core.exceptions import MissingBackend, AuthTokenError, AuthForbidden
 class UserListView(CsrfExemptMixin, generics.ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-
-
-class ProfileListUpdateView(CsrfExemptMixin, generics.RetrieveUpdateDestroyAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
 
 
 class UserDataListCreateView(generics.ListCreateAPIView):

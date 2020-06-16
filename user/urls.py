@@ -11,7 +11,6 @@ urlpatterns = [
     path('userdata/', views.UserDataListCreateView.as_view()),
     path('userdata/<pk>/', views.UserDataDetailView.as_view()),
     path('social/', views.SocialLoginView.as_view()),
-    path('profile/<pk>/', views.ProfileListUpdateView.as_view()),
     path('api/auth/', include('knox.urls')),
     path('api/auth/register/', RegisterAPI.as_view()),
 ]

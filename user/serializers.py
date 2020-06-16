@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser, Profile, UserData
+from .models import CustomUser, UserData
 from article.serializers import ChapterSerializer, ChapterDataSerializer
 from rest_auth.serializers import UserDetailsSerializer
 from rest_auth.models import TokenModel
@@ -36,17 +36,6 @@ def create(self, validated_data):
         password=validated_data['password']
         )
     return user
-
-
-class ProfileSerializer(serializers.ModelSerializer):
-    username = serializers.ReadOnlyField(source='user.username')
-    username = serializers.ReadOnlyField(source='user.email')
-    joined = serializers.ReadOnlyField(source='user.date_joined')
-    last_login = serializers.ReadOnlyField(source='user.last_login')
-
-    class Meta:
-        model = Profile
-        fields = '__all__'
 
 
 class SocialSerializer(serializers.Serializer):

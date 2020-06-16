@@ -11,6 +11,7 @@ import { getUserData } from "../../store/actions/userData";
 import server from "../../api/server";
 import "./UserBoard.css";
 
+const userId = localStorage.getItem("userId");
 const token = localStorage.getItem("token");
 
 const UserBoard = props => {
@@ -31,7 +32,7 @@ const UserBoard = props => {
   };
   calculatePercentage();
 
-  useEffect(props.getUserData, []);
+  useEffect(() => props.getUserData(userId, token), []); //eslint-disable-line
 
   return (
     <>
@@ -63,14 +64,15 @@ const UserBoard = props => {
 
 const mapStateToProps = state => {
   return {
+    token: state.AuthReducer.token,
     userData: state.userDataReducer
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserData: () => {
-      dispatch(getUserData());
+    getUserData: (userId, token) => {
+      dispatch(getUserData(userId, token));
     }
   };
 };

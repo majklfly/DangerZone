@@ -1,44 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, Button } from "antd";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import icon from "../../assets/icon.jpeg";
 import * as actions from "../../store/actions/auth";
 import "../Login/Login.css";
 
-import server from "../../api/server";
-
 const SignupForm = props => {
   const [form] = Form.useForm();
-  const [navigate, setNavigate] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  if (navigate) {
-    return <Redirect to="/homepage/" />;
-  }
 
   const handleSubmit = async () => {
     const values = await form.validateFields();
-    server
-      .post("rest-auth/registration", {
-        username: values.username,
-        email: values.email,
-        password1: values.password1,
-        password2: values.password2
-      })
-      .then(res => {
-        if (res.status === 201) {
-          localStorage.setItem("token", res.data.key);
-          setNavigate(true);
-          window.location.reload();
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-        setErrorMessage("Olala, something went wrong.");
-      });
+    const { username, email, password1, password2 } = values;
+    props.onAuth(username, email, password1, password2);
   };
 
   return (
@@ -127,7 +102,15 @@ const SignupForm = props => {
                 </Button>
               </Form.Item>
             </Form>
-            <div style={{ color: "red" }}>{errorMessage}</div>
+            {props.error !== null ? (
+              <div style={{ color: "red" }}>{props.error.username}</div>
+            ) : null}
+            {props.error !== null ? (
+              <div style={{ color: "red" }}>{props.error.email}</div>
+            ) : null}
+            {props.error !== null ? (
+              <div style={{ color: "red" }}>{props.error.password1}</div>
+            ) : null}
           </>
         )}
       </div>
@@ -137,8 +120,8 @@ const SignupForm = props => {
 
 const mapStateToProps = state => {
   return {
-    loading: state.loading,
-    error: state.error
+    loading: state.AuthReducer.loading,
+    error: state.AuthReducer.error
   };
 };
 
