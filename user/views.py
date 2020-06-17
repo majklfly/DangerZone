@@ -1,5 +1,6 @@
 from .models import CustomUser, UserData
 from .serializers import UserSerializer, SocialSerializer, UserDataSerializer
+from rest_framework.mixins import UpdateModelMixin
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from braces.views import CsrfExemptMixin
@@ -19,7 +20,7 @@ class UserDataListCreateView(generics.ListCreateAPIView):
     queryset = UserData.objects.all()
     serializer_class = UserDataSerializer
 
-class UserDataDetailView(generics.RetrieveUpdateDestroyAPIView):
+class UserDataDetailView(generics.UpdateAPIView):
     queryset = UserData.objects.all()
     serializer_class = UserDataSerializer
 

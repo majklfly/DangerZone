@@ -17,12 +17,12 @@ describe("AuthReducer", () => {
     const payload = { error: null, loading: true, token: null };
     const newState = AuthReducer(initialState, {
       type: types.AUTH_START,
-      payload: payload
+      payload
     });
     expect(newState).toEqual(payload);
   });
 
-  it("AUTH_SUCESS, should return a new state if receiving type", () => {
+  it("AUTH_SUCCESS, should return a new state if receiving type", () => {
     const payload = { error: null, loading: false, token: null };
     const newState = AuthReducer(initialState, {
       type: types.AUTH_SUCESS,
@@ -35,7 +35,7 @@ describe("AuthReducer", () => {
     const payload = { error: undefined, loading: false, token: null };
     const newState = AuthReducer(initialState, {
       type: types.AUTH_FAIL,
-      payload: payload
+      payload
     });
     expect(newState).toEqual(payload);
   });

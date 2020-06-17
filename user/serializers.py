@@ -51,13 +51,6 @@ class UserDataSerializer(serializers.ModelSerializer):
     username = serializers.ReadOnlyField(source='user.username')
     firstName = serializers.ReadOnlyField(source='user.first_name')
     lastName = serializers.ReadOnlyField(source='user.last_name')
-    profileId = serializers.ReadOnlyField(source='user.profile.id')
-    facebook = serializers.ReadOnlyField(source='user.profile.facebook')
-    twitter = serializers.ReadOnlyField(source='user.profile.twitter')
-    instagram = serializers.ReadOnlyField(source='user.profile.instagram')
-    company = serializers.ReadOnlyField(source='user.profile.company')
-    position = serializers.ReadOnlyField(source='user.profile.position')
-    country = serializers.ReadOnlyField(source='user.profile.country')
     chapterdata = ChapterDataSerializer(source='chapterdata_set', many=True, read_only=True)
 
     class Meta:
