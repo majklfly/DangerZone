@@ -20,6 +20,7 @@ class UserData(models.Model):
     facebook = models.CharField(max_length=200, default=' ')
     twitter = models.CharField(max_length=200, default=' ')
     instagram = models.CharField(max_length=200, default=' ')
+    reddit = models.CharField(max_length=200, default=' ')
 
     def __str__(self):
         return self.user.username

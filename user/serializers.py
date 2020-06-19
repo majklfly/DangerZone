@@ -30,8 +30,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 def create(self, validated_data):
     user = CustomUser.objects.create(
         username=validated_data['username'],
-        first_name=validated_data['first_name'],
-        last_name=validated_data['last_name'],
         email=validated_data['email'],
         password=validated_data['password']
         )
@@ -49,8 +47,6 @@ class UserDataSerializer(serializers.ModelSerializer):
     email = serializers.ReadOnlyField(source='user.email')
     joined = serializers.ReadOnlyField(source='user.date_joined')
     username = serializers.ReadOnlyField(source='user.username')
-    firstName = serializers.ReadOnlyField(source='user.first_name')
-    lastName = serializers.ReadOnlyField(source='user.last_name')
     chapterdata = ChapterDataSerializer(source='chapterdata_set', many=True, read_only=True)
 
     class Meta:

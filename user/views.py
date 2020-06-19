@@ -20,7 +20,7 @@ class UserDataListCreateView(generics.ListCreateAPIView):
     queryset = UserData.objects.all()
     serializer_class = UserDataSerializer
 
-class UserDataDetailView(generics.UpdateAPIView):
+class UserDataDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = UserData.objects.all()
     serializer_class = UserDataSerializer
 
