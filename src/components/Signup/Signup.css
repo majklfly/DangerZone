@@ -1,0 +1,50 @@
+.base-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  font-size: 24px;
+  font-family: "Open Sans", sans-serif;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.SignupImage {
+  width: 21vw;
+  max-width: 300px;
+  max-height: 300px;
+  height: 20vw;
+  border-radius: 50%;
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup-form-group {
+  display: flex;
+  width: 90%;
+  height: 50px;
+}
+.signup-form-group input {
+  margin-top: 6px;
+  width: 100%;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  background-color: #f3f3f3;
+  border: 1px solid darkgray;
+  border-radius: 4px;
+  margin-bottom: 31px;
+  transition: all 250ms ease-in-out;
+  outline: none;
+}
+.signupErrorMessage {
+  margin-top: px;
+  background-color: blue;
+}
+.footer {
+  margin-top: 1em;
+}

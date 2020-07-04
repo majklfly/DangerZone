@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## DangerZone - readme
 
-## Available Scripts
+### What does the project do?
 
-In the project directory, you can run:
+DangerZone has been designated to help personnel in the gastronomy of english speaking world to establish, update or increment knowledge needed to store, produce or serve the food. The application is built in explaining and testing structures, finished with certification. Each structure is connected to the database, where it can be anytime updated by an approved user designated by admin.
 
-### `npm start`
+### Who is the project for?
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+There is a great number of people working in gastronomy who need to have a basic knowledge of HACCP Level 2 and be able to implement it in their daily tasks. DangerZone addresses this need and serves the purpose of educating and testing those workers. The app can be used by companies or individuals and by the certification of content it must be provided for free.
+This project serves a second purpose. DangerZone is first the functional production of the author and meant to be used for personal development of the author. It is a subject to new features and additional updates of the author.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Why is it different?
 
-### `npm test`
+The short answer is “because it is fully inclusive and free”. There is no need to have any previous knowledge, for login is needed only a short registration or facebook account and there are no advertisements or payments in the entire application. There is an app for android users and a website accessible from anywhere.
+The author recognised the need of hygiene standards in the food production environment and addresses those needs with a completely free app to uplift those standards by their users.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### How do I use it?
 
-### `npm run build`
+There is only a need to register on the website using email, password and username or login with facebook account. For the mobile version there is a need to have an android operating system and access to google play.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How does it work?
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+After login, the user is directed to a list of lessons. Each lesson contains lists of useful information relevant to the lesson and by the end of each lesson there is a quiz, which evaluates the knowledge of the reader. After each successfully finished lesson the title of the lesson is added to the certificate.
+There is a second access from the server side of the application. This access is only for approved users to update content of the project or access data of some or each user.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Which technology has been used?
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This is a full stack application, which uses Django-rest-framework with postgres as a backend, ReactJS and React Native as frontend and Jest with Enzyme for unit testing. There is a full list of frameworks and libraries used on michalmucha.info

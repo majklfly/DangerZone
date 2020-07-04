@@ -16,6 +16,7 @@
     "fetch-mock": "^9.10.1",
     "font-awesome": "^4.7.0",
     "jspdf": "^1.5.3",
+    "lottie-web": "^5.7.0",
     "moxios": "^0.4.0",
     "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",

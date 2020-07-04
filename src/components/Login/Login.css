@@ -15,43 +15,52 @@
   height: 100%;
   padding: 10px;
 }
-.image {
-  width: 20vw;
+.login_image {
+  width: 25vw;
+  max-width: 300px;
+  height: 25vw;
+  max-height: 300px;
+  border-radius: 100px;
   align-self: center;
   padding-top: 20px;
 }
-.form {
-  padding-top: 200vh;
-  border: 10px black solid;
+.login-form-container {
   display: flex;
-  flex-direction: row;
-  font-size: 16px;
+  flex-direction: column;
+  align-items: center;
+  height: 20vh;
 }
-.form-group-input {
+.login-form-input {
   border-radius: 6px;
   min-width: 10em;
   min-height: 2.5em;
   padding: 0px 10px;
+  margin-top: 15px;
   height: 2em;
-  font-size: 14px;
-  background-color: #f3f3f3;
-  border-color: #CDCDCD;
-  transition: all 250ms ease-in-out;
+  width: 90%;
+  outline: none;
+  font-size: 1rem;
+  color: darkgray;
+  border: 1px solid darkgray;
 }
+.login-form-input::placeholder {
+  font-size: 1rem;
+  color: lightgray;
+}
+
 .input:hover {
   background-color: #ffffff;
   box-shadow: 0px 0px 14px 0.3px #0e81ce96;
 }
 .form-group:focus {
-  outline: none;
   box-shadow: 0px 0px 12px 0.8px #3474dbb2;
 }
 .buttonSubmit {
-  margin: -10px;
+  margin: 10px;
   top: 8px;
   width: 8em;
   height: 2.3em;
-  background-color: #FF7110;
+  background-color: #ff7110;
   border-radius: 5px;
   color: white;
   font-size: 15px;
@@ -61,17 +70,9 @@
   border-color: #364d79;
   box-shadow: 0px 0px 14px 0.3px #0e81ce96;
 }
-.googleLogin {
-  margin: 5px;
-}
-.googleLogin:hover {
-  box-shadow: 0px 0px 14px 0.3px #0e81ce96;
-  color: black;
-  border-color: black;
-}
 .footer {
-    margin-top: 3em;
+  margin-top: 3em;
 }
 .footer-signup {
-    margin-top: -4em;
+  margin-top: -4em;
 }

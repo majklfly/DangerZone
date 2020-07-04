@@ -34,17 +34,17 @@
   position: absolute;
   width: 35vw;
   min-width: 30vw;
-  height: 110%;
-  top:-5%;
+  height: 100%;
+  top: 5%;
   left: 50%;
   z-index: 2;
   padding: 17px 10px;
   transition: transform 200ms ease-in-out;
-  transform: translateX(-50%)
+  transform: translateX(-50%);
 }
 .right-side {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: flex-end;
   height: 80%;
   background-color: #ff7110;

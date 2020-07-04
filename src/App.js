@@ -13,6 +13,9 @@ import * as actions from "./store/actions/auth";
 
 const token = localStorage.getItem("token");
 
+const logo = document.querySelectorAll("#logo");
+console.log(logo);
+
 class App extends React.Component {
   componentDidMount() {
     this.props.onTryAutoSignup();
@@ -39,19 +42,19 @@ class App extends React.Component {
     }
   }
   static navigationOptions = {
-    title: "hello"
+    title: "hello",
   };
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.token !== null
+    isAuthenticated: state.token !== null,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
+    onTryAutoSignup: () => dispatch(actions.authCheckState()),
   };
 };
 

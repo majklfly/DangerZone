@@ -20,8 +20,8 @@ class LoginScreen extends React.Component {
       this.rightSide.classList.add("right");
     }
 
-    this.setState(prevState => ({
-      isLoggingActive: !prevState.isLoggingActive
+    this.setState((prevState) => ({
+      isLoggingActive: !prevState.isLoggingActive,
     }));
   }
 
@@ -35,20 +35,20 @@ class LoginScreen extends React.Component {
             <div className="container" data-test="container">
               {isLoggingActive && (
                 <NormalLoginForm
-                  containerRef={ref => (this.current = ref)}
+                  containerRef={(ref) => (this.current = ref)}
                   data-test="LoginForm"
                 />
               )}
               {!isLoggingActive && (
                 <WrappedNormalSignupForm
-                  containerRef={ref => (this.current = ref)}
+                  containerRef={(ref) => (this.current = ref)}
                   data-test="SignupForm"
                 />
               )}
             </div>
             <RightSide
               current={current}
-              containerRef={ref => (this.rightSide = ref)}
+              containerRef={(ref) => (this.rightSide = ref)}
               onClick={this.changeState.bind(this)}
             />
           </div>
@@ -58,7 +58,7 @@ class LoginScreen extends React.Component {
   }
 }
 
-const RightSide = props => {
+const RightSide = (props) => {
   return (
     <div
       className="right-side"

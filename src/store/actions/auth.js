@@ -3,7 +3,7 @@ import server from "../../api/server";
 
 export const authStart = () => {
   return {
-    type: types.AUTH_START
+    type: types.AUTH_START,
   };
 };
 
@@ -11,14 +11,14 @@ export const authSuccess = (token, userId) => {
   return {
     type: types.AUTH_SUCCESS,
     token: token,
-    userId: userId
+    userId: userId,
   };
 };
 
-export const authFail = error => {
+export const authFail = (error) => {
   return {
     type: types.AUTH_FAIL,
-    error: error
+    error: error,
   };
 };
 
@@ -26,16 +26,16 @@ export const logout = () => {
   localStorage.clear();
   window.location.reload();
   return {
-    type: types.AUTH_LOGOUT
+    type: types.AUTH_LOGOUT,
   };
 };
 
 export const authLogin = (username, password) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(authStart());
     server
       .post("/rest-auth/login/", { username, password })
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           const userId = res.data.user.pk;
           localStorage.setItem("username", res.data.user.username);
@@ -45,24 +45,23 @@ export const authLogin = (username, password) => {
           window.location.reload();
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(authFail(err.response.data));
       });
   };
 };
 
 export const authSignup = (username, email, password1, password2) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(authStart());
     server
       .post("/rest-auth/registration", {
         username,
         email,
         password1,
-        password2
+        password2,
       })
-      .then(res => {
-        console.log("triggered", res);
+      .then((res) => {
         const token = res.data.key;
         localStorage.setItem("username", res.data.user.username);
         localStorage.setItem("token", res.data.key);
@@ -70,14 +69,14 @@ export const authSignup = (username, email, password1, password2) => {
         dispatch(authSuccess(token));
         window.location.reload();
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(authFail(err.response.data));
       });
   };
 };
 
 export const authCheckState = () => {
-  return dispatch => {
+  return (dispatch) => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     if (token) {

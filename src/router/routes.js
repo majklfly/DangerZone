@@ -16,19 +16,19 @@ const BaseRouter = () => {
   const navLinks = [
     {
       text: "Homepage",
-      path: "/homepage/",
-      icon: "icon ion-md-home"
+      path: "/",
+      icon: "icon ion-md-home",
     },
     {
-      text: "Technology clouds",
+      text: "Used Technologies",
       path: "/clouds/",
-      icon: "icon ion-md-contact"
+      icon: "icon ion-md-contact",
     },
     {
       text: "Food safety Level 2",
       path: "/chapters/",
-      icon: "icon ion-md-school"
-    }
+      icon: "icon ion-md-school",
+    },
   ];
 
   return (
@@ -37,7 +37,7 @@ const BaseRouter = () => {
         <QuizProvider>
           <ResponsiveNavigation navLinks={navLinks} />
           <div>
-            <Route exact path="/homepage/" component={HomepageScreen} />
+            <Route exact path="/" component={HomepageScreen} />
             <Route exact path="/clouds/" component={CloudsScreen} />
             <Route exact path="/chapters/" component={ChaptersScreen} />
             <Route exact path="/chapter/" component={ArticlesScreen} />
