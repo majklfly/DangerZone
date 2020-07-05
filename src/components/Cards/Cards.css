@@ -10,84 +10,12 @@
 }
 .active-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  width: 27vw;
+  width: 300px;
 }
 .spinnerCards {
   position: absolute;
   left: 50vw;
-  top: 30vh;
-}
-
-.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3em;
-  background-color: #fdbb77;
-  border: 5px solid #4f6eab;
-  opacity: 1;
-  color: #4f6eab;
-  height: 11vw;;
-  width: 100%;
-  margin: 10px;
-}
-.active::before, .active::after{
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 7px;
-  background-color: #fdbb77;
-  transform: skewX(50deg);
-  transition: 0.4s linear;
-}
-.active::before{
-  top: -4px;
-  left: 10%;
-  margin-top: -1px;
-}
-.active::after{
-  bottom: -4px;
-  right: 10%;
-  margin-bottom: -1px;
-}
-.active:hover::before {
-  left: 80%;
-}
-.active:hover::after {
-  right: 80%;
-}
-
-
-.inactive {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3em;
-  background-color: #fdbb77;
-  border: 5px solid #d13400;
-  opacity: 1;
-  color: #d13400;
-  height: 11vw;;
-  width: 27vw;
-  margin: 10px;
-}
-.inactive::before, .inactive::after{
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 7px;
-  background-color: #fdbb77;
-  transform: skewX(50deg);
-  transition: 0.4s linear;
-}
-.inactive::before{
-  top: -4px;
-  left: 80%;
-  margin-top: -1px;
-}
-.inactive::after{
-  bottom: -4px;
-  right: 80%;
-  margin-bottom: -1px;
+  margin-top: 40%;
 }

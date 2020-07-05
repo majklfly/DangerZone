@@ -7,9 +7,11 @@ import { getChapters, getChapter } from "../../store/actions/chapter";
 import { getUserData } from "../../store/actions/userData";
 import CustomCard from "../Card/Card";
 
+import { Spin } from "antd";
+
 import "./Cards.css";
 
-const Cards = props => {
+const Cards = (props) => {
   const history = useHistory();
 
   const chapters = [];
@@ -17,10 +19,10 @@ const Cards = props => {
 
   const sortChapters = () => {
     if (props.chapters.chapters !== undefined) {
-      props.chapters.chapters.map(item => {
+      props.chapters.chapters.map((item) => {
         return chapters.push([item.id, item.title]);
       });
-      props.completedChapters[0].map(item => {
+      props.completedChapters[0].map((item) => {
         return item.completed === true
           ? completedChapters.push(item.chapterTitle)
           : null;
@@ -42,60 +44,64 @@ const Cards = props => {
 
   return (
     <>
-      <div className="containerCards" data-test="container">
-        <Row gutter={16} className="cards" data-test="cards">
-          {chapters.map((chapter, index) => {
-            if (completedChapters.includes(chapter[1])) {
-              return (
-                <div className="active-container" key={index}>
-                  <CustomCard
-                    className="inactive"
-                    data-test="inactive"
-                    bordered={true}
+      {chapters.length === 0 ? (
+        <Spin size="large" className="spinnerCards" />
+      ) : (
+        <div className="containerCards" data-test="container">
+          <Row gutter={16} className="cards" data-test="cards">
+            {chapters.map((chapter, index) => {
+              if (completedChapters.includes(chapter[1])) {
+                return (
+                  <div className="active-container" key={index}>
+                    <CustomCard
+                      className="inactive"
+                      data-test="inactive"
+                      bordered={true}
+                      key={index}
+                      index={index + 1}
+                      title={chapter[1]}
+                      id={chapter.id}
+                      hoverable={false}
+                    ></CustomCard>
+                  </div>
+                );
+              } else {
+                return (
+                  <div
+                    className="active-container"
+                    onClick={(e) => handleClick(e, chapter[0])}
                     key={index}
-                    index={index + 1}
-                    title={chapter[1]}
-                    id={chapter.id}
-                    hoverable={false}
-                  ></CustomCard>
-                </div>
-              );
-            } else {
-              return (
-                <div
-                  className="active-container"
-                  onClick={e => handleClick(e, chapter[0])}
-                  key={index}
-                  data-test="active-container"
-                >
-                  <CustomCard
-                    className="active"
-                    data-test="active"
-                    bordered={true}
-                    index={index + 1}
-                    title={chapter[1]}
-                    id={chapter.id}
-                    hoverable={true}
-                  ></CustomCard>
-                </div>
-              );
-            }
-          })}
-        </Row>
-      </div>
+                    data-test="active-container"
+                  >
+                    <CustomCard
+                      className="active"
+                      data-test="active"
+                      bordered={true}
+                      index={index + 1}
+                      title={chapter[1]}
+                      id={chapter.id}
+                      hoverable={true}
+                    ></CustomCard>
+                  </div>
+                );
+              }
+            })}
+          </Row>
+        </div>
+      )}
     </>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     chapters: state.chapterReducer,
     userData: state.userDataReducer,
-    completedChapters: [state.userDataReducer.chapterdata]
+    completedChapters: [state.userDataReducer.chapterdata],
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getChapters: () => {
       dispatch(getChapters());
@@ -103,9 +109,9 @@ const mapDispatchToProps = dispatch => {
     getUserData: () => {
       dispatch(getUserData());
     },
-    getChapter: chapterId => {
+    getChapter: (chapterId) => {
       dispatch(getChapter(chapterId));
-    }
+    },
   };
 };
 
