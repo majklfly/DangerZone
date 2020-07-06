@@ -21,10 +21,14 @@ class ChapterData(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True)
 
     class Meta:
-        ordering = ['-timestamp',]
+        ordering = ['-timestamp', ]
 
     def __str__(self):
-        return self.chapter.title
+        return self.chapter
+
+
+def upload_path(instance, filename):
+    return '/'.join(['articles', filename])
 
 
 class Article(models.Model):
@@ -41,11 +45,12 @@ class Article(models.Model):
     line8 = models.CharField(max_length=1000, null=True, blank=True)
     line9 = models.CharField(max_length=1000, null=True, blank=True)
     line10 = models.CharField(max_length=1000, null=True, blank=True)
+    image = models.ImageField(blank=True, null=True, upload_to=upload_path)
     created = models.DateTimeField(auto_now_add=True)
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True)
 
     class Meta:
-        ordering = ['created',]
+        ordering = ['created', ]
 
     def __str__(self):
         return self.name

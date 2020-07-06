@@ -4,34 +4,35 @@ import server from "../../api/server";
 
 const token = localStorage.getItem("token");
 
-export const getChapter = ChapterId => async dispatch => {
+export const getChapter = (ChapterId) => async (dispatch) => {
   await server
     .get(`/chapters/${ChapterId}/`, {
-      headers: { authorization: `Token ${token}` }
+      headers: { authorization: `Token ${token}` },
     })
-    .then(res => {
+    .then((res) => {
+      console.log("triggered", res);
       dispatch({
         type: types.GET_CHAPTER,
-        payload: res.data
+        payload: res.data,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
 
-export const getChapters = () => async dispatch => {
+export const getChapters = () => async (dispatch) => {
   await server
     .get("/chapters/", {
-      headers: { authorization: `Token ${token}` }
+      headers: { authorization: `Token ${token}` },
     })
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: types.GET_CHAPTERS,
-        payload: res.data
+        payload: res.data,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
