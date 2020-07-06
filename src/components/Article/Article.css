@@ -1,68 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Sans|Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css?family=PT+Sans|Permanent+Marker&display=swap");
 
 .container-article {
-  background-color: green;
-  height: 83%;
-  z-index: 1;
-}
-
-.article_name {
-  color: white;
-  padding-top: 1em;
-  font-size: 1.5vw;
-  font-family: 'Permanent Marker';
-}
-.article_content {
-  color: white;
-  font-family: 'PT Sans';
-  font-size: 1vw;
-  text-align: left;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
-}
-.content-container {
   display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-left: 15px;
+  width: 80vw;
+  height: 80vh;
+  background-color: #364d79;
+  margin-left: 10vw;
+  margin-top: 8%;
+  justify-content: center;
+  position: relative;
 }
-.articleLeftContainer {
-  display: flex;
-  flex-direction: column;
-  width: 35vw;
-  height: 30vh;
+.carouselArticle {
+  width: 80vw;
+  height: 80vh;
 }
-.articleRightContainer {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-  width: 35vw;
-  height: 30vh;
+.carousel-article {
+  width: 80vw;
+  height: 800px;
 }
-.lineIndex {
-  display: flex;
-  justify-content: flex-start;
-  font-family: 'PT Sans';
-  text-align: left;
-  width: 33.7vw;
-  color: white;
-  align-self: flex-start;
-  margin: 3px;
-  font-size: 1vw;
+.articleSpinner {
+  position: absolute;
+  left: 50vw;
+  top: 45vh;
 }
-
-
 .rightoutlined {
   display: flex;
   position: absolute;
   align-items: center;
   background-color: grey;
-  z-index: 5;
-  width: 3em;
+  z-index: 2;
+  width: 3%;
+  right: 0;
+  font-size: 4rem;
   color: white;
   height: 100%;
-  right: 0;
   opacity: 0;
 }
 
@@ -76,12 +47,12 @@
   position: absolute;
   align-items: center;
   background-color: grey;
-  z-index: 0;
-  width: 3em;
+  width: 3%;
   color: white;
   height: 100%;
+  z-index: 2;
   opacity: 0;
-  top: 0;
+  font-size: 4rem;
   left: 0;
 }
 

@@ -1,0 +1,45 @@
+.ArticleLayoutTwoContainer {
+  width: 100%;
+  height: 100vh;
+  padding: 5%;
+  position: relative;
+}
+.ArticleLayoutTwoContainer h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 300%;
+  font-weight: bold;
+  margin: 3%;
+  font-family: var(--textFont-primary);
+}
+.ArticleLayoutTwoLeft {
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  height: 30vh;
+}
+.ArticleLayoutTwoContent {
+  width: 100%;
+}
+.ArticleLayoutTwoContentContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3%;
+}
+.ArticleLayoutTwoRight {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  width: 35vw;
+  height: 30vh;
+}
+.ArticleLayoutTwoContainer h3 {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  color: white;
+  align-self: flex-start;
+  margin: 3px;
+  font-size: 110%;
+  font-family: var(--textFont-primary);
+}

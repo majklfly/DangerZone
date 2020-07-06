@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Sans|Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css?family=PT+Sans|Permanent+Marker&display=swap");
 
 .spinner {
   display: flex;
@@ -11,21 +11,12 @@
   width: 100%;
   top: 0;
   height: 100%;
-
 }
 .container-quiz {
   width: 70%;
   margin: 10% 0% 15% 15%;
   position: absolute;
   height: 600px;
-}
-
-.ant-carousel .slick-slide {
-  text-align: center;
-  height: 500px;
-  line-height: 40px;
-  background: #364d79;
-  overflow: hidden;
 }
 
 .ant-carousel .slick-slide h3 {
@@ -43,7 +34,7 @@
 .question-label {
   color: white;
   padding-top: 0.5em;
-  font-family: 'Permanent Marker';
+  font-family: "Permanent Marker";
 }
 
 .container-answers {
@@ -55,13 +46,13 @@
 
 .answer-buttons {
   width: 70%;
-  background-color: #FF7110;
+  background-color: #ff7110;
   margin: 0.4em;
-  font-family: 'PT Sans';
+  font-family: "PT Sans";
 }
 .answer-buttons:focus {
   width: 70%;
-  background-color: #FF7110;
+  background-color: #ff7110;
   margin: 0.4em;
   color: black;
 }
@@ -70,8 +61,8 @@
   width: 75%;
   height: 2.5em;
   background-color: #364d79;
-  color: #FF7110;
-  border-color: #FF7110;
+  color: #ff7110;
+  border-color: #ff7110;
   transition: 0.4s;
 }
 .container-indicator {

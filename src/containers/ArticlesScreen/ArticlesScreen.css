@@ -1,0 +1,17 @@
+.carousel {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+}
+.testMeButton {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  width: 60%;
+  background-color: #ff7110;
+  border: 2px solid #ff7110;
+  transform: translate(-50%);
+}

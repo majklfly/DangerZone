@@ -2,6 +2,10 @@ import React, { useRef } from "react";
 import { Carousel } from "antd";
 import "./Article.css";
 import { Spin } from "antd";
+import { ArticleLayoutOne } from "./ArticleLayoutOne/ArticleLayoutOne";
+import { ArticleLayoutTwo } from "./ArticleLayoutTwo/ArticleLayoutTwo";
+import { ArticleLayoutThree } from "./ArticleLayoutThree/ArticleLayoutThree";
+import { ArticleLayoutFour } from "./ArticleLayoutFour/ArticleLayoutFour";
 
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 
@@ -17,72 +21,45 @@ function Article(props) {
   };
 
   if (props.articles === undefined) {
-    return <Spin size="large" />;
+    return <Spin size="large" className="articleSpinner" />;
   }
 
   return (
     <div className="container-article" data-test="articleContainer">
-      <RightOutlined
-        className="rightoutlined"
-        onClick={toggleNext}
-        data-test="articleToggleRight"
+      <LeftOutlined
+        className="leftoutlined"
+        data-test="articleToggleLeft"
+        onClick={togglePrevious}
       />
       <Carousel
-        className="container-carousel"
+        className="carouselArticle"
         data-test="articleCarousel"
         ref={ref}
         dots={false}
       >
         {props.articles.map((item, index) => {
           return (
-            <div key={index}>
-              {console.log(item)}
-              <div className="article_name">{item.name}</div>
-              <div className="article_content">{item.content}</div>
-              <div className="content-container">
-                <div className="articleLeftContainer">
-                  <div className="lineIndex">
-                    {item.line1 !== null ? item.line1 : null}
-                  </div>
-                  <div className="lineIndex">
-                    {item.line2 !== null ? item.line2 : null}
-                  </div>
-                  <div className="lineIndex">
-                    {item.line3 !== null ? item.line3 : null}
-                  </div>
-                  <div className="lineIndex">
-                    {item.line4 !== null ? item.line4 : null}
-                  </div>
-                  <div className="lineIndex">
-                    {item.line5 !== null ? item.line5 : null}
-                  </div>
-                </div>
-                <div className="articleRightContainer">
-                  <div className="lineIndex">
-                    {item.line6 !== null ? item.line6 : null}
-                  </div>
-                  <div className="lineIndex">
-                    {item.line7 !== null ? item.line7 : null}
-                  </div>
-                  <div className="lineIndex">
-                    {item.line8 !== null ? item.line8 : null}
-                  </div>
-                  <div className="lineIndex">
-                    {item.line9 !== null ? item.line9 : null}
-                  </div>
-                  <div className="lineIndex">
-                    {item.line10 !== null ? item.line10 : null}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <>
+              {item.id === 3 && <ArticleLayoutOne data={item} key={index} />}
+              {item.id === 4 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 5 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 6 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 7 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 25 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 26 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 27 && <ArticleLayoutOne data={item} key={index} />}
+              {item.id === 28 && <ArticleLayoutFour data={item} key={index} />}
+              {item.id === 29 && <ArticleLayoutOne data={item} key={index} />}
+              {item.id === 30 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 31 && <ArticleLayoutFour data={item} key={index} />}
+            </>
           );
         })}
       </Carousel>
-      <LeftOutlined
-        className="leftoutlined"
-        data-test="articleToggleLeft"
-        onClick={togglePrevious}
+      <RightOutlined
+        className="rightoutlined"
+        onClick={toggleNext}
+        data-test="articleToggleRight"
       />
     </div>
   );
