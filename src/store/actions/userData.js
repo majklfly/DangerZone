@@ -2,43 +2,42 @@ import { types } from "./actionTypes";
 
 import server from "../../api/server";
 
-export const getUserData = (userId, token) => async dispatch => {
+export const getUserData = (userId, token) => async (dispatch) => {
   const parsedUserId = parseInt(userId);
   if (token) {
     await server
       .get(`/userdata/`, {
-        headers: { authorization: `Token ${token}` }
+        headers: { authorization: `Token ${token}` },
       })
-      .then(res => {
-        res.data.map(item => {
+      .then((res) => {
+        res.data.map((item) => {
           if (item.userId === parsedUserId) {
-            console.log(item);
             return dispatch({
               type: types.GET_USERDATA,
-              payload: item
+              payload: item,
             });
           }
           return null;
         });
       })
-      .catch(err => [console.log(err)]);
+      .catch((err) => [console.log(err)]);
   }
 };
 
-export const setUser = token => async dispatch => {
+export const setUser = (token) => async (dispatch) => {
   await server
     .post(`/social/`, {
       provider: "facebook",
-      access_token: token
+      access_token: token,
     })
-    .then(res => {
+    .then((res) => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.id);
       // window.location.reload();
       dispatch({
         type: types.SET_USER,
-        payload: res.data
+        payload: res.data,
       });
     });
 };

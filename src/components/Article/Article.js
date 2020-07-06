@@ -36,6 +36,7 @@ function Article(props) {
         {props.articles.map((item, index) => {
           return (
             <div key={index}>
+              {console.log(item)}
               <div className="article_name">{item.name}</div>
               <div className="article_content">{item.content}</div>
               <div className="content-container">

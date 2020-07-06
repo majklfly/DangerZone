@@ -16,13 +16,12 @@ const initialState = {
   position: " ",
   country: " ",
   chapterdata: [],
-  user: 0
+  user: 0,
 };
 
 const userDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.GET_USERDATA:
-      console.log("triggered", action.payload);
       return updatedObject(state, {
         id: action.payload.id,
         email: action.payload.email,
@@ -38,14 +37,14 @@ const userDataReducer = (state = initialState, action) => {
         position: action.payload.position,
         country: action.payload.country,
         chapterdata: action.payload.chapterdata,
-        user: action.payload.user
+        user: action.payload.user,
       });
     case types.SET_USER:
       return updatedObject(state, {
         id: action.payload.id,
         firstName: action.payload.first_name,
         lastName: action.payload.last_name,
-        email: action.payload.email
+        email: action.payload.email,
       });
     default:
       return state;

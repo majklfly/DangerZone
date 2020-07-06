@@ -24,7 +24,7 @@ class ChapterData(models.Model):
         ordering = ['-timestamp', ]
 
     def __str__(self):
-        return self.chapter
+        return self.chapter.title
 
 
 def upload_path(instance, filename):
