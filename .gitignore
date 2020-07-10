@@ -7,7 +7,7 @@ node_modules/
 
 # Specific files
 .env
-/build
+build/
 
 # testing
 /coverage

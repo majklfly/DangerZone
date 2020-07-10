@@ -39,7 +39,7 @@ function Article(props) {
       >
         {props.articles.map((item, index) => {
           return (
-            <>
+            <div key={index}>
               {item.id === 3 && <ArticleLayoutOne data={item} key={index} />}
               {item.id === 4 && <ArticleLayoutTwo data={item} key={index} />}
               {item.id === 5 && <ArticleLayoutThree data={item} key={index} />}
@@ -52,7 +52,7 @@ function Article(props) {
               {item.id === 29 && <ArticleLayoutOne data={item} key={index} />}
               {item.id === 30 && <ArticleLayoutTwo data={item} key={index} />}
               {item.id === 31 && <ArticleLayoutFour data={item} key={index} />}
-            </>
+            </div>
           );
         })}
       </Carousel>

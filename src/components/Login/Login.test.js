@@ -27,18 +27,8 @@ describe("Login", () => {
     expect(container.length).toBe(1);
   });
 
-  it("should render the form of login form", () => {
-    const form = findByTestAttr(component, "login-form");
-    expect(form.length).toBe(1);
-  });
-
   it("should render the submit button", () => {
     const button = findByTestAttr(component, "buttonSubmit");
-    expect(button.length).toBe(1);
-  });
-
-  it("should render the google button", () => {
-    const button = findByTestAttr(component, "googleLogin");
     expect(button.length).toBe(1);
   });
 

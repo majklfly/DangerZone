@@ -7,14 +7,14 @@ import { FinalQuizAnimationFailed } from "../FinalQuizAnimationFailed/FinalQuizA
 import { FinalQuizAnimationSuccess } from "../FinalQuizAnimationSuccess/FinalQuizAnimationSuccess";
 import { postTestResults } from "../../store/actions/quiz";
 
-const Quiz = props => {
+const Quiz = (props) => {
   const [questionIndex, setQuestionIndex] = useState(1);
   let ref = useRef();
   let isCompletedRef = useRef(false);
   let valCountRef = useRef(null);
 
-  const valuateAnswer = answerIsCorrect => {
-    setQuestionIndex(questionIndex => questionIndex + 1);
+  const valuateAnswer = (answerIsCorrect) => {
+    setQuestionIndex((questionIndex) => questionIndex + 1);
     if (answerIsCorrect === true) {
       valCountRef.current = valCountRef.current + 1;
     }
@@ -32,8 +32,6 @@ const Quiz = props => {
     }
   };
 
-  console.log(props.questions);
-
   if (props.questions === undefined) {
     return <Spin size="large" className="spinner" />;
   }
@@ -48,7 +46,7 @@ const Quiz = props => {
                   {question.label}
                 </h1>
                 ;
-                {question.answers.map(answer => {
+                {question.answers.map((answer) => {
                   return question.id === answer.question ? (
                     <Button
                       className="answer-buttons"
@@ -92,11 +90,11 @@ const Quiz = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userDataId: state.userDataReducer.id,
     chapterId: state.chapterReducer.id,
-    user: state.userDataReducer.user
+    user: state.userDataReducer.user,
   };
 };
 

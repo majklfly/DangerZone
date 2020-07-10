@@ -18,10 +18,8 @@
     "framer-motion": "^1.11.1",
     "jspdf": "^1.5.3",
     "lottie-web": "^5.7.0",
-    "moxios": "^0.4.0",
     "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
-    "pure-react-carousel": "^1.27.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-facebook-login": "^4.1.1",
@@ -34,7 +32,6 @@
     "redux": "^4.0.5",
     "redux-csrf": "^1.1.0",
     "redux-devtools-extension": "^2.13.8",
-    "redux-mock-store": "^1.5.4",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1"
@@ -66,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "jest-canvas-mock": "^2.2.0",
     "node-sass": "^4.14.1"
   }
 }

@@ -14,11 +14,11 @@ describe("Chapter Reducer", () => {
       description: "Test1",
       id: 1,
       quiz: 2,
-      title: "Test2"
+      title: "Test2",
     };
     const newState = chapterReducer(undefined, {
       type: types.GET_CHAPTER,
-      payload
+      payload,
     });
     expect(newState).toEqual(payload);
   });
@@ -26,11 +26,11 @@ describe("Chapter Reducer", () => {
   it("GET_CHAPTERS, should return a new state if receiving type", () => {
     const payload = {};
     const newStatePayload = {
-      chapters: {}
+      chapters: {},
     };
-    const newState = ChapterReducer(undefined, {
+    const newState = chapterReducer(undefined, {
       type: types.GET_CHAPTERS,
-      payload
+      payload,
     });
     expect(newState).toEqual(newStatePayload);
   });
