@@ -1,20 +1,13 @@
 import os
+from decouple import config
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SECRET_KEY = config('SECRET_KEY')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_v(69*o+*d0y2gq5)7@*-yy#67bbogwl!$^ukm6za&3q8*u@7w'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1', 'dangerzone-react.herokuapp.com']
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -22,7 +15,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'rest_framework',
@@ -41,13 +33,13 @@ INSTALLED_APPS = [
     'corsheaders',
     'quiz',
     'article',
+    'storages',
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -90,17 +82,14 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "tbzxmymx",
-        'USER': 'tbzxmymx',
-        'PASSWORD': 'djxsW_tFzPIjXn5jPM2m7xiAclo1DpC4',
-        'HOST': 'rogue.db.elephantsql.com',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': '5432'
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -160,8 +149,8 @@ SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 
-SOCIAL_AUTH_FACEBOOK_KEY = '723054295168510'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'aeb41b50b3e0d18ae1d36ee911c7a902'
+SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
@@ -194,25 +183,20 @@ CSRF_HEADER_NAME = "X-CSRFTOKEN"
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static'), ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
 
-# example cloudcube url: https://cloud-cube.s3.amazonaws.com/bucketname
-cloudcube_url = os.environ.get('CLOUDCUBE_URL')
-cloudcube_bucket = os.path.basename(cloudcube_url)   # "bucketname"
-# "https://cloud-cube.s3.amazonaws.com/"
-cloudcube_base_url = os.path.dirname(cloudcube_url)
-
-AWS_S3_ENDPOINT_URL = cloudcube_base_url
-AWS_ACCESS_KEY_ID = os.environ.get('CLOUDCUBE_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('CLOUDCUBE_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'ri0vi3xdz6eg'
-AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL', 'public')
-AWS_QUERYSTRING_AUTH = False
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static'), ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'backend.storage_backends.MediaStorage'
