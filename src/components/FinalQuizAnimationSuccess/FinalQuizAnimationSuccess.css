@@ -1,37 +1,22 @@
 .successAnimation {
   position: absolute;
-  width: 35vw;
-  height: 35vh;
-  bottom: 7vh;
-  right: 7vw;
+  width: 45%;
+  left: 50%;
+  transform: translate(-50%);
+  top: 150%;
+  cursor: pointer;
 }
-.successAnimationButton {
-  position: absolute;
-  left: 9vw;
-  bottom: 30vh;
-  width: 14vh;
-  height: 14vh;
-  border-radius: 100%;
-  background-color: #FF7110;
-  border-color: #FF7110;
-  duration: 1s;
-  color: #dc5900;
-  font-size: 40px;
+.failedAnimationText {
+  width: 70%;
+  text-align: center;
 }
-.successAnimationButton:focus {
-  background-color: #FF7110;
-  border-color: #dc5900;
-  border-style: double;
-  duration: 1s;
-  color: #dc5900;
-}
-.successAnimationButton:hover {
-  background-color: #FF7110;
-  border-color: #dc5900;
-  border-style: double;
-  border-width: 13px;
-  duration: 1s;
-  color: #dc5900
+
+.QuizAnimationContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 /* LEAF1 */
 #Leaf1 {
@@ -74,7 +59,9 @@
   transition-timing-function: ease-in;
   animation-delay: 5s;
 }
-#LeftLeaves1,#LeftLeaves2, #LeftLeaves3  {
+#LeftLeaves1,
+#LeftLeaves2,
+#LeftLeaves3 {
   animation-name: LeftLeaves;
   animation-duration: 3s;
   animation-fill-mode: forwards;
@@ -83,27 +70,50 @@
   animation-delay: 3.8s;
 }
 
-
 @keyframes Leaf1 {
-  0% {transform: translateY(0px);}
-  100% {transform: translateY(400px) rotateX(180deg);}
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(400px) rotateX(180deg);
+  }
 }
 @keyframes Leaf2 {
-  0% {transform: translateY(0px);}
-  100% {transform: translateY(200px) rotateZ(90deg);}
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(200px) rotateZ(90deg);
+  }
 }
 @keyframes Leaf3 {
-  0% {transform: translateY(0px);}
-  100% {transform: translateY(400px);}
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(400px);
+  }
 }
 @keyframes Leaf4 {
-  50% {transform: translateX(60px)translateY(10px);}
-  100% {transform: translateX(0px) translateY(100px);}
+  50% {
+    transform: translateX(60px) translateY(10px);
+  }
+  100% {
+    transform: translateX(0px) translateY(100px);
+  }
 }
 @keyframes Leaf5 {
-  0% {transform: translateX(0px) translateY(0px);}
-  100% {transform: translateX(200px) translateY(50px) rotateX(45deg); opacity: 0;}
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  100% {
+    transform: translateX(200px) translateY(50px) rotateX(45deg);
+    opacity: 0;
+  }
 }
 @keyframes LeftLeaves {
-  100% {fill: #FF7110; opacity: 1;}
+  100% {
+    fill: #ff7110;
+    opacity: 1;
+  }
 }

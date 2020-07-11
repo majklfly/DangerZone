@@ -1,15 +1,15 @@
 import React from "react";
 import { Button } from "antd";
 import { useHistory } from "react-router-dom";
-import { RiseOutlined } from "@ant-design/icons";
+import { ProfileOutlined } from "@ant-design/icons";
 
 import "./FinalQuizAnimationFailed.css";
 
-export const FinalQuizAnimationFailed = props => {
+export const FinalQuizAnimationFailed = (props) => {
   const history = useHistory();
 
   const handleClickPositive = () => {
-    history.push("/chapters/");
+    history.push("/chapter/");
   };
 
   return (
@@ -18,18 +18,18 @@ export const FinalQuizAnimationFailed = props => {
         className="failedAnimationContainer"
         data-test="failedAnimationContainer"
       >
-        <div className="failedAnimationText" data-test="failedAnimationText">
-          You have answered {props.validatedCount} out of 5 questions correctly
+        <div className="failedAnimationText3" data-test="failedAnimationText">
+          You have answered {props.validatedCount} out of 5 questions correctly.
         </div>
         <div className="failedAnimationText2" data-test="failedAnimationText2">
-          Oops, that didn't go well. Let's revisit this chapter again.
+          That didn't go well. Let's revisit this chapter again.
         </div>
         <Button
           className="failedAnimationButton"
           onClick={handleClickPositive}
           data-test="failedAnimationButton"
         >
-          <RiseOutlined />
+          <ProfileOutlined />
         </Button>
         <svg
           className="failedAnimation"

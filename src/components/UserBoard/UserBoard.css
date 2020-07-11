@@ -7,7 +7,6 @@
   width: 20%;
   height: 200px;
   background-color: #ff7110;
-  box-shadow: 2px 2px 2px #ccc;
   cursor: pointer;
   transition: top 1s;
 }

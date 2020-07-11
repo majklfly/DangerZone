@@ -38,30 +38,36 @@ const Quiz = (props) => {
   return (
     <>
       <div>
-        <Carousel ref={ref} className="carouselQuiz" data-test="carouselQuiz">
+        <Carousel
+          ref={ref}
+          className="carouselQuiz"
+          data-test="carouselQuiz"
+          dots={false}
+        >
           {props.questions.questions.map((question, index) => {
             return (
-              <>
+              <div className="question-container">
                 <h1 className="question-label" data-test="question-label">
                   {question.label}
                 </h1>
-                ;
-                {question.answers.map((answer) => {
-                  return question.id === answer.question ? (
-                    <Button
-                      className="answer-buttons"
-                      data-test="answer-buttons"
-                      key={answer.id}
-                      onClick={() => {
-                        valuateAnswer(answer.is_correct);
-                        setTimeout(() => ref.current.next(), 150);
-                      }}
-                    >
-                      {answer.text}
-                    </Button>
-                  ) : null;
-                })}
-              </>
+                <div className="question-buttons-container">
+                  {question.answers.map((answer) => {
+                    return question.id === answer.question ? (
+                      <Button
+                        className="answer-buttons"
+                        data-test="answer-buttons"
+                        key={answer.id}
+                        onClick={() => {
+                          valuateAnswer(answer.is_correct);
+                          setTimeout(() => ref.current.next(), 150);
+                        }}
+                      >
+                        {answer.text}
+                      </Button>
+                    ) : null;
+                  })}
+                </div>
+              </div>
             );
           })}
         </Carousel>

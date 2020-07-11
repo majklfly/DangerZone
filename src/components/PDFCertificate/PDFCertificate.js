@@ -3,18 +3,21 @@ import { connect } from "react-redux";
 import "./PDFCertificate.css";
 import jsPDF from "jspdf";
 
-const PDFCertificate = props => {
+const PDFCertificate = (props) => {
   const [chapters, setChapters] = useState([]);
 
   const setChapterNames = () => {
     const chaptersLocal = [];
-    props.userData.chapterdata.map(item => {
+    props.userData.chapterdata.map((item) => {
       return chaptersLocal.push(item.chapterTitle);
     });
     setChapters(chaptersLocal);
   };
 
-  useEffect(setChapterNames, []);
+  useEffect(() => {
+    setChapterNames();
+    PDFGenerator();
+  }, []); //eslint-disable-line
 
   const PDFGenerator = () => {
     const doc = new jsPDF("p", "pt");
@@ -92,9 +95,9 @@ const PDFCertificate = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    userData: state.userDataReducer
+    userData: state.userDataReducer,
   };
 };
 

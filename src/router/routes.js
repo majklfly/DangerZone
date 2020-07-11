@@ -3,31 +3,37 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import { Provider as QuizProvider } from "../context/QuizContext";
 
-import CloudsScreen from "../containers/CloudsScreen/CloudsScreen";
+import AboutScreen from "../containers/AboutScreen/AboutScreen";
 import HomepageScreen from "../containers/HomepageScreen/HomepageScreen";
 import ChaptersScreen from "../containers/ChaptersScreen/ChaptersScreen";
 import QuizScreen from "../containers/QuizScreen/QuizScreen";
 import ProfileScreen from "../containers/ProfileScreen/ProfileScreen";
 import ArticlesScreen from "../containers/ArticlesScreen/ArticlesScreen";
+import PDFCertificate from "../components/PDFCertificate/PDFCertificate";
 
 import ResponsiveNavigation from "../containers/Layout/Layout";
 
 const BaseRouter = () => {
   const navLinks = [
     {
-      text: "Homepage",
+      text: "Dashboard",
       path: "/",
       icon: "icon ion-md-home",
     },
     {
-      text: "Used Technologies",
-      path: "/clouds/",
+      text: "About DangerZone",
+      path: "/about/",
       icon: "icon ion-md-contact",
     },
     {
-      text: "Food safety Level 2",
+      text: "HACCP Courses",
       path: "/chapters/",
       icon: "icon ion-md-school",
+    },
+    {
+      text: "Print Certificate",
+      path: "/certificate/",
+      icon: "icon ion-md-paper",
     },
   ];
 
@@ -38,11 +44,12 @@ const BaseRouter = () => {
           <ResponsiveNavigation navLinks={navLinks} />
           <div>
             <Route exact path="/" component={HomepageScreen} />
-            <Route exact path="/clouds/" component={CloudsScreen} />
+            <Route exact path="/about/" component={AboutScreen} />
             <Route exact path="/chapters/" component={ChaptersScreen} />
             <Route exact path="/chapter/" component={ArticlesScreen} />
             <Route exact path="/chapter/quiz/" component={QuizScreen} />
             <Route exact path="/profile/" component={ProfileScreen} />
+            <Route exact path="/certificate/" component={PDFCertificate} />
           </div>
         </QuizProvider>
       </Router>

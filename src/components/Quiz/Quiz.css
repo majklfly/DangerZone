@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=PT+Sans|Permanent+Marker&display=swap");
+@import "../../constants.css";
 
 .spinner {
   display: flex;
@@ -8,47 +8,49 @@
 .quizFailedAnimation {
   position: absolute;
   background-color: #364d79;
-  width: 100%;
-  top: 0;
-  height: 100%;
+  width: 80vw;
+  height: 60vh;
+  left: 50%;
+  top: 50vh;
+  transform: translate(-50%, -50%);
 }
-.container-quiz {
-  width: 70%;
-  margin: 10% 0% 15% 15%;
-  position: absolute;
-  height: 600px;
-}
-
-.ant-carousel .slick-slide h3 {
-  color: #fff;
-}
-
-.container-carousel {
-  display: flex;
-  flex-direction: row;
-  height: 500px;
+.carouselQuiz {
+  width: 80vw;
+  height: 60vh;
+  position: relative;
+  left: 50%;
+  top: 50vh;
+  transform: translate(-50%, -50%);
   background-color: #364d79;
-  text-decoration-color: white;
+  align-content: center;
+  display: flex;
 }
-
 .question-label {
   color: white;
   padding-top: 0.5em;
-  font-family: "Permanent Marker";
+  font-family: var(--textFont-primary);
+  width: 100%;
+  margin-top: 5%;
+  text-align: center;
 }
-
 .container-answers {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 200px;
 }
+.question-buttons-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  align-items: center;
+}
 
 .answer-buttons {
   width: 70%;
   background-color: #ff7110;
   margin: 0.4em;
-  font-family: "PT Sans";
+  font-family: var(--textFont-primary);
 }
 .answer-buttons:focus {
   width: 70%;
