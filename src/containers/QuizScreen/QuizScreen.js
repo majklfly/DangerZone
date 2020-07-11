@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import Quiz from "../../components/Quiz/Quiz";
 import { connect } from "react-redux";
 import { getQuiz } from "../../store/actions/quiz";
+import "./QuizScreen.css";
 
-const QuizScreen = props => {
+const QuizScreen = (props) => {
   useEffect(() => {
     if (props.getQuiz) {
       props.getQuiz(props.quizId);
@@ -14,7 +15,7 @@ const QuizScreen = props => {
 
   return (
     <>
-      <div className="carousel" data-test="carousel">
+      <div className="quizscreen-container" data-test="carousel">
         <Quiz
           quizId={props.quizId}
           data-test="quizContainer"
@@ -25,22 +26,19 @@ const QuizScreen = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     quizId: state.chapterReducer.quiz,
-    questions: state.quizReducer.quiz
+    questions: state.quizReducer.quiz,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getQuiz: quizId => {
+    getQuiz: (quizId) => {
       dispatch(getQuiz(quizId));
-    }
+    },
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(QuizScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(QuizScreen);

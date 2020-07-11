@@ -34,7 +34,7 @@ def upload_path(instance, filename):
 class Article(models.Model):
     name = models.CharField(max_length=1000)
     description = models.CharField(max_length=1000, default=' ')
-    content = models.TextField(max_length=10000)
+    content = models.TextField(max_length=10000, null=True, blank=True)
     line1 = models.CharField(max_length=1000, null=True, blank=True)
     line2 = models.CharField(max_length=1000, null=True, blank=True)
     line3 = models.CharField(max_length=1000, null=True, blank=True)

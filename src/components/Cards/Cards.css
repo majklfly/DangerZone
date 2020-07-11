@@ -1,12 +1,14 @@
 .containerCards {
   background-color: #fdbb77;
   padding: 2em;
-  width: 90vw;
   display: flex;
+  justify-content: center;
+  max-width: 1270px;
 }
 .cards {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 .active-container {
   display: flex;

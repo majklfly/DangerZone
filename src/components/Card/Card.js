@@ -20,7 +20,7 @@ const CustomCard = (props) => {
   return (
     <>
       <Card className={props.className} data-test="customCard">
-        {props.index === 1 && (
+        {props.title === "Handwashing" && (
           <div
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
@@ -29,7 +29,7 @@ const CustomCard = (props) => {
             <HandWashingAnimation active={active} />
           </div>
         )}
-        {props.index === 2 && (
+        {props.title === "Separate" && (
           <div
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
@@ -38,7 +38,7 @@ const CustomCard = (props) => {
             <SeparateAnimation active={active} />
           </div>
         )}
-        {props.index === 3 && (
+        {props.title === "Food Allergy" && (
           <div
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
@@ -47,7 +47,7 @@ const CustomCard = (props) => {
             <FoodAlergyAnimation active={active} />
           </div>
         )}
-        {props.index === 4 && (
+        {props.title === "Food Safety" && (
           <div
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
@@ -56,7 +56,7 @@ const CustomCard = (props) => {
             <FoodSafetyAnimation active={active} />
           </div>
         )}
-        {props.index === 5 && (
+        {props.title === "Pest Control" && (
           <div
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
@@ -65,7 +65,7 @@ const CustomCard = (props) => {
             <PestControlAnimation active={active} />
           </div>
         )}
-        {props.index === 6 && (
+        {props.title === "Physical and Chemical  contamination" && (
           <div
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
@@ -74,7 +74,7 @@ const CustomCard = (props) => {
             <ContaminationAnimation active={active} />
           </div>
         )}
-        {props.index === 7 && (
+        {props.title === "Effective Cleaning" && (
           <div
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
@@ -83,7 +83,7 @@ const CustomCard = (props) => {
             <CleaningAnimation active={active} />
           </div>
         )}
-        {props.index === 8 && (
+        {props.title === "Bacteria and Viruses in Food" && (
           <div
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
