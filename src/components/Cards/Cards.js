@@ -32,7 +32,6 @@ const Cards = (props) => {
   sortChapters();
 
   const handleClick = (e, chapterId) => {
-    console.log("clicked", chapterId);
     props.getChapter(chapterId);
     history.push("/chapter/");
   };

@@ -3,6 +3,7 @@ import React from "react";
 import "./LoginScreen.scss";
 import NormalLoginForm from "../../components/Login/Login";
 import WrappedNormalSignupForm from "../../components/Signup/Signup";
+import { DZAnimation } from "../../components/DZAnimation/DZAnimation";
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class LoginScreen extends React.Component {
       <>
         <div className="App" data-test="App">
           <div className="login">
+            {/* <DZAnimation /> */}
             <div className="container" data-test="container">
               {isLoggingActive && (
                 <NormalLoginForm
