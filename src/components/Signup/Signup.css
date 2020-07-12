@@ -41,10 +41,10 @@
   transition: all 250ms ease-in-out;
   outline: none;
 }
-.signupErrorMessage {
-  margin-top: px;
-  background-color: blue;
-}
 .footer {
   margin-top: 1em;
+}
+.SignupImage {
+  height: 200px;
+  width: 220px;
 }

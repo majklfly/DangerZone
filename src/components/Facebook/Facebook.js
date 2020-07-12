@@ -7,10 +7,10 @@ import { FacebookFilled } from "@ant-design/icons";
 import { setUser } from "../../store/actions/userData";
 import "./Facebook.css";
 
-const Facebook = props => {
+const Facebook = (props) => {
   const history = useHistory();
 
-  const responseFacebook = res => {
+  const responseFacebook = (res) => {
     props.setUser(res.accessToken);
     history.push("/homepage/");
   };
@@ -23,7 +23,7 @@ const Facebook = props => {
       fields="name,email,picture"
       cssClass="facebookLogin"
       data-test="facebookLogin"
-      textButton=" Login with Facebook account"
+      textButton=" Login with Facebook"
       icon={<FacebookFilled />}
       onClick={componentClicked}
       callback={responseFacebook}
@@ -31,11 +31,11 @@ const Facebook = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setUser: res => {
+    setUser: (res) => {
       dispatch(setUser(res));
-    }
+    },
   };
 };
 
