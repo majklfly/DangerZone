@@ -12,6 +12,10 @@
   font-weight: bold;
   margin: 3%;
 }
+.ArticleLayoutFiveContainer h3 {
+  color: white;
+}
+
 .ArticleLayoutFiveImage {
   position: absolute;
   left: 70%;

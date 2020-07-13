@@ -31,7 +31,6 @@ export const setUser = (token) => async (dispatch) => {
       access_token: token,
     })
     .then((res) => {
-      console.log(res);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.id);
       // window.location.reload();

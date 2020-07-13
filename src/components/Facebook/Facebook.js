@@ -1,6 +1,5 @@
 import React from "react";
 import FacebookLogin from "react-facebook-login";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { FacebookFilled } from "@ant-design/icons";
 
@@ -8,14 +7,14 @@ import { setUser } from "../../store/actions/userData";
 import "./Facebook.css";
 
 const Facebook = (props) => {
-  const history = useHistory();
-
-  const responseFacebook = (res) => {
-    props.setUser(res.accessToken);
-    history.push("/homepage/");
+  const responseFacebook = async (res) => {
+    if (res.accessToken) {
+      props.setUser(res.accessToken);
+    }
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
   };
-
-  const componentClicked = () => console.log("clicked");
 
   return (
     <FacebookLogin
@@ -25,10 +24,15 @@ const Facebook = (props) => {
       data-test="facebookLogin"
       textButton=" Login with Facebook"
       icon={<FacebookFilled />}
-      onClick={componentClicked}
       callback={responseFacebook}
     />
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    token: state.AuthReducer.token,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -39,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Facebook);
+export default connect(mapStateToProps, mapDispatchToProps)(Facebook);

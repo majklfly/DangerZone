@@ -43,7 +43,7 @@ function Article(props) {
             <div key={index}>
               {item.id === 3 && <ArticleLayoutOne data={item} key={index} />}
               {item.id === 4 && <ArticleLayoutTwo data={item} key={index} />}
-              {item.id === 5 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 5 && <ArticleLayoutTwo data={item} key={index} />}
               {item.id === 6 && <ArticleLayoutThree data={item} key={index} />}
               {item.id === 7 && <ArticleLayoutThree data={item} key={index} />}
               {item.id === 8 && <ArticleLayoutFour data={item} key={index} />}
