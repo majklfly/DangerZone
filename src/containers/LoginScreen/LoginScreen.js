@@ -30,7 +30,7 @@ class LoginScreen extends React.Component {
     const { isLoggingActive } = this.state;
     const current = isLoggingActive ? "Signup" : "Login";
     return (
-      <>
+      <div style={{ overflow: "hidden" }}>
         <div className="App" data-test="App">
           <div className="login">
             <div className="container" data-test="container">
@@ -55,7 +55,7 @@ class LoginScreen extends React.Component {
           </div>
         </div>
         <LoginBackgroundSVG />
-      </>
+      </div>
     );
   }
 }

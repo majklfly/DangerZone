@@ -1,7 +1,10 @@
 .quizscreen-container {
   position: absolute;
   top: 0;
-  width: 100vw;
+  left: 50%;
+  transform: translate(-50%);
+  width: 80vw;
+  max-width: 1200px;
   height: 100vh;
   z-index: 10;
 }

@@ -1,0 +1,9 @@
+.LoginBackgroundSVGContainer {
+  min-width: 1500px;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}

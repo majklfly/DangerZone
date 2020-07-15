@@ -9,7 +9,10 @@ import { connect } from "react-redux";
 const ArticlesScreen = (props) => {
   return (
     <>
-      <div className="carousel" data-test="ArticlesScreenContainer">
+      <div
+        className="ArticlesScreenContainer"
+        data-test="ArticlesScreenContainer"
+      >
         <Article data-test="articles" articles={props.articles} />
       </div>
       <Button

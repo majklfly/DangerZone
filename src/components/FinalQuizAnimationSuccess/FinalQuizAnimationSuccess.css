@@ -1,13 +1,16 @@
 .successAnimation {
   position: absolute;
-  width: 45%;
+  width: 65%;
   left: 50%;
-  transform: translate(-50%);
   top: 150%;
+  transform: translate(-50%);
   cursor: pointer;
 }
-.failedAnimationText {
+.successAnimationText {
   width: 70%;
+  color: white;
+  font-size: 200%;
+  margin-top: 5%;
   text-align: center;
 }
 
@@ -17,6 +20,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  max-width: 1200px;
 }
 /* LEAF1 */
 #Leaf1 {

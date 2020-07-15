@@ -26,5 +26,7 @@
 }
 
 @keyframes Waves {
-  100% {transform: translateX(-179em)}
+  100% {
+    transform: translateX(-179em);
+  }
 }

@@ -70,6 +70,8 @@ function Article(props) {
               {item.id === 29 && <ArticleLayoutOne data={item} key={index} />}
               {item.id === 30 && <ArticleLayoutTwo data={item} key={index} />}
               {item.id === 31 && <ArticleLayoutFour data={item} key={index} />}
+              {item.id === 32 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 33 && <ArticleLayoutFive data={item} key={index} />}
               {item.id === 34 && <ArticleLayoutFour data={item} key={index} />}
               {item.id === 35 && <ArticleLayoutThree data={item} key={index} />}
               {item.id === 36 && <ArticleLayoutThree data={item} key={index} />}
@@ -83,6 +85,12 @@ function Article(props) {
               {item.id === 47 && <ArticleLayoutFour data={item} key={index} />}
               {item.id === 48 && <ArticleLayoutTwo data={item} key={index} />}
               {item.id === 49 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 50 && <ArticleLayoutFour data={item} key={index} />}
+              {item.id === 51 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 52 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 53 && <ArticleLayoutFive data={item} key={index} />}
+              {item.id === 54 && <ArticleLayoutFive data={item} key={index} />}
+              {item.id === 55 && <ArticleLayoutThree data={item} key={index} />}
             </div>
           );
         })}

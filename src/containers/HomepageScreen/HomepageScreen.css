@@ -1,0 +1,67 @@
+.welcomeScreenContainer {
+  position: absolute;
+  background-color: #fdbb77;
+  width: 90vw;
+  max-width: 1500px;
+  height: 800px;
+  margin-top: 50px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+.containerWelcomeAnimation {
+  position: absolute;
+  bottom: -100px;
+  right: 0;
+  width: 500px;
+  z-index: -1;
+}
+.VocabularyOfDay {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 90%;
+  height: 150px;
+  border-radius: 10px;
+  border: 2px solid #fdbb77;
+  box-shadow: 0 0 5px #ff7110;
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+}
+.DatesInfoContainer {
+  position: absolute;
+  width: 30%;
+  height: 200px;
+  right: 5%;
+  top: 270px;
+  border-radius: 10px;
+  border: 2px solid #fdbb77;
+  box-shadow: 0 0 5px #ff7110;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.DashboardChaptersInfo1 {
+  position: absolute;
+  border-radius: 10px;
+  border: 2px solid #fdbb77;
+  box-shadow: 0 0 5px #ff7110;
+  width: 25%;
+  height: 450px;
+  right: 40%;
+  top: 270px;
+}
+.DashboardChaptersInfo2 {
+  position: absolute;
+  border-radius: 10px;
+  border: 2px solid #fdbb77;
+  box-shadow: 0 0 5px #ff7110;
+  width: 25%;
+  height: 450px;
+  right: 70%;
+  top: 270px;
+}

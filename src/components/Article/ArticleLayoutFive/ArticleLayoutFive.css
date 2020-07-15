@@ -2,6 +2,7 @@
   width: 100%;
   height: 80vh;
   padding: 5%;
+  max-width: 1200px;
   position: relative;
   font-family: var(--textFont-primary);
 }
@@ -18,8 +19,8 @@
 
 .ArticleLayoutFiveImage {
   position: absolute;
-  left: 70%;
+  left: 75%;
   bottom: 50%;
   transform: translate(-50%, 80%);
-  height: 40%;
+  height: 30%;
 }

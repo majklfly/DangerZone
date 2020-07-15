@@ -22,7 +22,10 @@
   margin-top: 5px;
   padding-top: 5em;
   position: relative;
-  z-index: 99;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
 }
 .container {
   display: flex;
@@ -77,4 +80,7 @@
   color: #fff;
   margin-right: 3em;
   margin-left: 3em;
+}
+.SmallScreenWarning {
+  display: none;
 }

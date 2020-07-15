@@ -1,0 +1,17 @@
+.VocabularyOfDayContainer h1 {
+  text-align: center;
+  padding-top: 4px;
+  color: black;
+}
+.VocabularyOfDayContainer h3 {
+  text-align: center;
+  color: black;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.VocabularyOfDayContainer a {
+  position: absolute;
+  margin-right: 15px;
+  right: 0;
+  text-align: center;
+}

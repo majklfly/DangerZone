@@ -9,11 +9,10 @@ const AuthRouter = () => {
     <>
       <Router>
         <div>
-          <Route exact path="" component={LoginScreen} />
+          <Route exact path="/" component={LoginScreen} />
           <Route exact path="/terms/" component={TermsScreen} />
         </div>
       </Router>
-      ;
     </>
   );
 };

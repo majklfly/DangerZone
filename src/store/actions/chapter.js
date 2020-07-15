@@ -10,7 +10,6 @@ export const getChapter = (ChapterId) => async (dispatch) => {
       headers: { authorization: `Token ${token}` },
     })
     .then((res) => {
-      console.log("triggered", res);
       dispatch({
         type: types.GET_CHAPTER,
         payload: res.data,

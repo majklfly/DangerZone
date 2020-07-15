@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import "./HomepageScreen.scss";
+import "./HomepageScreen.css";
 import lottie from "lottie-web";
+import "../../components/SmallScreenWarning/SmallScreenWarning";
+import { connect } from "react-redux";
+import { VocabularyOfDay } from "../../components/VocabularyOfDay/VocabularyOfDay";
 
 const HomepageScreen = () => {
   const container = useRef(null);
@@ -22,16 +25,38 @@ const HomepageScreen = () => {
         className="welcomeScreenContainer"
         data-test="welcomeScreenContainer"
       >
-        <div className="homeScreenText" data-test="homeScreenText">
-          <p>
-            This site has been designed to improve general knowledge of HACCP
-            Level 2 in UK/EU standards.
-          </p>
-          <div className="containerWelcomeAnimation" ref={container}></div>
+        <div className="VocabularyOfDay">
+          <VocabularyOfDay />
         </div>
+        <div className="DatesInfoContainer">
+          <h3>You joined us: 28/06/2016</h3>
+          <h3>Last login: 14/07/2020</h3>
+        </div>
+        <div className="DashboardChaptersInfo1">
+          <h3>Chapter 1</h3>
+          <h3>Chapter 2</h3>
+          <h3>Chapter 3</h3>
+          <h3>Chapter 4</h3>
+          <h3>Chapter 5</h3>
+        </div>
+        <div className="DashboardChaptersInfo2">
+          <h3>Chapter 1</h3>
+          <h3>Chapter 2</h3>
+          <h3>Chapter 3</h3>
+          <h3>Chapter 4</h3>
+          <h3>Chapter 5</h3>
+        </div>
+        <div className="containerWelcomeAnimation" ref={container} />
       </div>
     </>
   );
 };
 
-export default HomepageScreen;
+const mapStateToProps = (state) => {
+  console.log(state.userDataReducer);
+  return {
+    userData: state.userDataReducer,
+  };
+};
+
+export default connect(mapStateToProps)(HomepageScreen);

@@ -14,15 +14,15 @@ import "./UserBoard.css";
 const userId = localStorage.getItem("userId");
 const token = localStorage.getItem("token");
 
-const UserBoard = props => {
+const UserBoard = (props) => {
   const [percentage, setPercentage] = useState(0);
 
   const calculatePercentage = async () => {
     const chapters = await server.get("/chapters/", {
-      headers: { authorization: `Token ${token}` }
+      headers: { authorization: `Token ${token}` },
     });
     const finishedChapters = [];
-    props.userData.chapterdata.map(item => {
+    props.userData.chapterdata.map((item) => {
       return item.completed === true ? finishedChapters.push(item) : null;
     });
     const total = chapters.data.length;
@@ -39,7 +39,7 @@ const UserBoard = props => {
       <div className="userboard" data-test="userboard">
         <Progress
           strokeColor={{
-            "100%": "#364d79"
+            "100%": "#364d79",
           }}
           type="circle"
           percent={percentage}
@@ -62,18 +62,18 @@ const UserBoard = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     token: state.AuthReducer.token,
-    userData: state.userDataReducer
+    userData: state.userDataReducer,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getUserData: (userId, token) => {
       dispatch(getUserData(userId, token));
-    }
+    },
   };
 };
 

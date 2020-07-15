@@ -12,7 +12,7 @@ export const FinalQuizAnimationSuccess = (props) => {
 
   return (
     <div className="QuizAnimationContainer" data-test="QuizAnimationContainer">
-      <div className="failedAnimationText" data-test="failedAnimationText">
+      <div className="successAnimationText" data-test="failedAnimationText">
         Congratulations, You have answered all questions correctly!
       </div>
       <div
@@ -20,7 +20,7 @@ export const FinalQuizAnimationSuccess = (props) => {
         data-test="successAnimationButton"
       >
         <svg
-          viewBox="0, 0, 500, 400"
+          viewBox="0, 0, 500, 700"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="successAnimation"

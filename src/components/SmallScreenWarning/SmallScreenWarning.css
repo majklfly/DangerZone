@@ -1,0 +1,10 @@
+.SmallScreenWarningText {
+  color: white;
+  text-align: center;
+  font-size: 3vw;
+  width: 40vw;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+}

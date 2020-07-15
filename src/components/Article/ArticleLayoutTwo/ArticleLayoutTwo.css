@@ -1,6 +1,7 @@
 .ArticleLayoutTwoContainer {
   width: 100%;
   height: 100vh;
+  max-width: 1200px;
   padding: 5%;
   position: relative;
 }

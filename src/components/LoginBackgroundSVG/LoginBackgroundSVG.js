@@ -1,13 +1,18 @@
 import React from "react";
+import "./LoginBackgroundSVG.css";
 
 export const LoginBackgroundSVG = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1500">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 2000 1500"
+      className="LoginBackgroundSVGContainer"
+    >
       <rect fill="#ee5522" width="2000" height="1500" />
       <defs>
         <radialGradient id="a" gradientUnits="objectBoundingBox">
-          <stop offset="0" stop-color="#FB3" />
-          <stop offset="1" stop-color="#ee5522" />
+          <stop offset="0" stopColor="#FB3" />
+          <stop offset="1" stopColor="#ee5522" />
         </radialGradient>
         <linearGradient
           id="b"
@@ -17,8 +22,8 @@ export const LoginBackgroundSVG = () => {
           x2="1550"
           y2="750"
         >
-          <stop offset="0" stop-color="#f7882b" />
-          <stop offset="1" stop-color="#ee5522" />
+          <stop offset="0" stopColor="#f7882b" />
+          <stop offset="1" stopColor="#ee5522" />
         </linearGradient>
         <path
           id="s"
@@ -65,7 +70,7 @@ export const LoginBackgroundSVG = () => {
             <use href="#g" transform="rotate(120)" />
             <use href="#g" transform="rotate(240)" />
           </g>
-          <circle fill-opacity="0.1" fill="url(#a)" r="3000" />
+          <circle fillOpacity="0.1" fill="url(#a)" r="3000" />
         </g>
       </g>
     </svg>
