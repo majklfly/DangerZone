@@ -10,18 +10,8 @@ import "./Facebook.css";
 const Facebook = (props) => {
   const [loading, setLoading] = useState(false);
   const responseFacebook = async (res) => {
-    console.log(res);
-    if (res.accessToken) {
-      props.setUser(res.accessToken);
-      setTimeout(function () {
-        window.location.reload();
-      }, 1000);
-      setTimeout(function () {
-        setLoading(false);
-      }, 1300);
-    }
+    props.setUser(res.accessToken);
   };
-
   return (
     <>
       {loading ? (

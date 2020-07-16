@@ -33,7 +33,7 @@ export const setUser = (token) => async (dispatch) => {
     .then((res) => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.id);
-      // window.location.reload();
+      window.location.reload();
       dispatch({
         type: types.SET_USER,
         payload: res.data,

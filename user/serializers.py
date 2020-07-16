@@ -4,12 +4,14 @@ from article.serializers import ChapterSerializer, ChapterDataSerializer
 from rest_auth.serializers import UserDetailsSerializer
 from rest_auth.models import TokenModel
 
+
 class CustomTokenSerializer(serializers.ModelSerializer):
     user = UserDetailsSerializer(read_only=True)
 
     class Meta:
         model = TokenModel
         fields = '__all__'
+
 
 class UserSerializer(serializers.ModelSerializer):
     chapterTitle = serializers.ReadOnlyField(source='chapter.title')
@@ -32,22 +34,24 @@ def create(self, validated_data):
         username=validated_data['username'],
         email=validated_data['email'],
         password=validated_data['password']
-        )
+    )
     return user
 
 
 class SocialSerializer(serializers.Serializer):
     provider = serializers.CharField(max_length=255, required=True)
-    access_token = serializers.CharField(max_length=4096, required=True, trim_whitespace=True)
+    access_token = serializers.CharField(
+        max_length=4096, required=True, trim_whitespace=True)
 
 
 class UserDataSerializer(serializers.ModelSerializer):
-    lastLogin = serializers.ReadOnlyField(source='user.lastLogin')
-    userId = email = serializers.ReadOnlyField(source='user.id')
+    lastLogin = serializers.ReadOnlyField(source='user.last_login')
+    userId = serializers.ReadOnlyField(source='user.id')
     email = serializers.ReadOnlyField(source='user.email')
     joined = serializers.ReadOnlyField(source='user.date_joined')
     username = serializers.ReadOnlyField(source='user.username')
-    chapterdata = ChapterDataSerializer(source='chapterdata_set', many=True, read_only=True)
+    chapterdata = ChapterDataSerializer(
+        source='chapterdata_set', many=True, read_only=True)
 
     class Meta:
         model = UserData

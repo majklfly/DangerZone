@@ -1,3 +1,5 @@
+@import "../../constants.css";
+
 .welcomeScreenContainer {
   position: absolute;
   background-color: #fdbb77;
@@ -10,11 +12,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
+  font-family: var(--textFont-primary);
 }
 .containerWelcomeAnimation {
   position: absolute;
   bottom: -100px;
-  right: 0;
+  right: -80px;
   width: 500px;
   z-index: -1;
 }
@@ -23,7 +26,7 @@
   left: 50%;
   transform: translate(-50%);
   width: 90%;
-  height: 150px;
+  height: 200px;
   border-radius: 10px;
   border: 2px solid #fdbb77;
   box-shadow: 0 0 5px #ff7110;
@@ -31,12 +34,26 @@
   display: flex;
   justify-content: center;
 }
-.DatesInfoContainer {
+.DatesInfoContainer1 {
   position: absolute;
   width: 30%;
-  height: 200px;
+  height: 80px;
   right: 5%;
-  top: 270px;
+  top: 290px;
+  border-radius: 10px;
+  border: 2px solid #fdbb77;
+  box-shadow: 0 0 5px #ff7110;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.DatesInfoContainer2 {
+  position: absolute;
+  width: 30%;
+  height: 80px;
+  right: 5%;
+  top: 400px;
   border-radius: 10px;
   border: 2px solid #fdbb77;
   box-shadow: 0 0 5px #ff7110;
@@ -51,9 +68,14 @@
   border: 2px solid #fdbb77;
   box-shadow: 0 0 5px #ff7110;
   width: 25%;
-  height: 450px;
+  height: 400px;
   right: 40%;
-  top: 270px;
+  top: 320px;
+  overflow: scroll;
+}
+.DashboardChaptersInfo1 h2 {
+  margin-top: -50px;
+  color: black;
 }
 .DashboardChaptersInfo2 {
   position: absolute;
@@ -61,7 +83,33 @@
   border: 2px solid #fdbb77;
   box-shadow: 0 0 5px #ff7110;
   width: 25%;
-  height: 450px;
+  height: 400px;
   right: 70%;
-  top: 270px;
+  top: 320px;
+  overflow: scroll;
+}
+.DashboardTitle2 {
+  position: absolute;
+  margin-top: 280px;
+  left: 5%;
+  color: black;
+}
+.DashboardListItem {
+  display: flex;
+  border-radius: 10px;
+  font-size: 90%;
+  border-bottom: 2px solid #ff7110;
+  margin-top: 15px;
+  margin-left: 5%;
+  width: 90%;
+  height: 50px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.DashboardTitle1 {
+  position: absolute;
+  margin-top: 280px;
+  left: 35%;
+  color: black;
 }
