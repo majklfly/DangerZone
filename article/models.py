@@ -50,7 +50,16 @@ class Article(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True)
 
     class Meta:
-        ordering = ['created', ]
+        ordering = ['-created', ]
 
     def __str__(self):
         return self.name
+
+
+class WordOfTheDay(models.Model):
+    word = models.CharField(max_length=100)
+    description = models.TextField(max_length=10000)
+    source = models.CharField(max_length=10000)
+
+    def __str__(self):
+        return self.word

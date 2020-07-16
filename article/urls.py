@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ArticleListView, ArticleDetailView, ChapterListView, ChapterDataListCreateView, ChapterDetailView
+from .views import ArticleListView, ArticleDetailView, ChapterListView, ChapterDataListCreateView, ChapterDetailView, WordOfTheDayListView
 
 urlpatterns = [
     path('chapters/', ChapterListView.as_view()),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('chapterdata/', ChapterDataListCreateView.as_view()),
     path('articles/', ArticleListView.as_view()),
     path('articles/<pk>', ArticleDetailView.as_view()),
+    path('wordsoftheday/', WordOfTheDayListView.as_view()),
 ]
