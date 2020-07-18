@@ -9,7 +9,7 @@ import ChaptersScreen from "../containers/ChaptersScreen/ChaptersScreen";
 import QuizScreen from "../containers/QuizScreen/QuizScreen";
 import ProfileScreen from "../containers/ProfileScreen/ProfileScreen";
 import ArticlesScreen from "../containers/ArticlesScreen/ArticlesScreen";
-import PDFCertificate from "../components/PDFCertificate/PDFCertificate";
+import CertificateScreen from "../containers/CertificateScreen/CertificateScreen";
 
 import ResponsiveNavigation from "../containers/Layout/Layout";
 
@@ -49,7 +49,7 @@ const BaseRouter = () => {
             <Route exact path="/chapter/" component={ArticlesScreen} />
             <Route exact path="/chapter/quiz/" component={QuizScreen} />
             <Route exact path="/profile/" component={ProfileScreen} />
-            <Route exact path="/certificate/" component={PDFCertificate} />
+            <Route exact path="/certificate/" component={CertificateScreen} />
           </div>
         </QuizProvider>
       </Router>

@@ -1,0 +1,18 @@
+@import "./../../constants.css";
+
+.CertificateScreenContainer {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  width: 90%;
+  height: 800px;
+  border-radius: 10px;
+  background-color: #fdbb77;
+}
+.CertificateScreenText {
+  margin: 5%;
+}
+.CertificateScreenText h2 {
+  color: black;
+  font-family: var(--textFont-primary);
+}

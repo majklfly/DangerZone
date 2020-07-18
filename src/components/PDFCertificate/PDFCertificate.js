@@ -8,6 +8,7 @@ const PDFCertificate = (props) => {
 
   const setChapterNames = () => {
     const chaptersLocal = [];
+    console.log(props.userData);
     props.userData.chapterdata.map((item) => {
       return chaptersLocal.push(item.chapterTitle);
     });
