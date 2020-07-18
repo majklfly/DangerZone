@@ -1,15 +1,19 @@
 .ProfileForm {
-  margin-top: 20px;
+  margin-top: 5px;
+  overflow: scroll;
 }
 .profileInput {
   margin: 20px;
   width: 90%;
 }
 .profileSubmitButton {
-  margin: 20px;
   width: 90%;
-  background-color: #FF7110;
-  border-color: #4f6eab;
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  background-color: #ff7110;
+  border-color: #ff7110;
+  border-radius: 5px;
 }
 .profileSubmitButton:hover {
   background-color: #364d79;

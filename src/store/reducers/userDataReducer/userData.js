@@ -31,6 +31,7 @@ const userDataReducer = (state = initialState, action) => {
         lastName: action.payload.lastName,
         profileId: action.payload.profileId,
         facebook: action.payload.facebook,
+        lastLogin: action.payload.lastLogin,
         twitter: action.payload.twitter,
         instagram: action.payload.instagram,
         company: action.payload.company,

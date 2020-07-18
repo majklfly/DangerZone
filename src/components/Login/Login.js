@@ -35,14 +35,14 @@ const NormalLoginForm = (props) => {
                 placeholder="username"
                 className="login-form-input"
                 onChange={(e) => setUsername(e.target.value)}
-                autocomplete="chrome-off"
+                autoComplete="chrome-off"
               />
               <input
                 placeholder="password"
                 className="login-form-input"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
-                autocomplete="chrome-off"
+                autoComplete="chrome-off"
               />
               <Button
                 onClick={handleSubmit}
@@ -58,7 +58,10 @@ const NormalLoginForm = (props) => {
             </Facebook>
             <Link to="/terms/">Privacy notice</Link>
             {props.error ? (
-              <div style={{ color: "red" }}>Upps, something went wrong</div>
+              <div style={{ color: "red" }}>
+                {props.error.password && "Missing password"}
+                {props.error.non_field_errors && props.error.non_field_errors}
+              </div>
             ) : null}
           </>
         )}
@@ -68,6 +71,7 @@ const NormalLoginForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     loading: state.AuthReducer.loading,
     error: state.AuthReducer.error,

@@ -45,10 +45,10 @@ class SocialSerializer(serializers.Serializer):
 
 
 class UserDataSerializer(serializers.ModelSerializer):
-    lastLogin = serializers.ReadOnlyField(source='user.last_login')
     userId = serializers.ReadOnlyField(source='user.id')
     email = serializers.ReadOnlyField(source='user.email')
     joined = serializers.ReadOnlyField(source='user.date_joined')
+    lastLogin = serializers.ReadOnlyField(source='user.last_login')
     username = serializers.ReadOnlyField(source='user.username')
     chapterdata = ChapterDataSerializer(
         source='chapterdata_set', many=True, read_only=True)

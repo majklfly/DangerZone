@@ -9,6 +9,7 @@ import pestcontrol from "../../assets/pestcontrol.json";
 import cleaning from "../../assets/cleaning.json";
 import contamination from "../../assets/contamination.json";
 import viruses from "../../assets/viruses.json";
+import update from "../../assets/update.json";
 
 export class HandWashingAnimation extends Component {
   render() {
@@ -169,6 +170,29 @@ export class VirusAnimation extends Component {
         options={defaultOptions}
         isPaused={!this.props.active}
         className="cardAnimation"
+      />
+    );
+  }
+}
+export class Update extends Component {
+  render() {
+    const defaultOptions = {
+      loop: true,
+      autoplay: false,
+      animationData: update,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+      },
+    };
+
+    return (
+      <Lottie
+        options={defaultOptions}
+        width={80}
+        height={80}
+        Animated={1}
+        isClickToPauseDisabled={true}
+        isStopped={!this.props.active}
       />
     );
   }

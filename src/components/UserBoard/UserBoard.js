@@ -46,6 +46,9 @@ const UserBoard = (props) => {
           className="progressBar"
           data-test="progressBar"
         />
+        <div className="welcomeText" data-test="welcomeText">
+          Hello {props.userData.username}
+        </div>
         <div className="iconsContainer" data-test="iconsContainer">
           <Link to="/profile/">
             <UserOutlined className="iconBoard" />
@@ -53,9 +56,6 @@ const UserBoard = (props) => {
           <Link to="/" onClick={actions.logout}>
             <LogoutOutlined className="iconBoard" />
           </Link>
-        </div>
-        <div className="welcomeText" data-test="welcomeText">
-          Hello {props.userData.username}
         </div>
       </div>
     </>

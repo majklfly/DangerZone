@@ -1,6 +1,7 @@
 .userboard {
   display: flex;
   justify-content: center;
+  position: relative;
   position: fixed;
   right: 0;
   top: -140px;
@@ -18,10 +19,8 @@
 .welcomeText {
   display: flex;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 15px;
-  margin-left: 10px;
+  bottom: 15px;
+  left: 15px;
   font-size: 17px;
   color: white;
 }
@@ -30,14 +29,10 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 0;
-  bottom: 0;
-  margin-bottom: 15px;
-  margin-right: 10px;
+  right: 10px;
+  bottom: 15px;
 }
-
 .iconBoard {
-  position: relative;
   font-size: 17px;
   color: white;
   padding: 5px;
@@ -45,23 +40,9 @@
 .iconBoard:hover {
   color: #364d79;
 }
-
 .progressBar {
   margin-top: 1em;
   top: 0;
   left: 3em;
-  fontsize: 30px;
   z-index: 6;
-}
-
-@media screen and (max-width: 850px) {
-  .welcomeText {
-    opacity: 0;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .progressBar {
-    opacity: 0;
-  }
 }

@@ -5,6 +5,7 @@ import "../../components/SmallScreenWarning/SmallScreenWarning";
 import { connect } from "react-redux";
 import { VocabularyOfDay } from "../../components/VocabularyOfDay/VocabularyOfDay";
 import { getChapters } from "../../store/actions/chapter";
+import { Progress } from "antd";
 
 const HomepageScreen = (props) => {
   const container = useRef(null);
@@ -42,18 +43,19 @@ const HomepageScreen = (props) => {
     return !completedChapters.includes(chapter[1]);
   });
 
-  console.log(props.userData);
+  const formatDate = (date) => {
+    if (date) {
+      const year = date[0] + date[1] + date[2] + date[3];
+      const month = date[5] + date[6];
+      const day = date[8] + date[9];
+      return `${day}/${month}/${year}`;
+    }
+  };
 
-  const formatDate = () => {
-    const year =
-      props.userData.joined[0] +
-      props.userData.joined[1] +
-      props.userData.joined[2] +
-      props.userData.joined[3];
-
-    const month = props.userData.joined[5] + props.userData.joined[6];
-    const day = props.userData.joined[8] + props.userData.joined[9];
-    return `${day}/${month}/${year}`;
+  const calculatePercentage = () => {
+    const percent = chapters.length / 100;
+    const value = completedChapters.length / percent;
+    return value;
   };
 
   return (
@@ -65,9 +67,21 @@ const HomepageScreen = (props) => {
         <div className="VocabularyOfDay">
           <VocabularyOfDay />
         </div>
+        <div className="DashboardProgressBar">
+          <Progress
+            strokeColor={{
+              "0%": "#ff7110",
+              "100%": "#364d79",
+            }}
+            percent={calculatePercentage()}
+            status="active"
+            trailColor="transparent"
+            showInfo={false}
+          />
+        </div>
         <div className="DatesInfoContainer1">
-          <h3>You joined us: {formatDate()}</h3>
-          <h3>Last login: 14/07/2020</h3>
+          <h3>You joined us: {formatDate(props.userData.joined)}</h3>
+          <h3>Last login: {formatDate(props.userData.lastLogin)}</h3>
         </div>
         <div className="DatesInfoContainer2">
           <h3>Authorization: Student</h3>

@@ -91,6 +91,18 @@ function Article(props) {
               {item.id === 53 && <ArticleLayoutFive data={item} key={index} />}
               {item.id === 54 && <ArticleLayoutFive data={item} key={index} />}
               {item.id === 55 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 56 && <ArticleLayoutFour data={item} key={index} />}
+              {item.id === 57 && <ArticleLayoutThree data={item} key={index} />}
+              {item.id === 58 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 59 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 60 && <ArticleLayoutFive data={item} key={index} />}
+              {item.id === 61 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 62 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 63 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 64 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 65 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 66 && <ArticleLayoutTwo data={item} key={index} />}
+              {item.id === 67 && <ArticleLayoutTwo data={item} key={index} />}
             </div>
           );
         })}

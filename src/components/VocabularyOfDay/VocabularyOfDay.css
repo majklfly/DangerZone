@@ -12,6 +12,12 @@
 .VocabularyOfDayContainer a {
   position: absolute;
   margin-right: 15px;
-  right: 0;
+  right: 10px;
+  bottom: 10px;
   text-align: center;
+}
+.updateIcon {
+  position: absolute;
+  right: 0;
+  top: -5%;
 }

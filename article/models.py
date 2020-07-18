@@ -50,7 +50,7 @@ class Article(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True)
 
     class Meta:
-        ordering = ['-created', ]
+        ordering = ['created', ]
 
     def __str__(self):
         return self.name
