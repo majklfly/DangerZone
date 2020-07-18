@@ -48,3 +48,19 @@
   height: 200px;
   width: 220px;
 }
+.signupErrorMessage {
+  position: relative;
+  top: -30px;
+  height: 0;
+  color: red;
+  font-size: 90%;
+}
+.buttonSubmitSignup {
+  position: relative;
+  bottom: -30px;
+  background-color: #ff7110;
+  width: 100px;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+}

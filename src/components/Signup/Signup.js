@@ -38,9 +38,15 @@ const SignupForm = (props) => {
               <Form.Item className="signup-form-group">
                 <Input placeholder="Username" className="form-group-input" />
               </Form.Item>
+              {props.error !== null ? (
+                <div className="signupErrorMessage">{props.error.username}</div>
+              ) : null}
               <Form.Item className="signup-form-group" name="email">
                 <Input placeholder="Email" className="form-group-input" />
               </Form.Item>
+              {props.error !== null ? (
+                <div className="signupErrorMessage">{props.error.email}</div>
+              ) : null}
               <Form.Item className="signup-form-group" name="password1">
                 <Input
                   type="password"
@@ -55,21 +61,15 @@ const SignupForm = (props) => {
                   className="form-group-input"
                 />
               </Form.Item>
-              <Form.Item>
-                <Button onClick={handleSubmit} className="buttonSubmit">
-                  Sign up
-                </Button>
-              </Form.Item>
+              {props.error !== null ? (
+                <div className="signupErrorMessage">
+                  {props.error.password1}
+                </div>
+              ) : null}
+              <Button onClick={handleSubmit} className="buttonSubmitSignup">
+                Sign up
+              </Button>
             </Form>
-            {props.error !== null ? (
-              <div style={{ color: "red" }}>{props.error.username}</div>
-            ) : null}
-            {props.error !== null ? (
-              <div style={{ color: "red" }}>{props.error.email}</div>
-            ) : null}
-            {props.error !== null ? (
-              <div style={{ color: "red" }}>{props.error.password1}</div>
-            ) : null}
           </>
         )}
       </div>

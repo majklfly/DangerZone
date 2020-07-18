@@ -10,6 +10,7 @@ import cleaning from "../../assets/cleaning.json";
 import contamination from "../../assets/contamination.json";
 import viruses from "../../assets/viruses.json";
 import update from "../../assets/update.json";
+import pdf from "../../assets/pdf.json";
 
 export class HandWashingAnimation extends Component {
   render() {
@@ -193,6 +194,27 @@ export class Update extends Component {
         Animated={1}
         isClickToPauseDisabled={true}
         isStopped={!this.props.active}
+      />
+    );
+  }
+}
+export class PDFAnimation extends Component {
+  render() {
+    const defaultOptions = {
+      loop: false,
+      autoplay: true,
+      animationData: pdf,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+      },
+    };
+
+    return (
+      <Lottie
+        options={defaultOptions}
+        width={200}
+        height={200}
+        isClickToPauseDisabled={true}
       />
     );
   }

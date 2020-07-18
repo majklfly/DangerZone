@@ -34,6 +34,13 @@ const UserBoard = (props) => {
 
   useEffect(() => props.getUserData(userId, token), []); //eslint-disable-line
 
+  const logout = () => {
+    props.logout();
+    setTimeout(function () {
+      window.location.reload();
+    }, 5);
+  };
+
   return (
     <>
       <div className="userboard" data-test="userboard">
@@ -53,7 +60,7 @@ const UserBoard = (props) => {
           <Link to="/profile/">
             <UserOutlined className="iconBoard" />
           </Link>
-          <Link to="/" onClick={actions.logout}>
+          <Link to="/" onClick={logout}>
             <LogoutOutlined className="iconBoard" />
           </Link>
         </div>
@@ -73,6 +80,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUserData: (userId, token) => {
       dispatch(getUserData(userId, token));
+    },
+    logout: () => {
+      dispatch(actions.logout());
     },
   };
 };

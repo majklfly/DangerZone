@@ -29,7 +29,7 @@ export const FinalQuizAnimationSuccess = (props) => {
         >
           <rect width="486" height="320" />
           <g id="undraw_confirmation_2uy0 1">
-            <g clip-path="url(#clip0)">
+            <g clipPath="url(#clip0)">
               <rect width="486" height="320" fill="#364D79" />
               <path
                 id="Vector"
@@ -952,7 +952,7 @@ export const FinalQuizAnimationSuccess = (props) => {
               y2="51819.2"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#808080" stop-opacity="0.25" />
+              <stop stopColor="#808080" stopOpacity="0.25" />
               <stop offset="0.54" stop-color="#808080" stop-opacity="0.12" />
               <stop offset="1" stop-color="#808080" stop-opacity="0.1" />
             </linearGradient>

@@ -46,7 +46,7 @@ const Quiz = (props) => {
         >
           {props.questions.questions.map((question, index) => {
             return (
-              <div className="question-container">
+              <div className="question-container" key={index}>
                 <h1 className="question-label" data-test="question-label">
                   {question.label}
                 </h1>

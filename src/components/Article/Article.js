@@ -41,7 +41,7 @@ function Article(props) {
         {props.articles.map((item, index) => {
           return (
             <div key={index}>
-              {item.id === 3 && <ArticleLayoutOne data={item} key={index} />}
+              {item.id === 3 && <ArticleLayoutTwo data={item} key={index} />}
               {item.id === 4 && <ArticleLayoutTwo data={item} key={index} />}
               {item.id === 5 && <ArticleLayoutTwo data={item} key={index} />}
               {item.id === 6 && <ArticleLayoutThree data={item} key={index} />}

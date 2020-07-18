@@ -24,7 +24,6 @@ export const authFail = (error) => {
 
 export const logout = () => {
   localStorage.clear();
-  window.location.reload();
   return {
     type: types.AUTH_LOGOUT,
   };

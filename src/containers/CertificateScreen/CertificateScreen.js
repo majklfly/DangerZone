@@ -1,5 +1,6 @@
 import React from "react";
 import "./CertificateScreen.css";
+import PDFCertificate from "../../components/PDFCertificate/PDFCertificate";
 
 const CertificateScreeen = () => {
   return (
@@ -15,9 +16,12 @@ const CertificateScreeen = () => {
           courses are added to your certificate.
         </h2>
         <h2>
-          You will need to provide us with your first and last name ay your
+          You will need to provide us with your first and last name at your
           profile page to generate your certificate.
         </h2>
+      </div>
+      <div className="PDFButtonContainer">
+        <PDFCertificate />
       </div>
     </div>
   );

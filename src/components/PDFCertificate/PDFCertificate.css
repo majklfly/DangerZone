@@ -1,17 +1,15 @@
 .certificateButton {
   position: absolute;
-  transform: translateX(-50%);
-  left: 50%;
-  top: 15vh;
-  height: 40px;
-  width: 80%;
   border: 0;
-  background-color: #FF7110;
-  color: white;
-  z-index: 20;
+  right: 0;
+  background-color: transparent;
 }
 .certificateButton:hover {
-  box-shadow: 0px 0px 20px #364d79;
   cursor: pointer;
-  color: #364d79;
+}
+.errorMessagePDF {
+  position: relative;
+  left: 5%;
+  width: 100%;
+  color: red;
 }
