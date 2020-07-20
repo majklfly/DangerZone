@@ -24,6 +24,15 @@
   font-size: 17px;
   color: white;
 }
+.welcomeText2 {
+  display: flex;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-size: 10px;
+  color: white;
+}
+
 .iconsContainer {
   display: flex;
   justify-content: center;
