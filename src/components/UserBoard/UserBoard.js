@@ -41,6 +41,10 @@ const UserBoard = (props) => {
     }, 5);
   };
 
+  const extracted = props.userData.username.split("@")[0];
+
+  console.log(extracted);
+
   return (
     <>
       <div className="userboard" data-test="userboard">
@@ -53,15 +57,9 @@ const UserBoard = (props) => {
           className="progressBar"
           data-test="progressBar"
         />
-        {props.userData.username.length < 20 ? (
-          <div className="welcomeText" data-test="welcomeText">
-            Hello {props.userData.username}
-          </div>
-        ) : (
-          <div className="welcomeText2" data-test="welcomeText">
-            Hello {props.userData.username}
-          </div>
-        )}
+        <div className="welcomeText" data-test="welcomeText">
+          Hello {props.userData.username.split("@")[0]}
+        </div>
 
         <div className="iconsContainer" data-test="iconsContainer">
           <Link to="/profile/">
