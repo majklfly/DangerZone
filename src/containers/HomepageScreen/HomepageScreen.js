@@ -64,6 +64,7 @@ const HomepageScreen = (props) => {
         className="welcomeScreenContainer"
         data-test="welcomeScreenContainer"
       >
+        <h2 className="VocabularyofDayTitle">Word of the day:</h2>
         <div className="VocabularyOfDay">
           <VocabularyOfDay />
         </div>
@@ -76,7 +77,7 @@ const HomepageScreen = (props) => {
             percent={calculatePercentage()}
             status="active"
             trailColor="transparent"
-            showInfo={false}
+            showInfo={true}
           />
         </div>
         <div className="DatesInfoContainer1">
