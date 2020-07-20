@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { VocabularyOfDay } from "../../components/VocabularyOfDay/VocabularyOfDay";
 import { getChapters } from "../../store/actions/chapter";
 import { Progress } from "antd";
+import { Link } from "react-router-dom";
 
 const HomepageScreen = (props) => {
   const container = useRef(null);
@@ -76,20 +77,20 @@ const HomepageScreen = (props) => {
             }}
             percent={calculatePercentage()}
             status="active"
-            trailColor="transparent"
+            trailColor="rgba(254, 210, 170, 0.3)"
             showInfo={true}
           />
         </div>
-        <div className="DatesInfoContainer1">
+        <Link className="DatesInfoContainer1" to="/profile/">
           <h3>You joined us: {formatDate(props.userData.joined)}</h3>
           <h3>Last login: {formatDate(props.userData.lastLogin)}</h3>
-        </div>
+        </Link>
         <div className="DatesInfoContainer2">
           <h3>Authorization: Student</h3>
           <h3>Permissions: None</h3>
         </div>
         <h2 className="DashboardTitle1">Courses to explore:</h2>
-        <div className="DashboardChaptersInfo1">
+        <Link className="DashboardChaptersInfo1" to="/chapters/">
           {updatedChapters.map((chapter, index) => {
             return (
               <div className="DashboardListItem" key={index}>
@@ -97,9 +98,9 @@ const HomepageScreen = (props) => {
               </div>
             );
           })}
-        </div>
+        </Link>
         <h2 className="DashboardTitle2">Finished courses:</h2>
-        <div className="DashboardChaptersInfo2">
+        <Link className="DashboardChaptersInfo2" to="/chapters/">
           {completedChapters.map((chapter, index) => {
             return (
               <div className="DashboardListItem" key={index}>
@@ -107,7 +108,7 @@ const HomepageScreen = (props) => {
               </div>
             );
           })}
-        </div>
+        </Link>
         <div className="containerWelcomeAnimation" ref={container} />
       </div>
     </>

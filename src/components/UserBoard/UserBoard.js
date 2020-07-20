@@ -41,10 +41,6 @@ const UserBoard = (props) => {
     }, 5);
   };
 
-  const extracted = props.userData.username.split("@")[0];
-
-  console.log(extracted);
-
   return (
     <>
       <div className="userboard" data-test="userboard">
