@@ -24,15 +24,6 @@
   font-size: 17px;
   color: white;
 }
-.welcomeText2 {
-  display: flex;
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  font-size: 10px;
-  color: white;
-}
-
 .iconsContainer {
   display: flex;
   justify-content: center;
@@ -44,7 +35,10 @@
 .iconBoard {
   font-size: 17px;
   color: white;
-  padding: 5px;
+  padding-top: 5px;
+  padding-right: 5px;
+  margin-right: 2px;
+  z-index: 5;
 }
 .iconBoard:hover {
   color: #364d79;
@@ -53,5 +47,4 @@
   margin-top: 1em;
   top: 0;
   left: 3em;
-  z-index: 6;
 }

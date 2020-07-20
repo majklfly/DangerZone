@@ -4,7 +4,10 @@ import PDFCertificate from "../../components/PDFCertificate/PDFCertificate";
 
 const CertificateScreeen = () => {
   return (
-    <div className="CertificateScreenContainer">
+    <div
+      className="CertificateScreenContainer"
+      data-test="CertificateScreenContainer"
+    >
       <div className="CertificateScreenText">
         <h2>
           Please be adviced, that the certificate is possible to download only

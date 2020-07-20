@@ -1,17 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { findByTestAttr } from "../../utils";
-import { FinalQuizAnimationSuccess } from "./FinalQuizAnimationSuccess";
+import { findByTestAttr, testStore } from "../../utils";
+import FinalQuizAnimationSuccess from "./FinalQuizAnimationSuccess";
 
-const setUp = () => {
-  const component = shallow(<FinalQuizAnimationSuccess />);
+const setUp = (initialState = {}) => {
+  const store = testStore(initialState);
+  const component = shallow(<FinalQuizAnimationSuccess store={store} />).dive();
   return component;
 };
 
 jest.mock("react-router-dom", () => ({
   useHistory: () => ({
-    push: jest.fn()
-  })
+    push: jest.fn(),
+  }),
 }));
 
 describe("FinalQuizAnimationSuccess", () => {

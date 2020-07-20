@@ -46,7 +46,10 @@ export const VocabularyOfDay = () => {
   };
 
   return (
-    <div className="VocabularyOfDayContainer">
+    <div
+      className="VocabularyOfDayContainer"
+      data-test="VocabularyOfDayContainer"
+    >
       <div className="updateIcon" onClick={() => pickNewWord()}>
         <Update active={active} setActive={setActive} />
       </div>

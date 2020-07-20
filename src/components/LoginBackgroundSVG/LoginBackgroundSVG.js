@@ -7,6 +7,7 @@ export const LoginBackgroundSVG = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 2000 1500"
       className="LoginBackgroundSVGContainer"
+      data-test="LoginBackgroundSVGContainer"
     >
       <rect fill="#ee5522" width="2000" height="1500" />
       <defs>

@@ -3,7 +3,10 @@ import "./DZAnimation.css";
 
 export const DZAnimation = () => {
   return (
-    <div className="containerWelcomeAnimation">
+    <div
+      className="containerWelcomeAnimation"
+      data-test="containerWelcomeAnimation"
+    >
       <svg
         id="logo"
         width="736"

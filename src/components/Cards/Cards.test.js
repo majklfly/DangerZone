@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import Cards from "./Cards";
 import Article from "../Article/Article";
 import { findByTestAttr, testStore } from "../../utils";
@@ -14,8 +14,8 @@ const setUp = (initialState = {}) => {
 
 jest.mock("react-router-dom", () => ({
   useHistory: () => ({
-    push: jest.fn()
-  })
+    push: jest.fn(),
+  }),
 }));
 
 describe("Cards", () => {
@@ -25,16 +25,16 @@ describe("Cards", () => {
       chapterReducer: {
         chapters: [
           { id: 1, title: "Test1" },
-          { id: 2, title: "Test3" }
-        ]
+          { id: 2, title: "Test3" },
+        ],
       },
       userDataReducer: {
         chapterdata: [
           { id: 1, chapterTitle: "Test1", completed: true },
           { id: 2, chapterTitle: "Test3", completed: false },
-          { id: 3, chapterTitle: "Test4", completed: true }
-        ]
-      }
+          { id: 3, chapterTitle: "Test4", completed: true },
+        ],
+      },
     };
     component = setUp(initialState);
   });
@@ -61,7 +61,9 @@ describe("Cards", () => {
 
   it("should render the article after click on the button", () => {
     const card = findByTestAttr(component, "active");
-    const articleWrapper = mount(<Article />);
+    const articleWrapper = shallow(<Article />);
     card.simulate("click");
+    const spinner = findByTestAttr(articleWrapper, "articleSpinner");
+    expect(spinner.length).toBe(1);
   });
 });

@@ -22,7 +22,13 @@ function Article(props) {
   };
 
   if (props.articles === undefined) {
-    return <Spin size="large" className="articleSpinner" />;
+    return (
+      <Spin
+        size="large"
+        className="articleSpinner"
+        data-test="articleSpinner"
+      />
+    );
   }
 
   return (

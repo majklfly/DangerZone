@@ -64,10 +64,10 @@
   display: flex;
   position: absolute;
   overflow: hidden;
-  left: 20vw;
-  padding: 15px;
+  left: 200px;
+  padding-top: 1%;
   color: black;
-  font-size: 1.8vw;
+  font-size: 1.5rem;
 }
 .profileLabels {
   display: flex;

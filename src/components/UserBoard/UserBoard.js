@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Progress } from "antd";
 import { Link } from "react-router-dom";
-import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  LogoutOutlined,
+  AndroidOutlined,
+} from "@ant-design/icons";
 import { connect } from "react-redux";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -27,7 +31,7 @@ const UserBoard = (props) => {
     });
     const total = chapters.data.length;
     const current = finishedChapters.length;
-    const percent = (current / (total / 100)).toFixed(0);
+    const percent = (current / (total / 100)).toFixed(1);
     setPercentage(percent);
   };
   calculatePercentage();
@@ -54,15 +58,18 @@ const UserBoard = (props) => {
           data-test="progressBar"
         />
         <div className="welcomeText" data-test="welcomeText">
-          Hello {props.userData.username.split("@")[0]}
+          {props.userData.username.split("@")[0]}
         </div>
 
         <div className="iconsContainer" data-test="iconsContainer">
-          <Link to="/profile/">
-            <UserOutlined className="iconBoard" />
+          <a href="https://play.google.com/" className="iconBoard">
+            <AndroidOutlined />
+          </a>
+          <Link to="/profile/" className="iconBoard">
+            <UserOutlined />
           </Link>
-          <Link to="/" onClick={logout}>
-            <LogoutOutlined className="iconBoard" />
+          <Link to="/" onClick={logout} className="iconBoard">
+            <LogoutOutlined />
           </Link>
         </div>
       </div>

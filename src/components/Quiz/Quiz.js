@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import "./Quiz.css";
 import { FinalQuizAnimationFailed } from "../FinalQuizAnimationFailed/FinalQuizAnimationFailed";
-import { FinalQuizAnimationSuccess } from "../FinalQuizAnimationSuccess/FinalQuizAnimationSuccess";
+import FinalQuizAnimationSuccess from "../FinalQuizAnimationSuccess/FinalQuizAnimationSuccess";
 import { postTestResults } from "../../store/actions/quiz";
 
 const Quiz = (props) => {

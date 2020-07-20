@@ -2,12 +2,18 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import "./FinalQuizAnimationSuccess.css";
+import { connect } from "react-redux";
+import { getUserData } from "../../store/actions/userData";
 
-export const FinalQuizAnimationSuccess = (props) => {
+const userId = localStorage.getItem("userId");
+const token = localStorage.getItem("token");
+
+const FinalQuizAnimationSuccess = (props) => {
   const history = useHistory();
 
   const handleClickPositive = () => {
-    history.push("/chapters/");
+    props.getUserData(userId, token);
+    history.push("/cards/");
   };
 
   return (
@@ -965,3 +971,13 @@ export const FinalQuizAnimationSuccess = (props) => {
     </div>
   );
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUserData: (userId, token) => {
+      dispatch(getUserData(userId, token));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(FinalQuizAnimationSuccess);

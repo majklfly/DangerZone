@@ -75,7 +75,6 @@ const NormalLoginForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     loading: state.AuthReducer.loading,
     error: state.AuthReducer.error,
