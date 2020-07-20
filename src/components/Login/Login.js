@@ -27,7 +27,7 @@ const NormalLoginForm = (props) => {
       <img src={icon} alt="icon" className="login_image" />
       <div className="content" data-test="content">
         {props.loading ? (
-          <Spin size="large" />
+          <Spin size="large" className="spinnerLogin" />
         ) : (
           <>
             <div className="login-form-container">
@@ -44,27 +44,31 @@ const NormalLoginForm = (props) => {
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="chrome-off"
               />
-              <Button
-                onClick={handleSubmit}
-                className="buttonSubmit"
-                data-test="buttonSubmit"
-              >
-                Log in
-              </Button>
             </div>
-            <Facebook className="facebookLogin" data-test="facebookLogin">
-              <FacebookFilled className="facebookIcon" />
-              Login with Facebook account
-            </Facebook>
-            <Link to="/terms/">Privacy notice</Link>
-            {props.error ? (
-              <div style={{ color: "red" }}>
-                {props.error.password && "Missing password"}
-                {props.error.non_field_errors && props.error.non_field_errors}
-              </div>
-            ) : null}
           </>
         )}
+      </div>
+      <div className="LoginButtonsContainer">
+        <Button
+          onClick={handleSubmit}
+          className="buttonSubmit"
+          data-test="buttonSubmit"
+        >
+          Log in
+        </Button>
+        <Facebook className="facebookLogin" data-test="facebookLogin">
+          <FacebookFilled className="facebookIcon" />
+          Login with Facebook account
+        </Facebook>
+        <Link to="/terms/" className="privacyNotice">
+          Privacy notice
+        </Link>
+        {props.error ? (
+          <div style={{ color: "red" }}>
+            {props.error.password && "Missing password"}
+            {props.error.non_field_errors && props.error.non_field_errors}
+          </div>
+        ) : null}
       </div>
     </div>
   );
