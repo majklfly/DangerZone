@@ -27,7 +27,7 @@ const BaseRouter = () => {
     },
     {
       text: "HACCP Courses",
-      path: "/chapters/",
+      path: "/cards/",
       icon: "icon ion-md-school",
     },
     {
@@ -45,7 +45,7 @@ const BaseRouter = () => {
           <div>
             <Route exact path="/" component={HomepageScreen} />
             <Route exact path="/about/" component={AboutScreen} />
-            <Route exact path="/chapters/" component={ChaptersScreen} />
+            <Route exact path="/cards/" component={ChaptersScreen} />
             <Route exact path="/chapter/" component={ArticlesScreen} />
             <Route exact path="/chapter/quiz/" component={QuizScreen} />
             <Route exact path="/profile/" component={ProfileScreen} />

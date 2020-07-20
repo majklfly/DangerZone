@@ -90,7 +90,7 @@ const HomepageScreen = (props) => {
           <h3>Permissions: None</h3>
         </div>
         <h2 className="DashboardTitle1">Courses to explore:</h2>
-        <Link className="DashboardChaptersInfo1" to="/chapters/">
+        <Link className="DashboardChaptersInfo1" to="/cards/">
           {updatedChapters.map((chapter, index) => {
             return (
               <div className="DashboardListItem" key={index}>
@@ -100,7 +100,7 @@ const HomepageScreen = (props) => {
           })}
         </Link>
         <h2 className="DashboardTitle2">Finished courses:</h2>
-        <Link className="DashboardChaptersInfo2" to="/chapters/">
+        <Link className="DashboardChaptersInfo2" to="/cards/">
           {completedChapters.map((chapter, index) => {
             return (
               <div className="DashboardListItem" key={index}>
