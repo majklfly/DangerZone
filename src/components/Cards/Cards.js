@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { getChapters, getChapter } from "../../store/actions/chapter";
 import { getUserData } from "../../store/actions/userData";
 import CustomCard from "../Card/Card";
+import checked from "../../assets/checked.png";
 
 import { Spin } from "antd";
 
@@ -62,6 +63,14 @@ const Cards = (props) => {
                       id={chapter.id}
                       hoverable={false}
                     ></CustomCard>
+                    <div className="inactiveLayer" />
+                    <img
+                      src={checked}
+                      alt="checked"
+                      width={40}
+                      height={40}
+                      className="imgChecked"
+                    />
                   </div>
                 );
               } else {

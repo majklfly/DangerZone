@@ -109,7 +109,11 @@ const HomepageScreen = (props) => {
             );
           })}
         </Link>
-        <div className="containerWelcomeAnimation" ref={container} />
+        <div
+          className="containerWelcomeAnimation"
+          ref={container}
+          data-test="logo"
+        />
       </div>
     </>
   );

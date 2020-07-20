@@ -2,10 +2,13 @@ import React from "react";
 import { shallow } from "enzyme";
 import HomepageScreen from "./HomepageScreen";
 
-import { findByTestAttr } from "../../utils";
+import { findByTestAttr, testStore } from "../../utils";
 
-const setUp = () => {
-  const component = shallow(<HomepageScreen />);
+const setUp = (initialState = {}) => {
+  const store = testStore(initialState);
+  const component = shallow(<HomepageScreen store={store} />)
+    .dive()
+    .dive();
   return component;
 };
 
@@ -25,11 +28,5 @@ describe("HomepageScreen Component", () => {
     const component = setUp();
     const logo = findByTestAttr(component, "logo");
     expect(logo.length).toBe(1);
-  });
-
-  it("should render a container with text", () => {
-    const component = setUp();
-    const textContainer = findByTestAttr(component, "homeScreenText");
-    expect(textContainer.length).toBe(1);
   });
 });

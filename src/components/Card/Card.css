@@ -41,12 +41,25 @@
   font-size: 1.3em;
   background-color: #fdbb77;
   border-radius: 10px;
-  border: 2px solid red;
+  border: 2px solid lightgrey;
   opacity: 1;
-  color: red;
   height: 230px;
   width: 300px;
   margin: 10px;
+}
+.inactiveLayer {
+  position: absolute;
+  background-color: lightgrey;
+  margin: 10px;
+  border-radius: 10px;
+  opacity: 0.6;
+  width: 93%;
+  height: 92%;
+}
+.imgChecked {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 .cardAnimationContainer {
   top: 0;

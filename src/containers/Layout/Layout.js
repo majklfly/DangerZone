@@ -10,7 +10,7 @@ function ResponsiveNavigation({
   background,
   hoverBackground,
   linkColor,
-  logo
+  logo,
 }) {
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [navOpen] = useState(false);
@@ -19,7 +19,7 @@ function ResponsiveNavigation({
     <div className="layout">
       <nav className="responsive-toolbar" style={{ background }}>
         <ul style={{ background }} className={navOpen ? "active" : ""}>
-          <Link to="/homepage/">
+          <Link to="/">
             <img
               src={DangerZoneLined}
               height="40px"
@@ -34,7 +34,7 @@ function ResponsiveNavigation({
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(-1)}
               style={{
-                background: hoverIndex === index ? hoverBackground || "" : ""
+                background: hoverIndex === index ? hoverBackground || "" : "",
               }}
             >
               <Link
