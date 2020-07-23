@@ -42,7 +42,7 @@ const AboutScreen = () => {
             className="AboutLinksImg"
           />
         </a>
-        <a href="https://pixabay.com/">
+        <a href="https://lottiefiles.com/">
           <img
             src="https://lordicon.com/assets/pictures/lottiefiles.png"
             alt="pixabay"
