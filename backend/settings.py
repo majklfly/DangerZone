@@ -111,13 +111,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
 }
 
 REST_AUTH_SERIALIZERS = {
-    'TOKEN_SERIALIZER': 'user.serializers.CustomTokenSerializer'
+    'TOKEN_SERIALIZER': 'user.serializers.CustomTokenSerializer',
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -201,6 +201,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'backend.storage_backends.MediaStorage'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
 EMAIL_HOST = config('MAILGUN_SMTP_SERVER')
 EMAIL_PORT = config('MAILGUN_SMTP_PORT')
 EMAIL_HOST_USER = config('MAILGUN_SMTP_LOGIN')
