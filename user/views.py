@@ -80,7 +80,7 @@ class RequestPasswordResetEmail(generics.GenericAPIView):
             token = PasswordResetTokenGenerator().make_token(user)
             relativeLink = reverse(
                 'password-reset-confirm', kwargs={'uidb64': uidb64, 'token': token})
-            absurl = 'https://dangerzone-react.herokuapp.com' + relativeLink
+            absurl = 'http://localhost:3000' + relativeLink
             email_body = 'Hello, \n Please use link below to reset your password \n' + absurl
             data = {'email_body': email_body, 'to_email': user.email,
                     'email_subject': 'Reset your password'}
