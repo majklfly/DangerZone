@@ -31,8 +31,8 @@ const ResetPasswordScreen = (props) => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
+        <button onClick={() => udpatePassword()}>Update</button>
       </div>
-      <button onClick={() => udpatePassword()}>Submit</button>
       <LoginBackgroundSVG />
     </div>
   );
