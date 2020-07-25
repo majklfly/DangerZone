@@ -1,50 +1,35 @@
 import React, { useState } from "react";
-import "./ResetPasswordScreen.css";
+import "./SendNewPasswordScreen.css";
 import { LoginBackgroundSVG } from "../../components/LoginBackgroundSVG/LoginBackgroundSVG";
 import server from "../../api/server";
-import { useHistory } from "react-router-dom";
 import { Spin, Input } from "antd";
 
-const ResetPasswordScreen = (props) => {
+const SendNewPasswordScreen = (props) => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
-  const history = useHistory();
-  const uidb64 = props.match.params.uidb64;
-  const token = props.match.params.token;
 
   const handleResponse = (res) => {
     setLoading(false);
-    setMessage(res.data.message);
-    res.data.success && history.push("/");
-  };
-
-  const handleError = () => {
-    setLoading(false);
-    setMessage("Token is not valid anymore");
+    setMessage(res.data[0]);
   };
 
   const udpatePassword = async () => {
+    const email = value;
     setLoading(true);
-    const password = value;
-    console.log(password);
-    if (uidb64 && token) {
-      server
-        .patch("/password-reset-complete/", {
-          password,
-          uidb64,
-          token,
-        })
-        .then((res) => handleResponse(res))
-        .catch((e) => handleError());
-    }
+    server
+      .post("/request-reset-email/", {
+        email,
+      })
+      .then((res) => handleResponse(res))
+      .catch((e) => setMessage("Ooops, something went wrong"));
   };
 
   return (
     <div>
       <div className="resetPasswordContainer">
         <Input
-          placeholder="Please insert your new password"
+          placeholder="Please insert your email"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -55,7 +40,7 @@ const ResetPasswordScreen = (props) => {
         ) : (
           <>
             {!message ? (
-              <button onClick={() => udpatePassword()}>Update</button>
+              <button onClick={() => udpatePassword()}>Send me email</button>
             ) : (
               <h3>{message}</h3>
             )}
@@ -67,4 +52,4 @@ const ResetPasswordScreen = (props) => {
   );
 };
 
-export default ResetPasswordScreen;
+export default SendNewPasswordScreen;

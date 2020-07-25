@@ -60,11 +60,17 @@ const NormalLoginForm = (props) => {
           <FacebookFilled className="facebookIcon" />
           Login with Facebook account
         </Facebook>
-        <Link to="/terms/" className="privacyNotice">
-          Privacy notice
-        </Link>
+        <div>
+          <Link to="/terms/" className="privacyNotice">
+            Privacy notice
+          </Link>
+          {"  "}
+          <Link to="/sendnespassword/" className="forgotYourPassword">
+            Forgot your password?
+          </Link>
+        </div>
         {props.error ? (
-          <div style={{ color: "red" }}>
+          <div className="errorMessageLogin">
             {props.error.password && "Missing password"}
             {props.error.non_field_errors && props.error.non_field_errors}
           </div>

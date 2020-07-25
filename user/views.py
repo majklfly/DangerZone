@@ -80,13 +80,13 @@ class RequestPasswordResetEmail(generics.GenericAPIView):
             token = PasswordResetTokenGenerator().make_token(user)
             relativeLink = reverse(
                 'password-reset-confirm', kwargs={'uidb64': uidb64, 'token': token})
-            absurl = 'http://localhost:3000' + relativeLink
-            email_body = 'Hello, \n Please use link below to reset your password \n' + absurl
+            absurl = 'https://dangerzone-react.herokuapp.com' + relativeLink
+            email_body = "Hello there, \nYou have requested a recovery email. If you don't recognize this email, please contact administrator on majklfly@gmail.com. \nPlease use link below to reset your password \n" + absurl
             data = {'email_body': email_body, 'to_email': user.email,
                     'email_subject': 'Reset your password'}
 
             Util.send_email(data)
-        return Response({'success', 'We have sent you a link to your password'}, status=status.HTTP_200_OK)
+        return Response({'A recovery link has been sent to provided email.'}, status=status.HTTP_200_OK)
 
 
 class PasswordTokenCheckAPI(generics.GenericAPIView):
@@ -97,12 +97,12 @@ class PasswordTokenCheckAPI(generics.GenericAPIView):
             user = CustomUser.objects.get(id=id)
 
             if not PasswordResetTokenGenerator().check_token(user, token):
-                return Response({'error': 'Token is not valid, please request a new one1'}, status=status.HTTP_401_UNAUTHORIZED)
+                return Response({'error': 'Token is not valid, please request a new one'}, status=status.HTTP_401_UNAUTHORIZED)
 
             return Response({'success': True, 'message': 'Credentials are Valid', 'uidb64': uidb64, 'token': token, 'status': status.HTTP_200_OK})
 
         except DjangoUnicodeDecodeError:
-            return Response({'error': 'Token is not valid, please request a new one1'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'error': 'Token is not valid, please request a new one'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class SetNewPasswordAPIView(generics.GenericAPIView):
@@ -111,7 +111,7 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
     def patch(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        return Response({'success': True, 'message': 'Password reset success'}, status=status.HTTP_200_OK)
+        return Response({'success': True, 'message': 'Your password has been updated'}, status=status.HTTP_200_OK)
 
 
 class SocialLoginView(generics.GenericAPIView):

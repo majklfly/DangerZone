@@ -39,6 +39,7 @@
   font-size: 1rem;
   color: darkgray;
   border: 1px solid darkgray;
+  font-family: var(--textFont-primary);
 }
 .login-form-input::placeholder {
   font-size: 1rem;
@@ -53,6 +54,7 @@
   border-radius: 5px;
   color: white;
   font-size: 15px;
+  font-family: var(--textFont-primary);
 }
 .buttonSubmit:hover {
   border-width: 1px;
@@ -65,17 +67,18 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  bottom: 0;
+  bottom: 35px;
   height: 150px;
 }
 .facebookLogin {
-  margin: 5;
+  margin: 7px;
   border-radius: 5px;
   background-color: #3b5998;
-  width: 250px;
+  width: 280px;
   border: 0;
   height: 30px;
   color: white;
+  font-family: var(--textFont-primary);
 }
 .facebookLogin:hover {
   background-color: #3b5998;
@@ -87,4 +90,20 @@
   left: 50%;
   transform: translate(-50%);
   bottom: 200px;
+}
+.privacyNotice {
+  position: absolute;
+  left: 15%;
+  font-family: var(--textFont-primary);
+}
+.forgotYourPassword {
+  position: absolute;
+  right: 15%;
+  font-family: var(--textFont-primary);
+}
+.errorMessageLogin {
+  position: absolute;
+  bottom: 0px;
+  color: red;
+  font-family: var(--textFont-primary);
 }
