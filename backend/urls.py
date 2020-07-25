@@ -16,7 +16,8 @@ urlpatterns = [
     re_path(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='index.html')),
-    re_path(r'.*', TemplateView.as_view(template_name='index.html'))
+    re_path(r'.*', TemplateView.as_view(template_name='index.html')),
+    re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name='index.html'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
