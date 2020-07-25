@@ -1,5 +1,6 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from knox import views as knox_views
+from django.views.generic import TemplateView
 
 from . import views
 from .api import RegisterAPI
@@ -20,5 +21,5 @@ urlpatterns = [
     path('password-reset/<uidb64>/<token>/',
          views.PasswordTokenCheckAPI.as_view(), name='password-reset-confirm'),
     path('password-reset-complete/', views.SetNewPasswordAPIView.as_view(),
-         name="password-reset-complete")
+         name="password-reset-complete"),
 ]
