@@ -84,3 +84,12 @@
 .SmallScreenWarning {
   display: none;
 }
+
+@media only screen and (max-width: 1000px) {
+  .login {
+    display: none;
+  }
+  .SmallScreenWarning {
+    display: flex;
+  }
+}

@@ -1,13 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-
+import "./index.css";
 import "antd/dist/antd.css";
 
 import BaseRouter from "./router/routes";
 import AuthRouter from "./router/authRoutes";
 
 import { AnimBackground } from "./components/background/background";
+
+import { SmallScreenWarning } from "./components/SmallScreenWarning/SmallScreenWarning";
 
 import * as actions from "./store/actions/auth";
 
@@ -30,10 +32,15 @@ class App extends React.Component {
     } else {
       return (
         <div>
-          <AnimBackground />
-          <Router>
-            <BaseRouter {...this.props} />
-          </Router>
+          <div className="authorizedScreens">
+            <AnimBackground />
+            <Router>
+              <BaseRouter {...this.props} />
+            </Router>
+          </div>
+          <div className="SmallScreenWarning">
+            <SmallScreenWarning />
+          </div>
         </div>
       );
     }
