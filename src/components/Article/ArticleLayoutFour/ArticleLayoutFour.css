@@ -14,9 +14,9 @@
   margin: 3%;
 }
 .ArticleLayoutFourImage {
-  position: absolute;
+  position: relative;
   left: 50%;
-  bottom: 5%;
+  bottom: 0%;
   transform: translate(-50%);
   width: 70%;
   max-width: 550px;
