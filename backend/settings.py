@@ -201,9 +201,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'backend.storage_backends.MediaStorage'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = config('MAILGUN_SMTP_SERVER')
-EMAIL_PORT = config('MAILGUN_SMTP_PORT')
-EMAIL_HOST_USER = config('MAILGUN_SMTP_LOGIN')
-EMAIL_HOST_PASSWORD = config('MAILGUN_SMTP_PASSWORD')
+SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'

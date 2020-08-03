@@ -81,7 +81,7 @@ class RequestPasswordResetEmail(generics.GenericAPIView):
             relativeLink = reverse(
                 'password-reset-confirm', kwargs={'uidb64': uidb64, 'token': token})
             absurl = 'https://dangerzone-react.herokuapp.com' + relativeLink
-            email_body = "Hello there, \nYou have requested a recovery email. If you don't recognize this email, please contact administrator on majklfly@gmail.com. \nPlease use link below to reset your password \n" + absurl
+            email_body = "Hello there, \n You have requested a recovery email. If you don't recognize this email, please contact administrator on majklfly@gmail.com. \nPlease use link below to reset your password \n" + absurl
             data = {'email_body': email_body, 'to_email': user.email,
                     'email_subject': 'Reset your password'}
 
