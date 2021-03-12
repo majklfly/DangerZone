@@ -17,7 +17,7 @@
     "fetch-mock": "^9.10.1",
     "font-awesome": "^4.7.0",
     "framer-motion": "^1.11.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "lottie-web": "^5.7.0",
     "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
